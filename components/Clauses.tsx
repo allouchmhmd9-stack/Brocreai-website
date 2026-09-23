@@ -10,12 +10,12 @@ export function Clauses({ blocks, mark = "Clause" }: { blocks: Block[]; mark?: s
         <section key={b.h} aria-labelledby={`clause-${i}`} className="grid gap-x-12 gap-y-4 border-t hair py-12 md:py-16 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
-              <p className="lbl-ref text-accent">
-                {mark} {pad2(i + 1)}
-              </p>
-              <h2 id={`clause-${i}`} data-anim="lines" className="mt-3 text-[clamp(1.5rem,2.3vw,2rem)] font-bold leading-[1.12] tracking-[-0.025em] text-balance">
+              <h2 id={`clause-${i}`} data-anim="lines" className="text-[clamp(1.5rem,2.3vw,2rem)] font-bold leading-[1.12] tracking-[-0.025em] text-balance">
                 {b.h}
               </h2>
+              <p className="lbl-ref mt-3 text-accent">
+                {mark} {pad2(i + 1)}
+              </p>
             </div>
           </div>
           <div className="lg:col-span-8">

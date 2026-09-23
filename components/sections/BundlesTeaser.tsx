@@ -7,7 +7,7 @@ import type { Dictionary } from "@/lib/i18n";
 // Cover: the bundles as schedules you can open, and the rule you can try for yourself.
 export function BundlesTeaser({ t }: { t: Dictionary["bundlesTeaser"] }) {
   return (
-    <section id="bundles" aria-labelledby="bundles-title" className="py-20 md:py-28">
+    <section id="bundles" aria-labelledby="bundles-title" className="py-14 md:py-20">
       <div className="wrap">
         <SectionBar mark="§ 04" name="Cover" form="BAI-01 · p.4" />
         <div className="mt-8 grid items-end gap-8 lg:grid-cols-12">

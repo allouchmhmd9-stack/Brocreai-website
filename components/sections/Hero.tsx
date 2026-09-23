@@ -35,6 +35,7 @@ const PARTICULARS = [
 export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string }) {
   const root = useRef<HTMLElement>(null);
   const box = useRef<HTMLButtonElement>(null);
+  const signed = useRef<HTMLDivElement>(null);
   const ghost = useRef<HTMLSpanElement>(null);
   const placed = useRef<HTMLSpanElement>(null);
   const [date, setDate] = useState("");
@@ -94,6 +95,8 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
   // The stamp press: drop from above, overshoot, settle, and a small jolt through the box.
   useEffect(() => {
     if (!stamp || !placed.current) return;
+    // The approval button is gone once stamped; keep keyboard users on the next step.
+    if (document.activeElement === document.body) signed.current?.querySelector<HTMLElement>("a")?.focus({ preventScroll: true });
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -101,8 +104,9 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
         { scale: 2.4, autoAlpha: 0, rotation: stamp.r + 22 },
         { scale: 1, autoAlpha: 1, rotation: stamp.r, duration: 0.42, ease: "back.out(2.8)" },
       );
-      gsap.fromTo(box.current, { y: 0 }, { y: 2, duration: 0.06, yoyo: true, repeat: 1, delay: 0.16, ease: "power1.inOut" });
+      gsap.fromTo(signed.current, { y: 0 }, { y: 2, duration: 0.06, yoyo: true, repeat: 1, delay: 0.16, ease: "power1.inOut" });
       gsap.fromTo("[data-status-approved]", { autoAlpha: 0, x: -6 }, { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.07, delay: 0.3, ease: "expo.out" });
+      gsap.fromTo("[data-after-stamp]", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.55, ease: "expo.out" });
     }, root);
     return () => ctx.revert();
   }, [stamp]);
@@ -118,7 +122,9 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
     const fromKeyboard = e.detail === 0;
     const x = fromKeyboard ? r.width * 0.72 : e.clientX - r.left;
     const y = fromKeyboard ? r.height / 2 : e.clientY - r.top;
-    setStamp({ x: Math.max(48, Math.min(r.width - 48, x)), y: Math.max(40, Math.min(r.height - 40, y)), r: -14 + Math.random() * 16 });
+    // The stamp lands on the right half, clear of the demo button that appears on the left.
+    const minX = Math.min(r.width - 48, Math.max(r.width * 0.6, 230));
+    setStamp({ x: Math.max(minX, Math.min(r.width - 48, x)), y: Math.max(40, Math.min(r.height - 40, y)), r: -14 + Math.random() * 16 });
   };
 
   const approved = Boolean(stamp);
@@ -142,8 +148,7 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
           <div className="grid lg:grid-cols-12">
             {/* Insured: the headline, the description, the action */}
             <div className="flex flex-col px-5 pb-8 pt-6 sm:px-8 md:pb-10 md:pt-8 lg:col-span-7 lg:border-r lg:hair xl:px-10">
-              <p className="lbl">Insured</p>
-              <h1 id="hero-title" className="display mt-3 text-[clamp(2.7rem,6.1vw,5.9rem)]">
+              <h1 id="hero-title" className="display text-[clamp(2.7rem,6.1vw,5.9rem)]">
                 <Segs segs={hero.title} />
               </h1>
               <div data-h-rise className="mt-7 border-t hair pt-3 md:mt-9">
@@ -159,9 +164,9 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
                   {hero.secondary}
                 </Link>
               </div>
-              <ul data-h-rise className="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-3">
+              <ul data-h-rise className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-7">
                 {hero.chips.map((c) => (
-                  <li key={c} className="flex items-start gap-2.5 text-[0.92rem] leading-snug text-white">
+                  <li key={c} className="flex items-start gap-2.5 text-[0.92rem] leading-snug text-white sm:whitespace-nowrap">
                     <span data-h-tick>
                       <Tick />
                     </span>
@@ -169,7 +174,7 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
                   </li>
                 ))}
               </ul>
-              <dl data-h-rise className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t hair pt-4 lg:mt-auto lg:grid-cols-3">
+              <dl data-h-rise className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t hair pt-4 lg:mt-auto lg:grid-cols-3 lg:pt-5">
                 {PARTICULARS.map((p) => (
                   <div key={p.label} className={p.wide ? "col-span-2 lg:col-span-1" : ""}>
                     <dt className="lbl">{p.label}</dt>
@@ -187,7 +192,7 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
               </div>
               <ol className="mt-3 px-5 sm:px-8 xl:px-10">
                 {EXAMPLE.map((l) => (
-                  <li key={l.no} data-line className="grid grid-cols-[auto_1fr_auto] items-center gap-x-4 border-b hair py-3.5 last:border-b-0">
+                  <li key={l.no} data-line className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3 border-b hair py-3.5 sm:gap-x-4 last:border-b-0">
                     <span data-no className="lbl-ref self-start pt-0.5">
                       {l.no}
                     </span>
@@ -223,26 +228,21 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
                     </button>
                   ) : null}
                 </div>
-                <button
-                  ref={box}
-                  type="button"
-                  aria-pressed={approved}
-                  aria-label="Approve the example schedule"
-                  onPointerMove={onMove}
-                  onPointerEnter={(e) => e.pointerType === "mouse" && setHovering(true)}
-                  onPointerLeave={() => setHovering(false)}
-                  onClick={approve}
-                  className={`relative mt-2 block h-[6.5rem] w-full overflow-hidden border border-dashed text-left transition-colors ${
-                    approved ? "cursor-default border-ice/60" : "cursor-none border-accent/70 hover:bg-card/60"
-                  }`}
-                >
-                  <span
-                    className={`entry absolute left-4 top-[42%] max-w-[56%] -translate-y-1/2 text-[0.78rem] leading-snug ${approved ? "text-white" : "text-textsec"}`}
+                {!approved ? (
+                  <button
+                    ref={box}
+                    type="button"
+                    aria-label="Approve the example schedule"
+                    onPointerMove={onMove}
+                    onPointerEnter={(e) => e.pointerType === "mouse" && setHovering(true)}
+                    onPointerLeave={() => setHovering(false)}
+                    onClick={approve}
+                    className="relative mt-2 block h-[6.5rem] w-full cursor-none overflow-hidden border border-dashed border-accent/70 text-left transition-colors hover:bg-card/60"
                   >
-                    {approved ? "Approved. Only now would any of it go out." : "Nothing goes out until you stamp it. Try it."}
-                  </span>
-                  <span className="absolute bottom-3 left-4 right-4 h-px bg-cardborder" aria-hidden="true" />
-                  {!approved ? (
+                    <span className="entry absolute left-4 top-[42%] max-w-[56%] -translate-y-1/2 text-[0.78rem] leading-snug text-textsec">
+                      Nothing goes out until you stamp it. Try it.
+                    </span>
+                    <span className="absolute bottom-3 left-4 right-4 h-px bg-cardborder" aria-hidden="true" />
                     <span
                       ref={ghost}
                       aria-hidden="true"
@@ -250,18 +250,30 @@ export function Hero({ hero, demoLabel }: { hero: HeroDict; demoLabel: string })
                     >
                       <Stamp ring="Approved · Brocare AI" center="OK" tone="ice" size={84} rotate={0} />
                     </span>
-                  ) : null}
-                  {stamp ? (
-                    <span
-                      ref={placed}
-                      aria-hidden="true"
-                      className="pointer-events-none absolute"
-                      style={{ left: stamp.x - 44, top: stamp.y - 44, transform: `rotate(${stamp.r}deg)` }}
-                    >
-                      <Stamp ring="Approved · Brocare AI" center="OK" tone="ice" size={88} rotate={0} />
-                    </span>
-                  ) : null}
-                </button>
+                  </button>
+                ) : (
+                  // Signed: the box keeps its size, so nothing below it moves. The next step,
+                  // the demo, is offered right where the approval happened.
+                  <div ref={signed} className="relative mt-2 h-[6.5rem] w-full overflow-hidden border border-dashed border-ice/60">
+                    <div data-after-stamp className="absolute left-4 top-1/2 flex -translate-y-1/2 flex-col items-start gap-2">
+                      <span className="entry text-[0.74rem] leading-snug text-white">Approved. Only now would it go out.</span>
+                      <Link href="/demo" className="btn btn-primary btn-sm">
+                        {demoLabel}
+                        <Arrow />
+                      </Link>
+                    </div>
+                    {stamp ? (
+                      <span
+                        ref={placed}
+                        aria-hidden="true"
+                        className="pointer-events-none absolute"
+                        style={{ left: stamp.x - 44, top: stamp.y - 44, transform: `rotate(${stamp.r}deg)` }}
+                      >
+                        <Stamp ring="Approved · Brocare AI" center="OK" tone="ice" size={88} rotate={0} />
+                      </span>
+                    ) : null}
+                  </div>
+                )}
                 <p className="sr-only" aria-live="polite">
                   {approved ? "Example schedule approved." : ""}
                 </p>

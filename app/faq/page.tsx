@@ -45,18 +45,17 @@ export default function FaqPage() {
           </div>
         </nav>
         <div className="space-y-16 lg:col-span-9">
-          {faqGroups.map((g, gi) => (
+          {faqGroups.map((g) => (
             <section key={g.title} id={slug(g.title)} aria-labelledby={`${slug(g.title)}-title`} className="scroll-mt-28">
               <div data-anim="rule" className="h-px bg-primary" />
-              <p className="lbl-ref mt-3 text-accent">Part {pad2(gi + 1)}</p>
-              <h2 id={`${slug(g.title)}-title`} data-anim="lines" className="h2 mt-2">
+              <h2 id={`${slug(g.title)}-title`} data-anim="lines" className="h2 mt-4">
                 {g.title}
               </h2>
               <dl className="mt-6">
                 {g.items.map((it) => {
                   n += 1;
                   return (
-                    <div key={it.q} data-anim="rise" className="grid gap-x-6 border-t hair py-7 sm:grid-cols-[4.5rem_1fr]">
+                    <div key={it.q} data-anim="rise" className="grid grid-cols-[3.4rem_minmax(0,1fr)] gap-x-4 border-t hair py-7 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-x-6">
                       <span className="lbl-ref pt-1">Q.{pad2(n)}</span>
                       <div>
                         <dt className="h3">{it.q}</dt>

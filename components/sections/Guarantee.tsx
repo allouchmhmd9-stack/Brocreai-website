@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Segs } from "@/components/Segs";
-import { SectionBar } from "@/components/slip/Parts";
+import { Sheet } from "@/components/slip/Parts";
 import { Stamp } from "@/components/slip/Stamp";
 import type { Dictionary } from "@/lib/i18n";
 import { pad2 } from "@/lib/slip";
@@ -12,6 +12,18 @@ import { pad2 } from "@/lib/slip";
 gsap.registerPlugin(ScrollTrigger);
 
 const DAYS = 14;
+
+// An example of how the fortnight usually runs, labelled as such on the sheet. The guarantee
+// itself is the commitment; the day-by-day steps are illustrative.
+const ENTRIES: Record<number, string> = {
+  1: "Kickoff",
+  2: "Access given",
+  3: "Scope chosen",
+  5: "Agents connected",
+  8: "First drafts to you",
+  10: "Your review",
+  12: "Tuned to you",
+};
 
 // Warranty: the real commitment, printed as a period of cover. Fourteen days fill as you
 // scroll, day fourteen is stamped live, and the clause after it is the free extension.
@@ -50,10 +62,10 @@ export function Guarantee({ guarantee }: { guarantee: Dictionary["guarantee"] })
   }, []);
 
   return (
-    <section id="guarantee" aria-labelledby="guarantee-title" className="py-20 md:py-28">
+    <section id="guarantee" aria-labelledby="guarantee-title" className="py-6 md:py-8">
       <div className="wrap">
-        <SectionBar mark="§ 06" name="Warranty" form="BAI-01 · p.6" />
-        <div className="mt-10 grid items-start gap-12 lg:grid-cols-12 lg:gap-14">
+        <Sheet mark="§ 06" name="Warranty" form="BAI-01 · p.6">
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-6">
             <h2 id="guarantee-title" data-anim="lines" className="h2">
               <Segs segs={guarantee.title} />
@@ -68,26 +80,33 @@ export function Guarantee({ guarantee }: { guarantee: Dictionary["guarantee"] })
           </div>
 
           <div ref={cal} className="lg:col-span-6">
-            <div className="sheet crops">
+            <div className="border hair bg-deep/50">
               <div className="flex items-baseline justify-between border-b hair px-5 py-3">
-                <p className="lbl">Period</p>
+                <p className="lbl">Period · example timeline</p>
                 <p className="lbl-ref">{guarantee.big}</p>
               </div>
-              <ol className="grid grid-cols-7">
+              <ol className="grid grid-cols-[repeat(7,minmax(0,1fr))]">
                 {Array.from({ length: DAYS }, (_, i) => {
                   const day = i + 1;
                   const lastDay = day === DAYS;
                   return (
-                    <li key={day} className="relative aspect-[3/4] border-b border-r hair [&:nth-child(7n)]:border-r-0">
+                    <li key={day} className={`relative aspect-[3/4] border-b border-r hair [&:nth-child(7n)]:border-r-0 ${lastDay ? "overflow-hidden" : ""}`}>
                       <span data-fill aria-hidden="true" className={`absolute inset-0 ${lastDay ? "bg-primary" : "bg-primary/30"}`} />
-                      <span className="lbl-ref relative block p-1.5 sm:p-2">{pad2(day)}</span>
-                      {day === 1 ? <span className="lbl absolute bottom-1.5 left-1.5 text-[0.55rem] text-white sm:bottom-2 sm:left-2">Kickoff</span> : null}
-                      {lastDay ? (
-                        <span data-live className="absolute inset-0 grid place-items-center">
-                          <Stamp ring="Live · first workflow" center="LIVE" tone="ice" size={64} rotate={-9} />
+                      <span className="lbl-ref relative z-10 block p-1.5 sm:p-2">{pad2(day)}</span>
+                      {ENTRIES[day] ? (
+                        <span className={`entry absolute inset-x-1.5 bottom-1.5 text-[0.5rem] leading-tight text-white sm:inset-x-2 sm:bottom-2 sm:text-[0.56rem] ${day === 1 ? "" : "hidden sm:block"}`}>
+                          {ENTRIES[day]}
                         </span>
                       ) : null}
-                      <span className="sr-only">{lastDay ? `Day ${day}: live` : `Day ${day}`}</span>
+                      {lastDay ? (
+                        <span data-live className="absolute inset-0 grid items-end justify-items-center pb-1 sm:place-items-center sm:pb-0">
+                          {/* Scaled down on phones so the stamp stays inside its day cell */}
+                          <span className="block h-[38px] w-[38px] sm:h-16 sm:w-16"><span className="block origin-top-left scale-[0.6] sm:scale-100">
+                            <Stamp ring="Live · first workflow" center="LIVE" tone="ice" size={64} rotate={-9} />
+                          </span></span>
+                        </span>
+                      ) : null}
+                      <span className="sr-only">{lastDay ? `Day ${day}: live` : ENTRIES[day] ? `Day ${day}: ${ENTRIES[day]}` : `Day ${day}`}</span>
                     </li>
                   );
                 })}
@@ -99,6 +118,7 @@ export function Guarantee({ guarantee }: { guarantee: Dictionary["guarantee"] })
             </div>
           </div>
         </div>
+        </Sheet>
       </div>
     </section>
   );

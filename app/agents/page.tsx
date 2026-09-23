@@ -78,11 +78,13 @@ export default function AgentsPage() {
                               rotate={-8}
                             />
                             <div>
-                              <p className="lbl-ref">{lineNo(a)}</p>
-                              <h3 id={`${a.slug}-name`} className="mt-2 text-[1.75rem] font-bold leading-[1.08] tracking-[-0.025em] text-white">
+                              <h3 id={`${a.slug}-name`} className="text-[1.75rem] font-bold leading-[1.08] tracking-[-0.025em] text-white">
                                 {a.name}
                               </h3>
-                              <StatusChip status={a.status} className="mt-3" />
+                              <p className="mt-3 flex items-center gap-3">
+                                <span className="lbl-ref">{lineNo(a)}</span>
+                                <StatusChip status={a.status} />
+                              </p>
                             </div>
                           </div>
                           <p className="mt-5 text-[1.1rem] leading-snug text-white">{a.tagline}</p>

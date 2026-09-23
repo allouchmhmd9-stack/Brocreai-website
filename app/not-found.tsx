@@ -20,8 +20,8 @@ export default function NotFound() {
       <div className="wrap py-10 md:py-16">
         <div className="sheet crops grid gap-10 px-5 py-10 sm:px-8 md:grid-cols-12 md:px-12 md:py-16">
           <div className="md:col-span-8">
-            <p className="lbl-ref">Form {d.notFound.code} · Not issued</p>
-            <h1 className="display mt-6 text-[clamp(2.4rem,5.4vw,4.6rem)]">{d.notFound.title}</h1>
+            <h1 className="display text-[clamp(2.4rem,5.4vw,4.6rem)]">{d.notFound.title}</h1>
+            <p className="lbl-ref mt-4">Form {d.notFound.code} · Not issued</p>
             <p className="lead mt-6">{d.notFound.body}</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/" className="btn btn-primary">

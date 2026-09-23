@@ -25,12 +25,12 @@ export function LineCard({ agent, href, className }: { agent: Agent; href?: stri
           rotate={-6}
         />
       </span>
-      <span className="flex items-baseline justify-between gap-3 pt-12">
+      <span className="block min-h-[2.3em] pt-12 text-[1.3rem] font-bold leading-[1.12] tracking-[-0.02em] text-white [box-sizing:content-box]">{agent.name}</span>
+      <span className="mt-2 flex items-baseline gap-2">
         <span className="lbl-ref">{lineNo(agent)}</span>
-        <span className="lbl truncate text-[0.62rem]">{GROUP[agent.group]}</span>
+        <span className="lbl truncate text-[0.6rem]">{GROUP[agent.group]}</span>
       </span>
-      <span className="mt-3 block min-h-[2.3em] text-[1.3rem] font-bold leading-[1.12] tracking-[-0.02em] text-white">{agent.name}</span>
-      <span className="mt-2 line-clamp-2 min-h-[2.9em] text-[0.92rem] leading-[1.45] text-textsec">{agent.tagline}</span>
+      <span className="mt-3 line-clamp-2 min-h-[2.9em] text-[0.92rem] leading-[1.45] text-textsec">{agent.tagline}</span>
       <span className="mt-5 block h-px w-full bg-cardborder transition-colors duration-300 group-hover:bg-accent" aria-hidden="true" />
       <span className="mt-4 flex items-end justify-between gap-3">
         <span>

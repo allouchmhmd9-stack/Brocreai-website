@@ -120,10 +120,9 @@ export default function BundlesPage() {
             <Segs segs={t.beyondTitle} />
           </h2>
           <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
-            {beyond.map((x, i) => (
+            {beyond.map((x) => (
               <li key={x.title} data-anim="rise" className="border-t hair pt-4">
-                <p className="lbl-ref">Extension {pad2(i + 1)}</p>
-                <h3 className="h3 mt-4">{x.title}</h3>
+                <h3 className="h3">{x.title}</h3>
                 <p className="body mt-3">{x.body}</p>
               </li>
             ))}

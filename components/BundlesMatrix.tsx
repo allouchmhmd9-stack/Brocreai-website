@@ -70,8 +70,7 @@ export function BundlesMatrix({ bundles, seeLabel, rule }: { bundles: Bundle[]; 
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
       {/* The index of bundles */}
       <div className="lg:col-span-5">
-        <p className="lbl">Choose a bundle</p>
-        <ul className="mt-3 border-t hair">
+        <ul aria-label="Choose a bundle" className="border-t hair">
           {bundles.map((x, i) => {
             const on = i === active;
             return (

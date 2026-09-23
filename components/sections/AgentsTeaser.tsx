@@ -22,7 +22,7 @@ export function AgentsTeaser({ t }: { t: Dictionary["agentsTeaser"] }) {
     </>
   );
   return (
-    <section id="agents" aria-labelledby="agents-title" className="overflow-hidden py-16 md:py-20">
+    <section id="agents" aria-labelledby="agents-title" className="overflow-hidden py-14 md:py-16">
       <AgentsRail agents={agents} head={head} prevLabel={t.prev} nextLabel={t.next} allLabel={t.cta} allNote={t.note} />
     </section>
   );

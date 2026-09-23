@@ -82,7 +82,7 @@ export const en = {
   },
   guarantee: {
     big: "2 weeks",
-    title: [s("Live in "), s("two weeks", true), s(". Or we keep working free.")],
+    title: [s("Live in two "), s("weeks.", true), s(" Or we keep working free.")],
     body: "Your first workflow is live and producing real output within two weeks of kickoff. If it is not, we keep working at no additional cost until it is.",
     definition: "A workflow means one bundle, connected to your tools, producing its first real output.",
   },

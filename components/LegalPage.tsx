@@ -35,7 +35,7 @@ export function LegalPage({ page }: { page: LegalKey }) {
       <div className="wrap pb-24 pt-10 md:pb-32">
         <ol className="max-w-3xl">
           {p.sections.map((s, i) => (
-            <li key={s.h} data-anim="rise" className="grid gap-x-6 border-t hair py-8 sm:grid-cols-[3.5rem_1fr]">
+            <li key={s.h} data-anim="rise" className="grid grid-cols-[2.2rem_minmax(0,1fr)] gap-x-4 border-t hair py-8 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:gap-x-6">
               <span className="lbl-ref pt-1 text-accent">{i + 1}.</span>
               <div>
                 <h2 className="h3">{s.h}</h2>

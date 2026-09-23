@@ -14,8 +14,7 @@ export function CtaBand({ lead }: { lead?: string }) {
       <div className="wrap">
         <div className="sheet crops grid gap-10 px-5 py-10 sm:px-8 md:px-12 md:py-14 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-7">
-            <p className="lbl">Signature</p>
-            <h2 id="sign-title" data-anim="lines" className="display mt-4 text-[clamp(2.3rem,5vw,4.4rem)]">
+            <h2 id="sign-title" data-anim="lines" className="display text-[clamp(2.3rem,5vw,4.4rem)]">
               <Segs segs={d.closing.title} />
             </h2>
             <p data-anim="rise" className="lead mt-6">

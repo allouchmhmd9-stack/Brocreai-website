@@ -4,20 +4,39 @@ import type { Seg } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 /**
- * The printed bar that opens every section of the schedule: a strong rule, the section
- * mark and name on the left, the form reference on the right. It is part of the form,
- * not a label above the heading.
+ * The printed rule that opens a section: a strong rule with its folio (section mark, name,
+ * form reference) set small at the right-hand end, the way a form prints its page reference.
+ * Nothing is stacked over the heading.
  */
 export function SectionBar({ mark, name, form, className }: { mark: string; name: string; form?: string; className?: string }) {
   return (
-    <div className={cn("relative", className)}>
-      <div data-anim="rule" className="h-px w-full bg-primary" />
-      <div className="mt-3 flex items-baseline justify-between gap-6">
-        <p className="lbl flex items-baseline gap-3 text-white">
-          <span className="lbl-ref text-accent">{mark}</span>
-          <span>{name}</span>
+    <div className={cn("relative flex items-center gap-4", className)}>
+      <div data-anim="rule" className="h-px flex-1 bg-primary" />
+      <p className="lbl-ref shrink-0">
+        <span className="text-accent">{mark}</span> · {name}
+        {form ? <span className="hidden sm:inline"> · {form}</span> : null}
+      </p>
+    </div>
+  );
+}
+
+/**
+ * A section printed on the slip stock: the framed navy sheet with registration corners,
+ * a top strip carrying the section mark and folio, and a ruled margin down the left on wide
+ * screens, so the landing reads as one continuous document.
+ */
+export function Sheet({ mark, name, form, children, className }: { mark: string; name: string; form: string; children: ReactNode; className?: string }) {
+  return (
+    <div className={cn("sheet crops", className)}>
+      <div className="flex items-baseline justify-between gap-6 border-b hair px-5 py-2.5 sm:px-6">
+        <p className="lbl-ref">
+          <span className="text-accent">{mark}</span> · {name}
         </p>
-        {form ? <p className="lbl-ref hidden sm:block">{form}</p> : null}
+        <p className="lbl-ref">{form}</p>
+      </div>
+      <div className="relative px-5 py-10 sm:px-8 md:py-14 lg:pl-24 lg:pr-10">
+        <span aria-hidden="true" className="absolute bottom-0 left-16 top-0 hidden w-px bg-primary/40 lg:block" />
+        {children}
       </div>
     </div>
   );

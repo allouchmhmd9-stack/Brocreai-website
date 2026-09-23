@@ -8,7 +8,7 @@ export const about = {
   metaTitle: "About Brocare AI: built inside a real insurance brokerage",
   metaDescription:
     "Brocare AI was built inside Brocare Insurance Brokerage to solve real problems first. Now it runs for insurers, brokerages and agents across the Middle East and Africa.",
-  title: [s("We automated our own brokerage first. Then we decided to "), s("sell it", true), s(".")],
+  title: [s("We automated our own brokerage first. Then we decided to "), s("sell", true), s(" it.")],
   intro: [
     "Brocare AI did not start as a pitch deck. It started on an ordinary day inside Brocare Insurance Brokerage: a producer spending forty-five minutes building one quote by hand, a good lead going cold because nobody got back to them in time, a stack of insurer statements nobody had the hours to reconcile that week. We did not call a software company. We built the fix ourselves, used it inside our own brokerage every single day, and only sold it once we trusted it with our own business.",
     "That is still true today. Brocare AI runs parallel to Brocare Insurance Brokerage. Not as a demo environment, not as a showcase, but as the actual system our own team uses to quote, follow up, prospect and report, every working day. When you see an agent on this site, you are looking at something running live in a real brokerage right now, not a concept.",
