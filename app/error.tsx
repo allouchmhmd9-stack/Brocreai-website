@@ -18,13 +18,14 @@ export default function GlobalRouteError({
   }, [error]);
 
   return (
-    <section className="flex min-h-[70svh] items-center pt-24">
-      <div className="container-x py-20">
-        <h1 className="max-w-[18ch] font-display text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+    <section className="pt-16">
+      <div className="wrap py-10 md:py-16">
+        <div className="sheet crops px-5 py-10 sm:px-8 md:px-12 md:py-16">
+        <h1 className="display max-w-[18ch] text-[clamp(2.2rem,4.6vw,3.8rem)]">
           {d.error.title}
         </h1>
-        <p className="mt-5 max-w-md text-lg text-textsec">{d.error.body}</p>
-        <div className="mt-9 flex flex-wrap gap-3">
+        <p className="lead mt-6">{d.error.body}</p>
+        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <button type="button" onClick={reset} className="btn btn-primary">
             {d.error.retry}
           </button>
@@ -37,6 +38,7 @@ export default function GlobalRouteError({
             <WhatsAppIcon className="h-5 w-5" />
             {d.nav.whatsapp}
           </a>
+        </div>
         </div>
       </div>
     </section>

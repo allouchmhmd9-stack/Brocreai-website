@@ -42,8 +42,8 @@ export default function HomePage() {
     <>
       <Hero hero={d.hero} demoLabel={d.nav.demo} />
       <Intro intro={d.intro} />
-      <BundlesTeaser t={d.bundlesTeaser} />
       <AgentsTeaser t={d.agentsTeaser} />
+      <BundlesTeaser t={d.bundlesTeaser} />
       <How how={d.how} />
       <Guarantee guarantee={d.guarantee} />
       <FaqTeaser t={d.faqTeaser} />

@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const LABEL: Record<string, string> = {
   live: "Live",
   pilot: "In pilot",
@@ -6,15 +8,12 @@ const LABEL: Record<string, string> = {
   coming: "Coming soon",
 };
 
-// Quiet outlined chip. Ice is reserved for "live"; everything else stays in textsec.
-export function StatusChip({ status, className = "" }: { status: string; className?: string }) {
+// A printed status mark. Ice is reserved for "live"; everything else prints as an outline.
+export function StatusChip({ status, className }: { status: string; className?: string }) {
   const live = status === "live";
   return (
-    <span
-      className={`inline-flex shrink-0 items-center whitespace-nowrap rounded-md border px-2 py-0.5 text-xs font-medium ${
-        live ? "border-ice/60 text-ice" : "border-textsec/50 text-textsec"
-      } ${className}`}
-    >
+    <span className={cn("lbl inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-[0.64rem]", live ? "text-ice" : "text-textsec", className)}>
+      <span aria-hidden="true" className={cn("h-1.5 w-1.5", live ? "bg-ice" : "border border-textsec")} />
       {LABEL[status] ?? status}
     </span>
   );

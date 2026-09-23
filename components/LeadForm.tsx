@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { InfoIcon, WhatsAppIcon } from "@/components/icons";
+import { Arrow } from "@/components/slip/Parts";
+import { Stamp } from "@/components/slip/Stamp";
 import type { Dictionary } from "@/lib/i18n";
 import { LIMITS, validateLead, type FieldErrors, type LeadField } from "@/lib/leads/validate";
 import { whatsappLink } from "@/lib/site";
@@ -12,18 +14,13 @@ type FormDict = Dictionary["demo"]["form"];
 
 function Notice({ title, body, waText }: { title: string; body: string; waText?: string }) {
   return (
-    <div role="alert" className="flex gap-3 rounded-xl border border-textsec/40 bg-deep/60 p-4 text-sm">
-      <InfoIcon className="mt-0.5 h-5 w-5 shrink-0 text-ice" />
+    <div role="alert" className="flex gap-3 border border-dashed border-textsec/60 bg-deep/60 p-4 text-sm">
+      <InfoIcon className="mt-0.5 h-5 w-5 shrink-0 text-textsec" />
       <div>
         <p className="font-semibold text-white">{title}</p>
         {body ? <p className="mt-1 text-textsec">{body}</p> : null}
         {waText ? (
-          <a
-            href={whatsappLink(waText)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-underline mt-2 inline-flex items-center gap-2 text-white"
-          >
+          <a href={whatsappLink(waText)} target="_blank" rel="noopener noreferrer" className="ln mt-2 inline-flex items-center gap-2 text-white">
             <WhatsAppIcon className="h-4 w-4" />
             WhatsApp
           </a>
@@ -33,6 +30,8 @@ function Notice({ title, body, waText }: { title: string; body: string; waText?:
   );
 }
 
+// The demo request as a printed proposal form: numbered parts, labels set inside each box,
+// a declaration tick box, and a stamp when it has been received.
 export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -69,9 +68,7 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
     if (!result.ok) {
       setErrors(result.errors);
       setStatus("idle");
-      requestAnimationFrame(() =>
-        form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus(),
-      );
+      requestAnimationFrame(() => form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus());
       return;
     }
     setErrors({});
@@ -112,13 +109,16 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
 
   if (status === "success") {
     return (
-      <div className="glass p-6 sm:p-8 md:p-10">
-        <div ref={successRef} tabIndex={-1} role="status" className="outline-none">
-          <p className="font-display text-2xl font-bold md:text-3xl">{f.successTitle}</p>
-          <p className="mt-3 text-textsec">{f.successBody}</p>
-          <button type="button" onClick={() => setStatus("idle")} className="btn btn-secondary mt-8">
-            {f.again}
-          </button>
+      <div className="sheet crops p-6 sm:p-8 md:p-10">
+        <div ref={successRef} tabIndex={-1} role="status" className="flex flex-col items-start gap-6 outline-none sm:flex-row sm:items-center">
+          <Stamp ring="Received · Brocare AI" center="OK" tone="ice" size={112} rotate={-10} />
+          <div>
+            <p className="text-[1.8rem] font-bold tracking-[-0.02em]">{f.successTitle}</p>
+            <p className="mt-2 text-textsec">{f.successBody}</p>
+            <button type="button" onClick={() => setStatus("idle")} className="btn btn-secondary btn-sm mt-6">
+              {f.again}
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -127,125 +127,129 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
   const hasErrors = Object.keys(errors).length > 0;
 
   return (
-    <form onSubmit={onSubmit} noValidate className="glass relative space-y-5 p-6 sm:p-8 md:p-10">
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={onSubmit} noValidate className="sheet crops relative">
+      <div className="flex items-baseline justify-between border-b hair px-5 py-3 sm:px-7">
+        <p className="lbl">Part 1 · About you</p>
+        <p className="lbl-ref">BAI-07</p>
+      </div>
+      <div className="grid gap-3 p-5 sm:grid-cols-2 sm:p-7">
         <Field id="name" label={f.name} error={msg("name")} auto="name" max={LIMITS.name} />
         <Field id="company" label={f.company} error={msg("company")} auto="organization" max={LIMITS.company} />
         <Field id="role" label={f.role} error={msg("role")} auto="organization-title" max={LIMITS.role} />
         <Field id="country" label={f.country} error={msg("country")} auto="country-name" max={LIMITS.country} />
+        <div className="sm:col-span-2">
+          <Field id="contact" label={f.contact} error={msg("contact")} auto="email" max={LIMITS.contact} />
+        </div>
       </div>
-      <Field id="contact" label={f.contact} error={msg("contact")} auto="email" max={LIMITS.contact} />
 
-      <div>
-        <label htmlFor="message" className="field-label">
-          {f.message}
+      <div className="border-y hair px-5 py-3 sm:px-7">
+        <p className="lbl">Part 2 · The work</p>
+      </div>
+      <div className="p-5 sm:p-7">
+        <label htmlFor="message" className="fbox" data-invalid={errors.message ? "true" : undefined}>
+          <span className="lbl">{f.message}</span>
+          <textarea
+            id="message"
+            name="message"
+            rows={4}
+            maxLength={LIMITS.message}
+            aria-invalid={errors.message ? true : undefined}
+            aria-describedby={errors.message ? "message-error" : "message-hint"}
+            className="finput resize-y"
+          />
         </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={5}
-          maxLength={LIMITS.message}
-          aria-invalid={errors.message ? true : undefined}
-          aria-describedby={errors.message ? "message-error" : "message-hint"}
-          className="field-input resize-y"
-        />
         {errors.message ? (
           <p id="message-error" className="mt-2 flex items-center gap-2 text-sm text-white">
-            <InfoIcon className="h-4 w-4 shrink-0 text-ice" />
+            <InfoIcon className="h-4 w-4 shrink-0 text-textsec" />
             {msg("message")}
           </p>
         ) : (
-          <p id="message-hint" className="mt-2 text-sm text-textsec">
+          <p id="message-hint" className="entry mt-2 text-[0.74rem] text-textsec">
             {f.messageHint}
           </p>
         )}
       </div>
 
-      <div>
-        <div className="flex items-start gap-3">
-          <input
-            id="consent"
-            name="consent"
-            type="checkbox"
-            required
-            aria-invalid={errors.consent ? true : undefined}
-            aria-describedby={errors.consent ? "consent-error" : undefined}
-            className="mt-1 h-5 w-5 shrink-0 cursor-pointer rounded border-cardborder bg-deep accent-[#2d6fff]"
-          />
-          <label htmlFor="consent" className="cursor-pointer text-sm leading-relaxed text-textsec">
-            {f.consentLabel}{" "}
-            <Link href="/privacy" className="link-underline text-white">
-              {f.consentLink}
-            </Link>
+      <div className="border-y hair px-5 py-3 sm:px-7">
+        <p className="lbl">Part 3 · Declaration</p>
+      </div>
+      <div className="space-y-5 p-5 sm:p-7">
+        <div>
+          <label htmlFor="consent" className="flex cursor-pointer items-start gap-3">
+            <input
+              id="consent"
+              name="consent"
+              type="checkbox"
+              required
+              aria-invalid={errors.consent ? true : undefined}
+              aria-describedby={errors.consent ? "consent-error" : undefined}
+              className="peer sr-only"
+            />
+            <span
+              aria-hidden="true"
+              className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center border border-accent text-transparent transition-colors peer-checked:bg-primary peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ice"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square">
+                <path d="M5 12.5l4.5 4.5L19 7.5" />
+              </svg>
+            </span>
+            <span className="text-sm leading-relaxed text-textsec">
+              {f.consentLabel}{" "}
+              <Link href="/privacy" className="ln text-white">
+                {f.consentLink}
+              </Link>
+            </span>
+          </label>
+          {errors.consent ? (
+            <p id="consent-error" className="mt-2 flex items-center gap-2 text-sm text-white">
+              <InfoIcon className="h-4 w-4 shrink-0 text-textsec" />
+              {msg("consent")}
+            </p>
+          ) : null}
+        </div>
+
+        {/* Honeypot: people never see it, bots fill it in. */}
+        <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+          <label>
+            Website
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" />
           </label>
         </div>
-        {errors.consent ? (
-          <p id="consent-error" className="mt-2 flex items-center gap-2 text-sm text-white">
-            <InfoIcon className="h-4 w-4 shrink-0 text-ice" />
-            {msg("consent")}
-          </p>
-        ) : null}
-      </div>
 
-      {/* Honeypot: people never see it, bots fill it in. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-        <label>
-          Website
-          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
-        </label>
-      </div>
+        <div aria-live="polite" className="space-y-3">
+          {hasErrors ? <Notice title={f.fixTitle} body="" /> : null}
+          {status === "error" ? <Notice title={f.errorTitle} body={f.errorBody} waText={waText} /> : null}
+          {status === "rate" ? <Notice title={f.rateTitle} body={f.rateBody} waText={waText} /> : null}
+        </div>
 
-      <div aria-live="polite" className="space-y-3">
-        {hasErrors ? <Notice title={f.fixTitle} body="" /> : null}
-        {status === "error" ? <Notice title={f.errorTitle} body={f.errorBody} waText={waText} /> : null}
-        {status === "rate" ? <Notice title={f.rateTitle} body={f.rateBody} waText={waText} /> : null}
-      </div>
-
-      <div className="flex flex-col items-start gap-4">
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          aria-busy={status === "sending"}
-          className="btn btn-primary shrink-0 whitespace-nowrap disabled:opacity-70"
-        >
+        <button type="submit" disabled={status === "sending"} aria-busy={status === "sending"} className="btn btn-primary w-full sm:w-auto">
           {status === "sending" ? f.sending : f.submit}
+          <Arrow />
         </button>
       </div>
     </form>
   );
 }
 
-function Field({
-  id,
-  label,
-  error,
-  auto,
-  max,
-}: {
-  id: string;
-  label: string;
-  error?: string;
-  auto: string;
-  max: number;
-}) {
+function Field({ id, label, error, auto, max }: { id: string; label: string; error?: string; auto: string; max: number }) {
   return (
     <div>
-      <label htmlFor={id} className="field-label">
-        {label}
+      <label htmlFor={id} className="fbox" data-invalid={error ? "true" : undefined}>
+        <span className="lbl">{label}</span>
+        <input
+          id={id}
+          name={id}
+          type="text"
+          autoComplete={auto}
+          maxLength={max}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+          className="finput"
+        />
       </label>
-      <input
-        id={id}
-        name={id}
-        type="text"
-        autoComplete={auto}
-        maxLength={max}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? `${id}-error` : undefined}
-        className="field-input"
-      />
       {error ? (
         <p id={`${id}-error`} className="mt-2 flex items-center gap-2 text-sm text-white">
-          <InfoIcon className="h-4 w-4 shrink-0 text-ice" />
+          <InfoIcon className="h-4 w-4 shrink-0 text-textsec" />
           {error}
         </p>
       ) : null}

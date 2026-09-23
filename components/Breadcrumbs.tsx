@@ -18,17 +18,17 @@ export function Breadcrumbs({ trail }: { trail: { name: string; path: string }[]
   }).replace(/</g, "\\u003c");
 
   return (
-    <nav aria-label={nav.breadcrumb} className="text-sm text-textsec">
-      <ol className="flex flex-wrap items-center gap-2">
+    <nav aria-label={nav.breadcrumb} className="lbl-ref">
+      <ol className="flex flex-wrap items-center gap-1.5">
         {items.map((it, i) => (
           <li key={it.path} className="flex items-center gap-2">
-            {i > 0 ? <span aria-hidden="true">/</span> : null}
+            {i > 0 ? <span aria-hidden="true" className="text-cardborder">/</span> : null}
             {i === items.length - 1 ? (
               <span aria-current="page" className="text-white">
                 {it.name}
               </span>
             ) : (
-              <Link href={it.path} className="link-underline hover:text-white">
+              <Link href={it.path} className="ln">
                 {it.name}
               </Link>
             )}

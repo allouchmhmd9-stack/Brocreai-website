@@ -2,400 +2,379 @@
 @tailwind components;
 @tailwind utilities;
 
+/* The Placing Slip. The site is set like a live insurance document: navy form stock,
+   hairline rules, condensed field labels, typed entries and rubber stamps. Ice is kept
+   for the moments something is live or approved. */
+
 :root {
   --deep: #05081a;
   --mid: #0a0f2e;
+  --card: #0d1440;
+  --rule: #1e3a6e;
+  --primary: #1a3bdb;
+  --accent: #2d6fff;
+  --ice: #4fc3f7;
+  --sec: #b0c4de;
+  --ruled: 2.25rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
   background: var(--deep);
-  scroll-behavior: smooth;
   overflow-x: clip;
   -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--rule) var(--deep);
+  caret-color: var(--ice);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .animate-drift-a,
-  .animate-drift-b {
-    animation: none !important;
-  }
+/* Lenis drives scrolling on pointer devices; keep native smooth scroll off so they do not fight. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
   background: var(--deep);
   color: #fff;
   overflow-x: clip;
+  font-family: var(--font-archivo), system-ui, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fixed film grain: barely there, keeps the dark surfaces from looking flat. */
+/* Fixed grain: keeps the navy stock from looking like flat plastic. */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: 70;
   pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 ::selection {
-  background: rgba(45, 111, 255, 0.55);
+  background: var(--primary);
   color: #fff;
 }
 
-/* Visible ice focus ring on everything focusable. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border: 2px solid var(--deep);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Ice focus ring, square like the rest of the form. */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid #4fc3f7;
+  outline: 2px solid var(--ice);
   outline-offset: 3px;
-  border-radius: 8px;
+  border-radius: 2px;
 }
 
-/* Scroll reveals. Visible by default; browsers with scroll-driven animations fade and
-   raise each [data-reveal] element as it enters the viewport. No JavaScript involved. */
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+/* ------------------------------------------------------------------ motion gating
+   Content is visible by default. An inline script adds .motion before first paint when
+   the visitor allows motion; the choreographer then plays each element in. If it never
+   starts, .motion-done restores everything after a few seconds. */
+html.motion:not(.motion-done) [data-anim="rise"],
+html.motion:not(.motion-done) [data-anim="stamp"],
+html.motion:not(.motion-done) [data-anim="type"],
+html.motion:not(.motion-done) [data-anim="lines"],
+html.motion:not(.motion-done) [data-hero] {
+  opacity: 0;
 }
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    [data-reveal] {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 55%;
-    }
-  }
+html.motion:not(.motion-done) [data-anim="rule"] {
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 
-/* The hero's load-in: the only timed animation on the page. */
-@keyframes hero-in {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero-in {
-    animation: hero-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  .hero-in-2 {
-    animation-delay: 0.12s;
-  }
-  .hero-in-3 {
-    animation-delay: 0.24s;
-  }
-  .menu-in {
-    animation: hero-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-}
-
-/* Liquid-metal buttons. A deep-blue metal base, a bevel from inset shadows, and a highlight
-   that travels across the face on hover. "ice" is the lighter secondary. */
-.liquid {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  min-height: 3rem;
-  padding: 0.85rem 1.7rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.97rem;
-  line-height: 1;
-  color: #fff;
-  overflow: hidden;
-  isolation: isolate;
-  transition: box-shadow 0.25s ease, filter 0.25s ease;
-}
-.liquid-sm {
-  min-height: 2.6rem;
-  padding: 0.65rem 1.25rem;
-  font-size: 0.9rem;
-}
-.liquid-label {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-}
-.liquid::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-}
-.liquid::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: inherit;
-  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.55) 48%, rgba(255, 255, 255, 0.1) 54%, transparent 70%);
-  background-size: 250% 100%;
-  background-position: 120% 0;
-  mix-blend-mode: screen;
-  opacity: 0.9;
-  transition: background-position 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.liquid:hover::after,
-.liquid:focus-visible::after {
-  background-position: -60% 0;
-}
-.liquid-chrome::before {
-  background:
-    radial-gradient(120% 140% at 30% 0%, rgba(79, 195, 247, 0.55), transparent 55%),
-    radial-gradient(120% 120% at 80% 110%, rgba(5, 8, 26, 0.6), transparent 60%),
-    linear-gradient(120deg, #1a3bdb 0%, #2d6fff 45%, #1565c0 100%);
-}
-.liquid-chrome {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    inset 0 -2px 4px rgba(5, 8, 26, 0.55),
-    0 0 0 1px rgba(45, 111, 255, 0.5),
-    0 10px 30px -10px rgba(45, 111, 255, 0.7);
-}
-.liquid-chrome:hover,
-.liquid-chrome:focus-visible {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -2px 4px rgba(5, 8, 26, 0.55),
-    0 0 0 1px rgba(79, 195, 247, 0.6),
-    0 16px 44px -10px rgba(45, 111, 255, 0.85);
-}
-.liquid-ice::before {
-  background:
-    radial-gradient(120% 140% at 30% 0%, rgba(255, 255, 255, 0.35), transparent 55%),
-    linear-gradient(120deg, rgba(13, 20, 64, 0.9) 0%, rgba(30, 58, 110, 0.9) 60%, rgba(13, 20, 64, 0.9) 100%);
-}
-.liquid-ice {
-  box-shadow:
-    inset 0 1px 0 rgba(79, 195, 247, 0.5),
-    inset 0 -2px 4px rgba(5, 8, 26, 0.6),
-    0 0 0 1px rgba(79, 195, 247, 0.45);
-}
-.liquid-ice:hover,
-.liquid-ice:focus-visible {
-  box-shadow:
-    inset 0 1px 0 rgba(79, 195, 247, 0.8),
-    inset 0 -2px 4px rgba(5, 8, 26, 0.6),
-    0 0 0 1px rgba(79, 195, 247, 0.7),
-    0 12px 36px -12px rgba(79, 195, 247, 0.6);
-}
-.liquid-ghost::before {
-  background: transparent;
-}
-.liquid-ghost {
-  box-shadow: 0 0 0 1px #1e3a6e;
-}
-.liquid:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
 @media (prefers-reduced-motion: reduce) {
-  .liquid::after {
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Spline fallback loader */
-.loader {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 9999px;
-  border: 2px solid rgba(79, 195, 247, 0.25);
-  border-top-color: #4fc3f7;
-  animation: spin 0.9s linear infinite;
-}
-@keyframes spin {
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
   }
 }
-
-/* Agent rail: hide the scrollbar, keep the scroll. */
-.rail {
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-.rail::-webkit-scrollbar {
-  display: none;
-}
-
-/* Browser surfaces carry the palette too. */
-html {
-  scrollbar-color: #1e3a6e #05081a;
-  caret-color: #4fc3f7;
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
 }
 
 @layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-sheet px-5 sm:px-8 lg:px-10;
+  }
+
+  /* Field label: the small condensed caps printed on every form box. */
+  .lbl {
+    font-stretch: 72%;
+    font-weight: 620;
+    font-size: 0.7rem;
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sec);
+  }
+  .lbl-ref {
+    @apply font-mono;
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    color: rgba(176, 196, 222, 0.78);
+  }
+
+  /* Typed entries: what an agent or a person wrote into a field. */
+  .entry {
+    @apply font-mono;
+    font-stretch: 88%;
+    letter-spacing: -0.01em;
+  }
+
+  .display {
+    font-stretch: 104%;
+    font-weight: 760;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
   .h2 {
-    @apply font-display text-[clamp(1.9rem,3.4vw,3rem)] font-bold leading-[1.08] tracking-[-0.02em] text-balance;
+    font-stretch: 100%;
+    font-weight: 720;
+    font-size: clamp(2rem, 3.9vw, 3.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .h3 {
+    font-weight: 680;
+    font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+  }
+  .lead {
+    font-size: clamp(1.05rem, 1.25vw, 1.2rem);
+    line-height: 1.6;
+    color: var(--sec);
+    max-width: 62ch;
+    text-wrap: pretty;
+  }
+  .body {
+    line-height: 1.7;
+    color: var(--sec);
+    max-width: 68ch;
+    text-wrap: pretty;
   }
 
-  .container-x {
-    @apply mx-auto w-full max-w-[76rem] px-5 sm:px-8;
-  }
-
-  /* Deep at the edges, mid in the middle: sections bleed into each other. */
-  .bleed-mid {
-    background: linear-gradient(
-      180deg,
-      #05081a 0%,
-      #0a0f2e 22%,
-      #0a0f2e 78%,
-      #05081a 100%
-    );
-  }
-
-  .glass {
-    @apply rounded-2xl border border-cardborder bg-card/50 backdrop-blur-xl;
-  }
-
+  /* One emphasised word per title (brand rule). */
   .gradient-text {
-    background-image: linear-gradient(100deg, #fff 0%, #4fc3f7 48%, #2d6fff 100%);
+    background-image: linear-gradient(100deg, #fff 0%, var(--ice) 46%, var(--accent) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
+    padding-right: 0.04em;
   }
 
-  .link-underline {
-    background-image: linear-gradient(#4fc3f7, #4fc3f7);
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 0% 1px;
-    padding-bottom: 2px;
-    transition: background-size 0.3s ease, color 0.2s ease;
+  /* The form sheet: mid-navy stock with printed rules every line. */
+  .sheet {
+    background-color: var(--mid);
+    border: 1px solid var(--rule);
+    position: relative;
   }
-  .link-underline:hover,
-  .link-underline:focus-visible {
-    background-size: 100% 1px;
+  .ruled {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--ruled) - 1px),
+      rgba(30, 58, 110, 0.32) calc(var(--ruled) - 1px),
+      rgba(30, 58, 110, 0.32) var(--ruled)
+    );
+  }
+  /* Registration corners: the crop marks printed at a form's corners. */
+  .crops {
+    position: relative;
+  }
+  .crops::before,
+  .crops::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    border-color: var(--accent);
+    border-style: solid;
+  }
+  .crops::before {
+    top: -1px;
+    left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+  .crops::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 2px 2px 0;
   }
 
+  .hair {
+    border-color: var(--rule);
+  }
+
+  /* Buttons: printed tabs that press like a stamp. */
   .btn {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    min-height: 2.9rem;
-    padding: 0.8rem 1.6rem;
-    border-radius: 9999px;
-    font-weight: 600;
+    gap: 0.7rem;
+    min-height: 3.1rem;
+    padding: 0 1.35rem;
+    border-radius: 2px;
+    font-weight: 640;
     font-size: 0.97rem;
+    letter-spacing: 0.005em;
     line-height: 1;
-    overflow: hidden;
+    white-space: nowrap;
     transition:
-      transform 0.22s ease,
-      box-shadow 0.22s ease,
-      background-color 0.22s ease;
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.25s var(--ease-out),
+      transform 0.12s ease;
   }
-  .btn:hover {
-    transform: scale(1.04);
+  .btn .arr {
+    transition: transform 0.35s var(--ease-out);
+  }
+  .btn:hover .arr,
+  .btn:focus-visible .arr {
+    transform: translateX(4px);
   }
   .btn:active {
-    transform: scale(0.99);
-  }
-  /* One-shot shimmer: fires when you hover in, snaps back when you leave. */
-  .btn::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 60%;
-    pointer-events: none;
-    background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.36) 50%, transparent 100%);
-    transform: translateX(-130%) skewX(-18deg);
-  }
-  .btn:hover::after,
-  .btn:focus-visible::after {
-    transform: translateX(260%) skewX(-18deg);
-    transition: transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .btn::after {
-      display: none;
-    }
-    .btn:hover {
-      transform: none;
-    }
+    transform: translateY(1px);
   }
   .btn-primary {
     color: #fff;
-    background: linear-gradient(120deg, #1a3bdb 0%, #1565c0 100%);
-    box-shadow: 0 0 0 1px rgba(45, 111, 255, 0.35);
+    background: var(--primary);
+    box-shadow:
+      inset 0 -2px 0 rgba(5, 8, 26, 0.35),
+      0 10px 28px -14px rgba(45, 111, 255, 0.9);
   }
   .btn-primary:hover,
   .btn-primary:focus-visible {
+    background: var(--accent);
     box-shadow:
-      0 0 0 1px rgba(45, 111, 255, 0.55),
-      0 14px 46px -8px rgba(45, 111, 255, 0.7);
+      inset 0 -2px 0 rgba(5, 8, 26, 0.3),
+      0 16px 36px -14px rgba(45, 111, 255, 1);
+  }
+  .btn-primary:active {
+    box-shadow: inset 0 2px 4px rgba(5, 8, 26, 0.45);
   }
   .btn-secondary {
     color: #fff;
-    background: rgba(13, 20, 64, 0.5);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 0 1px #1e3a6e;
+    background: transparent;
+    border: 1px solid var(--rule);
   }
   .btn-secondary:hover,
   .btn-secondary:focus-visible {
-    box-shadow:
-      0 0 0 1px rgba(79, 195, 247, 0.45),
-      0 12px 40px -10px rgba(45, 111, 255, 0.55);
+    border-color: var(--accent);
+    background: rgba(13, 20, 64, 0.7);
+  }
+  .btn-sm {
+    min-height: 2.55rem;
+    padding: 0 1rem;
+    font-size: 0.9rem;
+  }
+  .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
-  .field-label {
-    display: block;
-    margin-bottom: 0.45rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #b0c4de;
+  /* Links: a printed underline that turns royal on hover. */
+  .ln {
+    text-decoration-line: underline;
+    text-decoration-color: rgba(176, 196, 222, 0.35);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.28em;
+    transition:
+      text-decoration-color 0.2s ease,
+      color 0.2s ease;
   }
-  .field-input {
-    width: 100%;
-    border-radius: 0.75rem;
-    border: 1px solid #1e3a6e;
-    background: rgba(5, 8, 26, 0.55);
+  .ln:hover,
+  .ln:focus-visible {
     color: #fff;
-    padding: 0.8rem 1rem;
-    font-size: 1rem; /* 16px keeps iOS Safari from zooming on focus */
-    line-height: 1.4;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    text-decoration-color: var(--accent);
   }
-  .field-input::placeholder {
-    color: rgba(176, 196, 222, 0.75);
+
+  /* Form fields: a printed box with its label set inside the top edge. */
+  .fbox {
+    position: relative;
+    display: block;
+    border: 1px solid var(--rule);
+    background: rgba(5, 8, 26, 0.55);
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease;
   }
-  .field-input:hover {
-    border-color: rgba(45, 111, 255, 0.65);
+  .fbox:hover {
+    border-color: rgba(45, 111, 255, 0.7);
   }
-  .field-input:focus-visible {
-    border-color: #4fc3f7;
-    box-shadow: 0 0 0 6px rgba(79, 195, 247, 0.12);
+  .fbox:focus-within {
+    border-color: var(--ice);
+    background: rgba(5, 8, 26, 0.85);
   }
-  .field-input[aria-invalid="true"] {
-    border-color: #b0c4de;
-    box-shadow: 0 0 0 3px rgba(176, 196, 222, 0.16);
+  .fbox[data-invalid="true"] {
+    border-color: var(--sec);
+    border-style: dashed;
+  }
+  .fbox .lbl {
+    position: absolute;
+    left: 0.85rem;
+    top: 0.6rem;
+    pointer-events: none;
+  }
+  .finput {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: #fff;
+    padding: 1.7rem 0.85rem 0.7rem;
+    font-size: 1rem; /* 16px stops iOS Safari zooming on focus */
+    line-height: 1.45;
+    outline: none;
+  }
+  .finput:focus-visible {
+    outline: none;
+  }
+  .finput::placeholder {
+    color: rgba(176, 196, 222, 0.7);
   }
 
   .skip-link {
@@ -404,13 +383,36 @@ html {
     top: -4rem;
     z-index: 100;
     padding: 0.7rem 1.1rem;
-    border-radius: 0.75rem;
     background: #fff;
-    color: #05081a;
+    color: var(--deep);
     font-weight: 600;
     transition: top 0.2s ease;
   }
   .skip-link:focus {
     top: 1rem;
+  }
+
+  .menu-in {
+    animation: menu-in 0.35s var(--ease-out) both;
+  }
+
+  .caret::after {
+    content: "";
+    display: inline-block;
+    width: 0.5ch;
+    height: 1em;
+    margin-left: 1px;
+    vertical-align: -0.12em;
+    background: var(--ice);
+    animation: caret 1s steps(1) infinite;
+  }
+
+  /* Horizontal rails keep their scroll, lose the bar. */
+  .rail {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .rail::-webkit-scrollbar {
+    display: none;
   }
 }

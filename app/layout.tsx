@@ -1,18 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Syne } from "next/font/google";
+import { Archivo, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { Choreographer } from "@/components/motion/Choreographer";
+import { InkDefs } from "@/components/slip/Stamp";
 import { getDictionary } from "@/lib/i18n";
 import { brokerage, contact, hasProductionDomain, siteName, siteUrl } from "@/lib/site";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-  weight: ["600", "700", "800"],
-});
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+// Archivo carries the whole voice through its width axis: condensed caps for the printed
+// field labels, normal for reading, slightly expanded and heavy for the display lines.
+// Martian Mono is the typewriter: every entry an agent or a person writes onto the slip.
+const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo", display: "swap" });
+const mono = Martian_Mono({ subsets: ["latin"], axes: ["wdth"], variable: "--font-mono", display: "swap" });
+
+// Runs before first paint: opt into entrance motion only when the visitor allows it, and
+// restore everything if the choreographer has not started within four seconds.
+const motionGate = `(function(){try{var d=document.documentElement;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');setTimeout(function(){if(!window.__choreo)d.classList.add('motion-done')},4000)}catch(e){}})();`;
 
 const dict = getDictionary();
 
@@ -109,14 +113,12 @@ const jsonLd = JSON.stringify({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
-        {/* Reveals start hidden; without JavaScript they must stay visible. */}
-        <noscript>
-          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
-        </noscript>
+        <script dangerouslySetInnerHTML={{ __html: motionGate }} />
       </head>
-      <body className="font-body">
+      <body className="font-sans">
+        <InkDefs />
         <span id="top" aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-3 w-px" />
         <a href="#main" className="skip-link">
           {dict.nav.skip}
@@ -124,6 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header nav={dict.nav} whatsappText={dict.demo.whatsappPrefill} />
         <main id="main">{children}</main>
         <Footer footer={dict.footer} nav={dict.nav} />
+        <Choreographer />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       </body>
     </html>

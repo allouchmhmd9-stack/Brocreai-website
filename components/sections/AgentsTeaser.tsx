@@ -1,28 +1,29 @@
+import Link from "next/link";
 import { AgentsRail } from "@/components/AgentsRail";
-import { Reveal } from "@/components/motion";
-import { Segs } from "@/components/Segs";
-import { LiquidButton } from "@/components/ui/liquid-button";
-import { liveAgents } from "@/lib/content/agents";
+import { Arrow, Heading, SectionBar } from "@/components/slip/Parts";
+import { agents } from "@/lib/content/agents";
 import type { Dictionary } from "@/lib/i18n";
 
+// Lines: the whole roster as a strip of line slips. Live agents are inked; the ones in
+// pilot or still in build print as ghosts, so nothing is dressed up as live.
 export function AgentsTeaser({ t }: { t: Dictionary["agentsTeaser"] }) {
-  return (
-    <section id="agents" className="bleed-mid relative scroll-mt-20 overflow-hidden py-24 md:py-32">
-      <div className="container-x">
-        <Reveal className="max-w-3xl">
-          <h2 className="h2">
-            <Segs segs={t.title} />
-          </h2>
-          <p className="mt-5 text-lg text-textsec">{t.lead}</p>
-        </Reveal>
-        <Reveal className="mt-6">
-          <AgentsRail agents={liveAgents} prevLabel={t.prev} nextLabel={t.next} />
-        </Reveal>
-        <Reveal className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-[56ch] text-textsec">{t.note}</p>
-          <LiquidButton href="/agents" variant="chrome" className="shrink-0">{t.cta}</LiquidButton>
-        </Reveal>
+  const head = (
+    <>
+      <SectionBar mark="§ 03" name="Lines" form="BAI-01 · p.3" />
+      <div className="mt-8 grid items-end gap-8 lg:grid-cols-12">
+        <Heading id="agents-title" title={t.title} lead={t.lead} className="lg:col-span-8" />
+        <div data-anim="rise" className="lg:col-span-4 lg:justify-self-end">
+          <Link href="/agents" className="btn btn-secondary">
+            {t.cta}
+            <Arrow />
+          </Link>
+        </div>
       </div>
+    </>
+  );
+  return (
+    <section id="agents" aria-labelledby="agents-title" className="overflow-hidden py-16 md:py-20">
+      <AgentsRail agents={agents} head={head} prevLabel={t.prev} nextLabel={t.next} allLabel={t.cta} allNote={t.note} />
     </section>
   );
 }

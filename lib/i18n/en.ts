@@ -65,8 +65,8 @@ export const en = {
   },
   agentsTeaser: {
     title: [s("Meet the "), s("agents", true), s(" already doing the work.")],
-    lead: "Each one prepares its work and hands it to you for approval. These are the ones running live today.",
-    note: "Scroll through the roster, or open the full page for what each agent does, what it produces, when it runs and how it is customised.",
+    lead: "Each one prepares its work and hands it to you for approval. Live agents carry the ice mark. The ones still in pilot or in build are printed as outlines, not dressed up as live.",
+    note: "What each agent does, what it produces, when it runs and how it is customised.",
     cta: "See all agents",
     prev: "Scroll agents left",
     next: "Scroll agents right",

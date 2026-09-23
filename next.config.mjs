@@ -6,14 +6,11 @@ const isProd = process.env.NODE_ENV === "production";
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'${isProd ? "" : " 'unsafe-eval'"}`,
+  `script-src 'self' 'unsafe-inline'${isProd ? "" : " 'unsafe-eval'"}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://prod.spline.design",
+  "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  // Spline loads the hero scene from prod.spline.design and its wasm modules from cdn.spline.design.
-  "connect-src 'self' https://prod.spline.design https://cdn.spline.design",
-  "worker-src 'self' blob:",
-  "child-src 'self' blob:",
+  "connect-src 'self'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

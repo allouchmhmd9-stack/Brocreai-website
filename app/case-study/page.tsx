@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Clauses } from "@/components/Clauses";
 import { CtaBand } from "@/components/CtaBand";
-import { Reveal } from "@/components/motion";
 import { PageHero } from "@/components/PageHero";
+import { Stamp } from "@/components/slip/Stamp";
 import { caseStudy } from "@/lib/content/pages";
 import { getDictionary } from "@/lib/i18n";
+import { forms } from "@/lib/slip";
 
 const d = getDictionary();
 
@@ -17,19 +19,17 @@ export const metadata: Metadata = {
 export default function CaseStudyPage() {
   return (
     <>
-      <PageHero crumb={d.nav.caseStudy} path="/case-study" title={caseStudy.title} lead={caseStudy.intro} />
-      <section className="pb-8">
-        <div className="container-x max-w-3xl space-y-12">
-          {caseStudy.blocks.map((b) => (
-            <Reveal key={b.h}>
-              <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">{b.h}</h2>
-              {b.p.map((p) => (
-                <p key={p} className="mt-4 max-w-[68ch] leading-relaxed text-textsec">{p}</p>
-              ))}
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <PageHero
+        form={forms.caseStudy}
+        crumb={d.nav.caseStudy}
+        path="/case-study"
+        title={caseStudy.title}
+        lead={caseStudy.intro}
+        aside={<Stamp data-anim="stamp" ring="In daily use · Brocare Insurance" center="IN USE" size={172} rotate={-9} />}
+      />
+      <div className="mt-10">
+        <Clauses blocks={caseStudy.blocks} mark="Record" />
+      </div>
       <CtaBand lead={caseStudy.ctaLead} />
     </>
   );

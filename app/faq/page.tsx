@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
-import { FaqList } from "@/components/FaqList";
-import { Reveal } from "@/components/motion";
 import { PageHero } from "@/components/PageHero";
 import { faqGroups } from "@/lib/content/faq";
 import { getDictionary } from "@/lib/i18n";
+import { forms, pad2 } from "@/lib/slip";
 
 const d = getDictionary();
 const t = d.pages.faq;
@@ -17,36 +16,62 @@ export const metadata: Metadata = {
   openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/faq" },
 };
 
+// Questions answered as numbered notes, every answer visible. Structured data mirrors them.
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqGroups.flatMap((g) => g.items.map((it) => ({ "@type": "Question", name: it.q, acceptedAnswer: { "@type": "Answer", text: it.a } }))),
+}).replace(/</g, "\\u003c");
+
 export default function FaqPage() {
+  let n = 0;
   return (
     <>
-      <PageHero crumb={d.nav.faq} path="/faq" title={t.title} lead={t.lead} />
-      <section className="pb-12">
-        <div className="container-x grid gap-12 lg:grid-cols-12">
-          <nav aria-label={t.jump} className="lg:col-span-3">
-            <ul className="flex flex-wrap gap-2 lg:sticky lg:top-28 lg:flex-col lg:gap-1">
-              {faqGroups.map((g) => (
-                <li key={g.title}>
-                  <a href={`#${slug(g.title)}`} className="inline-block rounded-full border border-cardborder px-3 py-1 text-sm text-textsec transition hover:border-ice/60 hover:text-white lg:border-0 lg:px-0 lg:py-1.5 lg:text-base">
+      <PageHero form={forms.faq} crumb={d.nav.faq} path="/faq" title={t.title} lead={t.lead} />
+      <div className="wrap mt-12 grid gap-12 pb-8 lg:grid-cols-12">
+        <nav aria-label={t.jump} className="lg:col-span-3">
+          <div className="lg:sticky lg:top-28">
+            <p className="lbl">{t.jump}</p>
+            <ol className="mt-3 border-t hair">
+              {faqGroups.map((g, i) => (
+                <li key={g.title} className="border-b hair">
+                  <a href={`#${slug(g.title)}`} className="group flex items-baseline gap-3 py-3 text-[0.95rem] text-textsec transition-colors hover:text-white">
+                    <span className="lbl-ref group-hover:text-accent">{pad2(i + 1)}</span>
                     {g.title}
                   </a>
                 </li>
               ))}
-            </ul>
-          </nav>
-          <div className="space-y-16 lg:col-span-9">
-            {faqGroups.map((g) => (
-              <Reveal key={g.title}>
-                <section id={slug(g.title)} className="scroll-mt-28">
-                  <h2 className="h2 mb-4">{g.title}</h2>
-                  <FaqList items={g.items} />
-                </section>
-              </Reveal>
-            ))}
+            </ol>
           </div>
+        </nav>
+        <div className="space-y-16 lg:col-span-9">
+          {faqGroups.map((g, gi) => (
+            <section key={g.title} id={slug(g.title)} aria-labelledby={`${slug(g.title)}-title`} className="scroll-mt-28">
+              <div data-anim="rule" className="h-px bg-primary" />
+              <p className="lbl-ref mt-3 text-accent">Part {pad2(gi + 1)}</p>
+              <h2 id={`${slug(g.title)}-title`} data-anim="lines" className="h2 mt-2">
+                {g.title}
+              </h2>
+              <dl className="mt-6">
+                {g.items.map((it) => {
+                  n += 1;
+                  return (
+                    <div key={it.q} data-anim="rise" className="grid gap-x-6 border-t hair py-7 sm:grid-cols-[4.5rem_1fr]">
+                      <span className="lbl-ref pt-1">Q.{pad2(n)}</span>
+                      <div>
+                        <dt className="h3">{it.q}</dt>
+                        <dd className="body mt-3">{it.a}</dd>
+                      </div>
+                    </div>
+                  );
+                })}
+              </dl>
+            </section>
+          ))}
         </div>
-      </section>
+      </div>
       <CtaBand />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqLd }} />
     </>
   );
 }

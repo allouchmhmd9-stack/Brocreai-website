@@ -1,12 +1,10 @@
 import type { Config } from "tailwindcss";
 
-// Brand tokens from the Brocare AI brief. Values are fixed; do not add new ones.
+// Brand tokens from the Brocare AI brief. Colour values are fixed; do not add new ones.
+// The visual world is an insurance placing slip: navy form stock, ruled lines, typed
+// entries and rubber stamps. Corners stay square (forms are rectilinear); only stamps are round.
 const config: Config = {
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}",
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -21,27 +19,21 @@ const config: Config = {
         cardborder: "#1E3A6E",
       },
       fontFamily: {
-        display: ["var(--font-syne)", "system-ui", "sans-serif"],
-        body: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
+        display: ["var(--font-archivo)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
-      boxShadow: {
-        glow: "0 0 0 1px rgba(45,111,255,.35), 0 12px 48px -10px rgba(45,111,255,.55)",
-        "glow-soft": "0 0 0 1px rgba(30,58,110,.9), 0 10px 40px -14px rgba(45,111,255,.45)",
-        "glow-ice": "0 0 0 1px rgba(79,195,247,.4), 0 0 44px -6px rgba(79,195,247,.5)",
+      borderRadius: {
+        sm: "2px",
+        DEFAULT: "3px",
+        md: "4px",
       },
-      keyframes: {
-        "drift-a": {
-          "0%": { transform: "translate3d(0,0,0) scale(1)" },
-          "100%": { transform: "translate3d(9vmax,7vmax,0) scale(1.12)" },
-        },
-        "drift-b": {
-          "0%": { transform: "translate3d(0,0,0) scale(1.05)" },
-          "100%": { transform: "translate3d(-8vmax,-6vmax,0) scale(0.92)" },
-        },
+      maxWidth: {
+        sheet: "84rem",
       },
-      animation: {
-        "drift-a": "drift-a 34s ease-in-out infinite alternate",
-        "drift-b": "drift-b 41s ease-in-out infinite alternate",
+      transitionTimingFunction: {
+        out: "cubic-bezier(0.16, 1, 0.3, 1)",
+        press: "cubic-bezier(0.34, 1.56, 0.64, 1)",
       },
     },
   },

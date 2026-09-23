@@ -20,3 +20,8 @@ desktop.ini
 # local build backups and retired code
 .next_old_*/
 _superseded/
+
+# Impeccable review captures and scratch files (local only)
+.impeccable/review/
+.impeccable/brief-body.md
+.impeccable/mocks/

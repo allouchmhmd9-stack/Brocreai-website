@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/PageHero";
 import { Segs } from "@/components/Segs";
 import { StatusChip } from "@/components/StatusChip";
-import { LiquidButton } from "@/components/ui/liquid-button";
+import { Arrow, SectionBar } from "@/components/slip/Parts";
+import { Stamp } from "@/components/slip/Stamp";
 import { agentBySlug } from "@/lib/content/agents";
 import { beyond, bundles } from "@/lib/content/bundles";
 import { getDictionary } from "@/lib/i18n";
+import { forms, initials, pad2 } from "@/lib/slip";
+import { cn } from "@/lib/utils";
 
 const d = getDictionary();
 const t = d.pages.bundles;
@@ -20,80 +22,119 @@ export const metadata: Metadata = {
   openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/bundles" },
 };
 
+const letter = (i: number) => String.fromCharCode(65 + i);
+
 export default function BundlesPage() {
   return (
     <>
-      <PageHero crumb={d.nav.bundles} path="/bundles" title={t.title} lead={t.lead}>
-        <p className="hero-in hero-in-2 mt-4 max-w-[62ch] font-medium text-ice">{t.rule}</p>
+      <PageHero
+        form={forms.bundles}
+        crumb={d.nav.bundles}
+        path="/bundles"
+        title={t.title}
+        lead={t.lead}
+        aside={<Stamp data-anim="stamp" ring="Any agent · any bundle" center="ALL" size={170} rotate={-10} />}
+      >
+        <p data-anim="rise" className="mt-8 flex max-w-[62ch] items-start gap-3 border-t hair pt-4 text-white">
+          <span className="lbl-ref mt-0.5 shrink-0 border border-accent px-1.5 py-0.5 text-accent">End. 01</span>
+          {t.rule}
+        </p>
       </PageHero>
 
-      <section className="pb-8">
-        <Stagger as="ul" className="container-x space-y-6">
-          {bundles.map((b) => (
-            <StaggerItem as="li" key={b.slug} id={b.slug} className="glass scroll-mt-28 p-6 sm:p-8 md:p-10">
-              <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+      {/* Index of schedules */}
+      <nav aria-label="Bundles on this page" className="wrap mt-10">
+        <ol className="grid grid-cols-1 border-t hair sm:grid-cols-3 lg:grid-cols-9">
+          {bundles.map((b, i) => (
+            <li key={b.slug} className="border-b hair sm:border-r sm:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n)]:border-r lg:last:border-r-0">
+              <a href={`#${b.slug}`} className="group flex h-full items-baseline gap-2 px-3 py-3 text-[0.85rem] text-textsec transition-colors hover:bg-card hover:text-white lg:flex-col lg:gap-1">
+                <span className="lbl-ref group-hover:text-accent">{letter(i)}.</span>
+                <span className="leading-tight">{b.name}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <div className="wrap mt-6 pb-8">
+        {bundles.map((b, i) => {
+          const live = b.status === "live";
+          return (
+            <section key={b.slug} id={b.slug} aria-labelledby={`${b.slug}-title`} className="scroll-mt-24 py-12 md:py-16">
+              <SectionBar mark={`Schedule ${letter(i)}`} name={b.flag ?? b.name} form={`BAI-02 · ${pad2(i + 1)}`} />
+              <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:gap-12">
                 <div className="lg:col-span-5">
-                  {b.flag ? <p className="text-sm font-medium text-ice">{b.flag}</p> : null}
-                  <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-2">
-                    <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">{b.name}</h2>
-                    <StatusChip status={b.status} />
+                  <div className="lg:sticky lg:top-28">
+                    <h2 id={`${b.slug}-title`} data-anim="lines" className="h2">
+                      {b.name}
+                    </h2>
+                    <StatusChip status={b.status} className="mt-4" />
+                    <p data-anim="rise" className="mt-4 text-[1.2rem] leading-snug text-white">
+                      {b.tagline}
+                    </p>
+                    {b.statusNote ? <p className="entry mt-3 text-[0.78rem] text-textsec">{b.statusNote}</p> : null}
+                    {b.agents.length ? (
+                      <div data-anim="rise" className="mt-8">
+                        <p className="lbl">{t.agentsIn}</p>
+                        <ul className="mt-3 grid grid-cols-2 gap-x-4 border-t hair">
+                          {b.agents.map((slug) => {
+                            const a = agentBySlug(slug);
+                            return a ? (
+                              <li key={slug} className="border-b hair">
+                                <Link href={`/agents#${slug}`} className="group flex items-center gap-3 py-2.5 text-[0.92rem] text-textsec transition-colors hover:text-white">
+                                  <Stamp ring={a.name} center={initials(a.name)} size={34} rotate={-6} tone={a.status === "live" ? "blue" : "ghost"} ink={false} />
+                                  <span className="leading-tight">{a.name}</span>
+                                </Link>
+                              </li>
+                            ) : null;
+                          })}
+                        </ul>
+                      </div>
+                    ) : null}
                   </div>
-                  <p className="mt-3 text-lg text-white">{b.tagline}</p>
-                  {b.statusNote ? <p className="mt-3 text-sm text-textsec">{b.statusNote}</p> : null}
-                  {b.agents.length ? (
-                    <div className="mt-6">
-                      <p className="text-sm font-medium text-textsec">{t.agentsIn}</p>
-                      <ul className="mt-2 flex flex-wrap gap-2">
-                        {b.agents.map((slug) => {
-                          const a = agentBySlug(slug);
-                          return a ? (
-                            <li key={slug}>
-                              <Link href={`/agents#${slug}`} className="inline-flex rounded-full border border-cardborder px-3 py-1 text-sm text-white transition hover:border-ice/60 hover:text-ice">
-                                {a.name}
-                              </Link>
-                            </li>
-                          ) : null;
-                        })}
-                      </ul>
-                    </div>
-                  ) : null}
                 </div>
-                <div className="space-y-6 lg:col-span-7">
-                  <p className="leading-relaxed text-textsec">{b.body}</p>
-                  <div>
-                    <h3 className="font-display text-base font-bold text-white">{t.produces}</h3>
-                    <p className="mt-1 leading-relaxed text-textsec">{b.produces}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-base font-bold text-white">{t.why}</h3>
-                    <p className="mt-1 leading-relaxed text-textsec">{b.why}</p>
-                  </div>
+                <div className={cn("lg:col-span-7", !live && "lg:border-l lg:border-dashed lg:border-cardborder lg:pl-10")}>
+                  <p data-anim="rise" className="body text-[1.06rem]">
+                    {b.body}
+                  </p>
+                  <dl className="mt-8 space-y-6">
+                    <div data-anim="rise" className="border-t hair pt-3">
+                      <dt className="lbl">{t.produces}</dt>
+                      <dd className="entry mt-2 text-[0.82rem] leading-relaxed text-white">{b.produces}</dd>
+                    </div>
+                    <div data-anim="rise" className="border-t hair pt-3">
+                      <dt className="lbl">{t.why}</dt>
+                      <dd className="body mt-2">{b.why}</dd>
+                    </div>
+                  </dl>
                 </div>
               </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </section>
+            </section>
+          );
+        })}
+      </div>
 
-      <section className="bleed-mid py-24 md:py-32">
-        <div className="container-x">
-          <Reveal>
-            <h2 className="h2 max-w-[20ch]">
-              <Segs segs={t.beyondTitle} />
-            </h2>
-          </Reveal>
-          <Stagger className="mt-10 grid gap-6 md:grid-cols-3">
-            {beyond.map((x) => (
-              <StaggerItem key={x.title} className="border-t border-cardborder/60 pt-5">
-                <h3 className="font-display text-xl font-bold tracking-tight">{x.title}</h3>
-                <p className="mt-3 leading-relaxed text-textsec">{x.body}</p>
-              </StaggerItem>
+      <section aria-labelledby="beyond-title" className="py-16 md:py-24">
+        <div className="wrap">
+          <SectionBar mark="§ Ext." name="Beyond the bundles" form="BAI-02 · extensions" />
+          <h2 id="beyond-title" data-anim="lines" className="h2 mt-8 max-w-[20ch]">
+            <Segs segs={t.beyondTitle} />
+          </h2>
+          <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+            {beyond.map((x, i) => (
+              <li key={x.title} data-anim="rise" className="border-t hair pt-4">
+                <p className="lbl-ref">Extension {pad2(i + 1)}</p>
+                <h3 className="h3 mt-4">{x.title}</h3>
+                <p className="body mt-3">{x.body}</p>
+              </li>
             ))}
-          </Stagger>
-          <Reveal className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <p className="max-w-[56ch] text-white">{t.promise}</p>
-            <LiquidButton href="/demo" variant="chrome" className="shrink-0">{d.nav.demo}</LiquidButton>
-          </Reveal>
+          </ol>
+          <div data-anim="rise" className="mt-14 flex flex-col gap-5 border-t border-primary pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-[56ch] text-[1.1rem] text-white">{t.promise}</p>
+            <Link href="/demo" className="btn btn-primary shrink-0">
+              {d.nav.demo}
+              <Arrow />
+            </Link>
+          </div>
         </div>
       </section>
 

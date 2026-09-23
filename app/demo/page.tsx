@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/LeadForm";
-import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
-import { Reveal } from "@/components/motion";
+import { WhatsAppIcon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
-import { LiquidButton } from "@/components/ui/liquid-button";
+import { Arrow } from "@/components/slip/Parts";
 import { getDictionary } from "@/lib/i18n";
 import { bookingUrl, contact, whatsappLink } from "@/lib/site";
+import { forms } from "@/lib/slip";
 
 const d = getDictionary();
 const demo = d.demo;
@@ -18,50 +18,61 @@ export const metadata: Metadata = {
 };
 
 export default function DemoPage() {
+  const office = [
+    { label: demo.call, value: contact.phoneDisplay, href: contact.phoneHref },
+    { label: demo.email, value: contact.email, href: contact.emailHref },
+    { label: demo.visit, value: contact.address, href: contact.mapUrl, external: true },
+    { label: demo.hoursLabel, value: contact.hours },
+  ];
   return (
     <>
-      <PageHero crumb={d.nav.demo} path="/demo" title={demo.title} lead={demo.lead} />
-      <section className="pb-24 md:pb-32">
-        <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-12">
-          <Reveal className="lg:col-span-5">
-            <h2 className="font-display text-xl font-bold tracking-tight md:text-2xl">{demo.afterTitle}</h2>
-            <p className="mt-3 max-w-[52ch] leading-relaxed text-textsec">{demo.afterBody}</p>
+      <PageHero form={forms.demo} crumb={d.nav.demo} path="/demo" title={demo.title} lead={demo.lead} />
+      <section aria-label={demo.metaTitle} className="pb-24 pt-10 md:pb-32">
+        <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-7">
+            <LeadForm f={demo.form} waText={demo.whatsappPrefill} />
+          </div>
 
-            {bookingUrl ? (
-              <>
-                <p className="mt-8 text-textsec">{demo.bookLead}</p>
-                <div className="mt-3"><LiquidButton href={bookingUrl} external variant="chrome">{demo.bookCta}</LiquidButton></div>
-              </>
-            ) : null}
-            <p className="mt-8 text-textsec">{bookingUrl ? demo.orLead : demo.whatsappLead}</p>
-            <div className="mt-3">
-              <LiquidButton href={whatsappLink(demo.whatsappPrefill)} external variant={bookingUrl ? "ice" : "chrome"}>{demo.whatsappCta}</LiquidButton>
+          <aside className="lg:col-span-5">
+            <div data-anim="rise" className="border-t border-primary pt-4">
+              <h2 className="h3">{demo.afterTitle}</h2>
+              <p className="body mt-3">{demo.afterBody}</p>
             </div>
 
-            <ul className="mt-10 space-y-4 text-textsec">
-              <li className="flex items-center gap-3">
-                <PhoneIcon className="h-5 w-5 shrink-0" />
-                <span className="sr-only">{demo.call}</span>
-                <a href={contact.phoneHref} className="link-underline text-white">{contact.phoneDisplay}</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <MailIcon className="h-5 w-5 shrink-0" />
-                <span className="sr-only">{demo.email}</span>
-                <a href={contact.emailHref} className="link-underline break-all text-white">{contact.email}</a>
-              </li>
-              <li className="flex items-start gap-3">
-                <PinIcon className="mt-0.5 h-5 w-5 shrink-0" />
-                <span className="sr-only">{demo.visit}</span>
-                <span>
-                  <a href={contact.mapUrl} target="_blank" rel="noopener noreferrer" className="link-underline text-white">{contact.address}</a>
-                  <span className="mt-1 block text-sm"><span className="sr-only">{demo.hoursLabel}: </span>{contact.hours}</span>
-                </span>
-              </li>
-            </ul>
-          </Reveal>
-          <Reveal delay={0.1} className="lg:col-span-7">
-            <LeadForm f={demo.form} waText={demo.whatsappPrefill} />
-          </Reveal>
+            <div data-anim="rise" className="mt-10 border-t hair pt-4">
+              {bookingUrl ? (
+                <>
+                  <p className="text-textsec">{demo.bookLead}</p>
+                  <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-4">
+                    {demo.bookCta}
+                    <Arrow />
+                  </a>
+                </>
+              ) : null}
+              <p className={bookingUrl ? "mt-8 text-textsec" : "text-textsec"}>{bookingUrl ? demo.orLead : demo.whatsappLead}</p>
+              <a href={whatsappLink(demo.whatsappPrefill)} target="_blank" rel="noopener noreferrer" className="btn btn-secondary mt-4">
+                <WhatsAppIcon className="h-5 w-5" />
+                {demo.whatsappCta}
+              </a>
+            </div>
+
+            <dl data-anim="rise" className="mt-10 border-t hair">
+              {office.map((o) => (
+                <div key={o.label} className="grid grid-cols-[5.5rem_1fr] gap-4 border-b hair py-3.5">
+                  <dt className="lbl pt-0.5">{o.label}</dt>
+                  <dd className="entry text-[0.8rem] leading-relaxed text-white">
+                    {o.href ? (
+                      <a href={o.href} {...(o.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="ln break-words">
+                        {o.value}
+                      </a>
+                    ) : (
+                      o.value
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
         </div>
       </section>
     </>
