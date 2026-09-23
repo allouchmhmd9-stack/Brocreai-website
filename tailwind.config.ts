@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
 // Brand tokens from the Brocare AI brief. Colour values are fixed; do not add new ones.
-// The visual world is an insurance placing slip: navy form stock, ruled lines, typed
-// entries and rubber stamps. Corners stay square (forms are rectilinear); only stamps are round.
+// The visual world: soft navy panels with rounded corners, typed entries and rubber stamps,
+// an interactive robot in the hero, and liquid-metal buttons.
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
@@ -24,9 +24,27 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: {
-        sm: "2px",
-        DEFAULT: "3px",
-        md: "4px",
+        sm: "8px",
+        DEFAULT: "12px",
+        md: "14px",
+        lg: "18px",
+        xl: "22px",
+        "2xl": "28px",
+        "3xl": "36px",
+      },
+      keyframes: {
+        "drift-a": {
+          "0%": { transform: "translate3d(0,0,0) scale(1)" },
+          "100%": { transform: "translate3d(9vmax,7vmax,0) scale(1.12)" },
+        },
+        "drift-b": {
+          "0%": { transform: "translate3d(0,0,0) scale(1.05)" },
+          "100%": { transform: "translate3d(-8vmax,-6vmax,0) scale(0.92)" },
+        },
+      },
+      animation: {
+        "drift-a": "drift-a 34s ease-in-out infinite alternate",
+        "drift-b": "drift-b 41s ease-in-out infinite alternate",
       },
       maxWidth: {
         sheet: "84rem",

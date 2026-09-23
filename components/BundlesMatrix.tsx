@@ -70,18 +70,18 @@ export function BundlesMatrix({ bundles, seeLabel, rule }: { bundles: Bundle[]; 
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
       {/* The index of bundles */}
       <div className="lg:col-span-5">
-        <ul aria-label="Choose a bundle" className="border-t hair">
+        <ul aria-label="Choose a bundle" className="space-y-1.5">
           {bundles.map((x, i) => {
             const on = i === active;
             return (
-              <li key={x.slug} className="border-b hair">
+              <li key={x.slug}>
                 <button
                   type="button"
                   aria-pressed={on}
                   onClick={() => choose(i)}
                   className={cn(
-                    "group grid w-full grid-cols-[2.2rem_1fr_auto] items-baseline gap-x-3 py-4 text-left transition-colors",
-                    on ? "text-white" : "text-textsec hover:text-white",
+                    "group grid w-full grid-cols-[2.2rem_1fr_auto] items-baseline gap-x-3 rounded-2xl px-4 py-3.5 text-left transition-colors",
+                    on ? "bg-card/80 text-white ring-1 ring-inset ring-accent/40" : "text-textsec hover:bg-card/40 hover:text-white",
                   )}
                 >
                   <span className={cn("lbl-ref transition-colors", on && "text-accent")}>{String.fromCharCode(65 + i)}.</span>
@@ -103,8 +103,8 @@ export function BundlesMatrix({ bundles, seeLabel, rule }: { bundles: Bundle[]; 
 
       {/* The schedule for the chosen bundle */}
       <div ref={panel} className="scroll-mt-20 lg:col-span-7">
-        <div className="sheet crops">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b hair px-5 py-4 sm:px-7">
+        <div className="sheet">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 px-5 pt-5 sm:px-7 sm:pt-6">
             <p className="lbl">
               Schedule <span className="lbl-ref ml-2 text-white">{String.fromCharCode(65 + active)}</span>
             </p>
@@ -153,9 +153,9 @@ export function BundlesMatrix({ bundles, seeLabel, rule }: { bundles: Bundle[]; 
               {announce}
             </p>
           </div>
-          <div className="flex flex-col gap-4 border-t hair px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+          <div className="flex flex-col gap-4 px-5 pb-6 sm:flex-row sm:items-center sm:justify-between sm:px-7">
             <p className="flex items-start gap-3 text-[0.92rem] leading-snug text-white">
-              <span className="lbl-ref mt-0.5 shrink-0 border border-accent px-1.5 py-0.5 text-accent">End. 01</span>
+              <span className="lbl-ref pill mt-0.5 shrink-0 text-accent">Any agent</span>
               {rule}
             </p>
             <Link href={`/bundles#${b.slug}`} className="btn btn-secondary btn-sm shrink-0">

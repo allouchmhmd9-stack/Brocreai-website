@@ -4,6 +4,7 @@ import { AgentsTeaser } from "@/components/sections/AgentsTeaser";
 import { BundlesTeaser } from "@/components/sections/BundlesTeaser";
 import { FaqTeaser } from "@/components/sections/FaqTeaser";
 import { Guarantee } from "@/components/sections/Guarantee";
+import { ExampleSchedule } from "@/components/sections/ExampleSchedule";
 import { Hero } from "@/components/sections/Hero";
 import { How } from "@/components/sections/How";
 import { Intro } from "@/components/sections/Intro";
@@ -41,6 +42,7 @@ export default function HomePage() {
   return (
     <>
       <Hero hero={d.hero} demoLabel={d.nav.demo} />
+      <ExampleSchedule t={d.schedule} demoLabel={d.nav.demo} />
       <Intro intro={d.intro} />
       <AgentsTeaser t={d.agentsTeaser} />
       <BundlesTeaser t={d.bundlesTeaser} />

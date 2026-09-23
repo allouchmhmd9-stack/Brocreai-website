@@ -24,7 +24,7 @@ export function Header({ nav, whatsappText }: { nav: Dictionary["nav"]; whatsapp
   const pathname = usePathname();
   const wa = whatsappLink(whatsappText);
 
-  // Reading progress: a royal rule under the header that fills as the sheet is read.
+  // Reading progress: a thin accent line under the header that fills as the page is read.
   useEffect(() => {
     let raf = 0;
     const update = () => {
@@ -90,13 +90,10 @@ export function Header({ nav, whatsappText }: { nav: Dictionary["nav"]; whatsapp
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b hair bg-deep/[0.97]">
+    <header className="fixed inset-x-0 top-0 z-50 bg-deep/[0.9] shadow-[0_1px_0_rgba(30,58,110,0.35)]">
       <div className="wrap flex h-16 items-center justify-between gap-6">
         <Link href="/" aria-label={nav.home} className="group flex shrink-0 items-center gap-2.5">
-          <Image src="/logo/brocare-ai-mark.png" alt="" width={479} height={165} priority className="h-7 w-auto md:h-8" />
-          <span className="entry border border-accent px-1.5 py-[3px] text-[0.62rem] font-semibold leading-none text-white transition-colors group-hover:bg-primary">
-            AI
-          </span>
+          <Image src="/logo/brocare-ai-mark.png" alt="" width={483} height={164} priority className="h-9 w-auto transition-opacity group-hover:opacity-85 md:h-10" />
         </Link>
 
         <nav aria-label={nav.menuLabel} className="hidden h-full items-stretch lg:flex">
@@ -151,9 +148,9 @@ export function Header({ nav, whatsappText }: { nav: Dictionary["nav"]; whatsapp
       {open && (
         <div id="mobile-menu" ref={panelRef} className="menu-in fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-deep lg:hidden">
           <nav aria-label={nav.menuLabel} className="wrap flex min-h-full flex-col py-6">
-            <ul className="border-t hair">
+            <ul>
               {LINKS.map((l) => (
-                <li key={l.key} className="border-b hair">
+                <li key={l.key}>
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}

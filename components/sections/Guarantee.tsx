@@ -64,7 +64,7 @@ export function Guarantee({ guarantee }: { guarantee: Dictionary["guarantee"] })
   return (
     <section id="guarantee" aria-labelledby="guarantee-title" className="py-6 md:py-8">
       <div className="wrap">
-        <Sheet mark="§ 06" name="Warranty" form="BAI-01 · p.6">
+        <Sheet>
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-6">
             <h2 id="guarantee-title" data-anim="lines" className="h2">
@@ -80,17 +80,17 @@ export function Guarantee({ guarantee }: { guarantee: Dictionary["guarantee"] })
           </div>
 
           <div ref={cal} className="lg:col-span-6">
-            <div className="border hair bg-deep/50">
-              <div className="flex items-baseline justify-between border-b hair px-5 py-3">
+            <div className="rounded-3xl bg-deep/50 p-3 ring-1 ring-inset ring-cardborder/40 sm:p-4">
+              <div className="flex items-baseline justify-between px-2 pb-3 pt-1">
                 <p className="lbl">Period · example timeline</p>
                 <p className="lbl-ref">{guarantee.big}</p>
               </div>
-              <ol className="grid grid-cols-[repeat(7,minmax(0,1fr))]">
+              <ol className="grid grid-cols-[repeat(7,minmax(0,1fr))] gap-1.5 sm:gap-2">
                 {Array.from({ length: DAYS }, (_, i) => {
                   const day = i + 1;
                   const lastDay = day === DAYS;
                   return (
-                    <li key={day} className={`relative aspect-[3/4] border-b border-r hair [&:nth-child(7n)]:border-r-0 ${lastDay ? "overflow-hidden" : ""}`}>
+                    <li key={day} className="relative aspect-[3/4] overflow-hidden rounded-lg bg-card/60 sm:rounded-xl">
                       <span data-fill aria-hidden="true" className={`absolute inset-0 ${lastDay ? "bg-primary" : "bg-primary/30"}`} />
                       <span className="lbl-ref relative z-10 block p-1.5 sm:p-2">{pad2(day)}</span>
                       {ENTRIES[day] ? (
@@ -111,8 +111,8 @@ export function Guarantee({ guarantee }: { guarantee: Dictionary["guarantee"] })
                   );
                 })}
               </ol>
-              <div className="flex items-center gap-4 px-5 py-4">
-                <span className="lbl-ref shrink-0 border border-dashed border-textsec/60 px-1.5 py-0.5">15+</span>
+              <div className="flex items-center gap-4 px-2 pb-1 pt-4">
+                <span className="lbl-ref pill shrink-0">15+</span>
                 <p className="entry text-[0.78rem] leading-snug text-textsec">If it is not live by day 14, we keep working at no additional cost until it is.</p>
               </div>
             </div>

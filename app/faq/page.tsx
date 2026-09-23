@@ -32,10 +32,10 @@ export default function FaqPage() {
         <nav aria-label={t.jump} className="lg:col-span-3">
           <div className="lg:sticky lg:top-28">
             <p className="lbl">{t.jump}</p>
-            <ol className="mt-3 border-t hair">
+            <ol className="mt-3 space-y-1">
               {faqGroups.map((g, i) => (
-                <li key={g.title} className="border-b hair">
-                  <a href={`#${slug(g.title)}`} className="group flex items-baseline gap-3 py-3 text-[0.95rem] text-textsec transition-colors hover:text-white">
+                <li key={g.title}>
+                  <a href={`#${slug(g.title)}`} className="group flex items-baseline gap-3 rounded-2xl px-3 py-2.5 text-[0.95rem] text-textsec transition-colors hover:bg-card/50 hover:text-white">
                     <span className="lbl-ref group-hover:text-accent">{pad2(i + 1)}</span>
                     {g.title}
                   </a>

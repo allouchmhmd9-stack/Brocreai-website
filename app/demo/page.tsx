@@ -34,12 +34,12 @@ export default function DemoPage() {
           </div>
 
           <aside className="lg:col-span-5">
-            <div data-anim="rise" className="border-t border-primary pt-4">
+            <div data-anim="rise">
               <h2 className="h3">{demo.afterTitle}</h2>
               <p className="body mt-3">{demo.afterBody}</p>
             </div>
 
-            <div data-anim="rise" className="mt-10 border-t hair pt-4">
+            <div data-anim="rise" className="mt-10">
               {bookingUrl ? (
                 <>
                   <p className="text-textsec">{demo.bookLead}</p>
@@ -56,9 +56,9 @@ export default function DemoPage() {
               </a>
             </div>
 
-            <dl data-anim="rise" className="mt-10 border-t hair">
+            <dl data-anim="rise" className="mt-10 rounded-3xl bg-card/40 px-5 py-2 ring-1 ring-inset ring-cardborder/40">
               {office.map((o) => (
-                <div key={o.label} className="grid grid-cols-[5.5rem_1fr] gap-4 border-b hair py-3.5">
+                <div key={o.label} className="grid grid-cols-[5.5rem_1fr] gap-4 border-b hair py-3.5 last:border-b-0">
                   <dt className="lbl pt-0.5">{o.label}</dt>
                   <dd className="entry text-[0.8rem] leading-relaxed text-white">
                     {o.href ? (

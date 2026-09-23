@@ -37,7 +37,7 @@ export default function AboutPage() {
         <Clauses blocks={about.blocks} />
       </div>
       <div className="wrap">
-        <div data-anim="rise" className="flex flex-col gap-6 border-t border-primary py-10 md:flex-row md:items-center md:justify-between">
+        <div data-anim="rise" className="mt-4 flex flex-col gap-6 rounded-3xl bg-gradient-to-r from-primary/30 via-accent/10 to-transparent p-6 ring-1 ring-inset ring-accent/30 sm:p-8 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-[1.4rem] font-bold tracking-[-0.02em] text-white">{about.ctaLead}</p>
             <p className="mt-2 text-textsec">

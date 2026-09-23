@@ -18,7 +18,7 @@ export default function NotFound() {
   return (
     <section className="pt-16">
       <div className="wrap py-10 md:py-16">
-        <div className="sheet crops grid gap-10 px-5 py-10 sm:px-8 md:grid-cols-12 md:px-12 md:py-16">
+        <div className="sheet grid gap-10 px-5 py-10 sm:px-8 md:grid-cols-12 md:px-12 md:py-16">
           <div className="md:col-span-8">
             <h1 className="display text-[clamp(2.4rem,5.4vw,4.6rem)]">{d.notFound.title}</h1>
             <p className="lbl-ref mt-4">Form {d.notFound.code} · Not issued</p>

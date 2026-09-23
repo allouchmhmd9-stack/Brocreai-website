@@ -14,7 +14,7 @@ type FormDict = Dictionary["demo"]["form"];
 
 function Notice({ title, body, waText }: { title: string; body: string; waText?: string }) {
   return (
-    <div role="alert" className="flex gap-3 border border-dashed border-textsec/60 bg-deep/60 p-4 text-sm">
+    <div role="alert" className="flex gap-3 rounded-2xl bg-deep/60 p-4 text-sm ring-1 ring-inset ring-textsec/40">
       <InfoIcon className="mt-0.5 h-5 w-5 shrink-0 text-textsec" />
       <div>
         <p className="font-semibold text-white">{title}</p>
@@ -109,7 +109,7 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
 
   if (status === "success") {
     return (
-      <div className="sheet crops p-6 sm:p-8 md:p-10">
+      <div className="sheet p-6 sm:p-8 md:p-10">
         <div ref={successRef} tabIndex={-1} role="status" className="flex flex-col items-start gap-6 outline-none sm:flex-row sm:items-center">
           <Stamp ring="Received · Brocare AI" center="OK" tone="ice" size={112} rotate={-10} />
           <div>
@@ -127,8 +127,8 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
   const hasErrors = Object.keys(errors).length > 0;
 
   return (
-    <form onSubmit={onSubmit} noValidate className="sheet crops relative">
-      <div className="flex items-baseline justify-between border-b hair px-5 py-3 sm:px-7">
+    <form onSubmit={onSubmit} noValidate className="sheet relative">
+      <div className="flex items-baseline justify-between px-5 pt-6 sm:px-7">
         <p className="lbl">Part 1 · About you</p>
         <p className="lbl-ref">BAI-07</p>
       </div>
@@ -142,7 +142,7 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
         </div>
       </div>
 
-      <div className="border-y hair px-5 py-3 sm:px-7">
+      <div className="px-5 pt-3 sm:px-7">
         <p className="lbl">Part 2 · The work</p>
       </div>
       <div className="p-5 sm:p-7">
@@ -170,7 +170,7 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
         )}
       </div>
 
-      <div className="border-y hair px-5 py-3 sm:px-7">
+      <div className="px-5 sm:px-7">
         <p className="lbl">Part 3 · Declaration</p>
       </div>
       <div className="space-y-5 p-5 sm:p-7">
@@ -187,9 +187,9 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
             />
             <span
               aria-hidden="true"
-              className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center border border-accent text-transparent transition-colors peer-checked:bg-primary peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ice"
+              className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md border border-accent text-transparent transition-colors peer-checked:bg-primary peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ice"
             >
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square">
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12.5l4.5 4.5L19 7.5" />
               </svg>
             </span>

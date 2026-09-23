@@ -8,7 +8,7 @@ export function Intro({ intro }: { intro: Dictionary["intro"] }) {
   return (
     <section id="provenance" aria-labelledby="provenance-title" className="py-6 md:py-8">
       <div className="wrap">
-        <Sheet mark="§ 02" name="Provenance" form="BAI-01 · p.2">
+        <Sheet>
           <div className="grid items-start gap-10 lg:grid-cols-12">
             <Heading id="provenance-title" title={intro.title} lead={intro.lead} className="lg:col-span-8" />
             <div className="flex justify-start lg:col-span-4 lg:justify-end">

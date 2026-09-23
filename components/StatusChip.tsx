@@ -13,7 +13,7 @@ export function StatusChip({ status, className }: { status: string; className?: 
   const live = status === "live";
   return (
     <span className={cn("lbl inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-[0.64rem]", live ? "text-ice" : "text-textsec", className)}>
-      <span aria-hidden="true" className={cn("h-1.5 w-1.5", live ? "bg-ice" : "border border-textsec")} />
+      <span aria-hidden="true" className={cn("h-1.5 w-1.5 rounded-full", live ? "bg-ice" : "border border-textsec")} />
       {LABEL[status] ?? status}
     </span>
   );

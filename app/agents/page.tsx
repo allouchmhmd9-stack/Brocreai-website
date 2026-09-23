@@ -3,7 +3,6 @@ import { AgentIcon } from "@/components/AgentIcon";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { StatusChip } from "@/components/StatusChip";
-import { SectionBar } from "@/components/slip/Parts";
 import { Stamp } from "@/components/slip/Stamp";
 import { agentGroups, agents } from "@/lib/content/agents";
 import { getDictionary } from "@/lib/i18n";
@@ -26,18 +25,18 @@ export default function AgentsPage() {
   return (
     <>
       <PageHero form={forms.agents} crumb={d.nav.agents} path="/agents" title={t.title} lead={t.lead}>
-        <p data-anim="rise" className="mt-8 flex max-w-[62ch] items-start gap-3 border-t hair pt-4 text-white">
-          <span className="lbl-ref mt-0.5 shrink-0 border border-accent px-1.5 py-0.5 text-accent">End. 01</span>
+        <p data-anim="rise" className="mt-8 flex max-w-[62ch] items-center gap-3 text-white">
+          <span className="lbl-ref pill shrink-0 text-accent">Any agent</span>
           {t.rule}
         </p>
       </PageHero>
 
       {/* Jump to a group: a printed tab strip that stays under the header */}
-      <nav aria-label={t.jump} className="sticky top-16 z-30 mt-10 border-y hair bg-deep/[0.94] backdrop-blur-md">
-        <ul className="wrap rail flex gap-1 overflow-x-auto">
+      <nav aria-label={t.jump} className="sticky top-[4.6rem] z-30 mt-10">
+        <ul className="wrap rail flex gap-2 overflow-x-auto py-1">
           {agentGroups.map((g, i) => (
             <li key={g.key} className="shrink-0">
-              <a href={`#${g.key}`} className="group flex items-baseline gap-2 px-3 py-3 text-[0.88rem] text-textsec transition-colors hover:text-white">
+              <a href={`#${g.key}`} className="group flex items-baseline gap-2 rounded-full bg-mid/90 px-4 py-2.5 text-[0.88rem] text-textsec ring-1 ring-inset ring-cardborder/60 backdrop-blur-md transition hover:text-white hover:ring-accent/70">
                 <span className="lbl-ref group-hover:text-accent">{pad2(i + 1)}</span>
                 {g.title}
               </a>
@@ -46,13 +45,12 @@ export default function AgentsPage() {
         </ul>
       </nav>
 
-      {agentGroups.map((g, gi) => {
+      {agentGroups.map((g) => {
         const list = agents.filter((a) => a.group === g.key);
         return (
           <section key={g.key} id={g.key} aria-labelledby={`${g.key}-title`} className="scroll-mt-32 pt-16 md:pt-20">
             <div className="wrap">
-              <SectionBar mark={`Group ${pad2(gi + 1)}`} name={`${list.length} ${list.length === 1 ? "agent" : "agents"}`} form={`BAI-03 · p.${gi + 1}`} />
-              <h2 id={`${g.key}-title`} data-anim="lines" className="h2 mt-6">
+              <h2 id={`${g.key}-title`} data-anim="lines" className="h2">
                 {g.title}
               </h2>
               {g.lead ? (
@@ -61,11 +59,11 @@ export default function AgentsPage() {
                 </p>
               ) : null}
 
-              <ul className="mt-10">
+              <ul className="mt-10 space-y-5">
                 {list.map((a) => {
                   const live = a.status === "live";
                   return (
-                    <li key={a.slug} id={a.slug} className="scroll-mt-32 border-t hair py-10 md:py-12">
+                    <li key={a.slug} id={a.slug} className="scroll-mt-36 rounded-3xl bg-gradient-to-b from-card/50 to-mid/30 px-5 py-8 ring-1 ring-inset ring-cardborder/40 sm:px-8 md:py-10">
                       <article aria-labelledby={`${a.slug}-name`} className="grid gap-8 lg:grid-cols-12 lg:gap-12">
                         <div className="lg:col-span-4">
                           <div className="flex items-start gap-5 lg:flex-col">
@@ -88,16 +86,16 @@ export default function AgentsPage() {
                             </div>
                           </div>
                           <p className="mt-5 text-[1.1rem] leading-snug text-white">{a.tagline}</p>
-                          <div className="mt-6 flex items-end gap-3 border-t hair pt-4">
+                          <div className="mt-6 flex items-end gap-3">
                             <span className="text-[2.8rem] font-bold leading-none tracking-[-0.04em] text-white tabular-nums" style={{ fontStretch: "92%" }}>
                               {a.cadence.big}
                             </span>
                             <span className="pb-1 text-[0.88rem] text-textsec">{a.cadence.label}</span>
                           </div>
                         </div>
-                        <dl className={cn("grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:col-span-8", !live && "lg:border-l lg:border-dashed lg:border-cardborder lg:pl-10")}>
+                        <dl className={cn("grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:col-span-8", !live && "opacity-85")}>
                           {FIELDS.map((key) => (
-                            <div key={key} data-anim="rise" className={cn("border-t hair pt-3", key === "custom" && "sm:col-span-2")}>
+                            <div key={key} data-anim="rise" className={cn(key === "custom" && "sm:col-span-2")}>
                               <dt className="lbl">{t.fields[key]}</dt>
                               <dd className={cn("mt-2", key === "outputs" ? "entry text-[0.8rem] leading-relaxed text-white" : "body")}>{a[key]}</dd>
                             </div>

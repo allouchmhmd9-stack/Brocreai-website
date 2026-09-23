@@ -26,14 +26,14 @@ export function PageHero({
   return (
     <section aria-labelledby="page-title" className="pt-16">
       <div className="wrap pt-5 md:pt-8">
-        <div className="sheet crops">
-          <div className="flex flex-col gap-2 border-b hair px-5 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <div className="sheet">
+          <div className="flex flex-col gap-2 px-5 pt-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:pt-6 xl:px-10">
             <p className="lbl-ref">
               Form {form.code} · {form.title}
             </p>
             <Breadcrumbs trail={[{ name: crumb, path }]} />
           </div>
-          <div className="grid gap-10 px-5 pb-10 pt-8 sm:px-8 md:pb-14 md:pt-12 lg:grid-cols-12 xl:px-10">
+          <div className="grid gap-10 px-5 pb-10 pt-6 sm:px-8 md:pb-14 md:pt-10 lg:grid-cols-12 xl:px-10">
             <div className={aside ? "lg:col-span-8" : "lg:col-span-10"}>
               <h1 id="page-title" data-anim="lines" className="display text-[clamp(2.4rem,5.2vw,4.8rem)]">
                 <Segs segs={title} />

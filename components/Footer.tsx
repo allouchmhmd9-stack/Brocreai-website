@@ -3,8 +3,7 @@ import Link from "next/link";
 import type { Dictionary } from "@/lib/i18n";
 import { brokerage, contact, whatsappLink } from "@/lib/site";
 
-// The foot of the form: issuer, pages, contact and legal in ruled columns, then the
-// small print line that closes every sheet.
+// The foot of the page: issuer, pages, contact and legal in soft columns, then the small print.
 export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dictionary["nav"] }) {
   const year = new Date().getFullYear();
   const pages = [
@@ -22,12 +21,11 @@ export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dic
     { href: "/refunds", label: footer.refunds },
   ];
   return (
-    <footer className="border-t hair bg-mid">
+    <footer className="mt-10 rounded-t-[2.5rem] bg-mid">
       <div className="wrap grid gap-x-8 gap-y-12 py-14 md:py-16 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Link href="/" aria-label={nav.home} className="inline-flex items-center gap-2.5">
-            <Image src="/logo/brocare-ai-mark.png" alt="" width={479} height={165} className="h-8 w-auto" />
-            <span className="entry border border-accent px-1.5 py-[3px] text-[0.62rem] font-semibold leading-none text-white">AI</span>
+            <Image src="/logo/brocare-ai-logo.png" alt="" width={483} height={203} className="h-16 w-auto" />
           </Link>
           <p className="mt-6 max-w-[34ch] text-[0.95rem] leading-relaxed text-textsec">
             {footer.initiative}{" "}
@@ -45,7 +43,7 @@ export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dic
         </div>
 
         <nav aria-labelledby="footer-pages" className="lg:col-span-2 lg:col-start-6">
-          <h2 id="footer-pages" className="lbl border-b hair pb-3">
+          <h2 id="footer-pages" className="lbl">
             {footer.pagesHeading}
           </h2>
           <ul className="mt-4 space-y-2.5">
@@ -59,7 +57,7 @@ export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dic
           </ul>
         </nav>
         <div className="lg:col-span-3">
-          <h2 className="lbl border-b hair pb-3">{footer.contactHeading}</h2>
+          <h2 className="lbl">{footer.contactHeading}</h2>
           <ul className="mt-4 space-y-2.5 text-[0.95rem]">
             <li>
               <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="ln text-textsec">
@@ -80,7 +78,7 @@ export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dic
           </ul>
         </div>
         <nav aria-labelledby="footer-legal" className="lg:col-span-2">
-          <h2 id="footer-legal" className="lbl border-b hair pb-3">
+          <h2 id="footer-legal" className="lbl">
             {footer.legalHeading}
           </h2>
           <ul className="mt-4 space-y-2.5">
@@ -94,7 +92,7 @@ export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dic
           </ul>
         </nav>
       </div>
-      <div className="border-t hair">
+      <div>
         <div className="wrap flex flex-col gap-2 py-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="lbl-ref">
             © {year} {brokerage.name} {footer.rights}

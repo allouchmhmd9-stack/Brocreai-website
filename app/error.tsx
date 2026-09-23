@@ -20,7 +20,7 @@ export default function GlobalRouteError({
   return (
     <section className="pt-16">
       <div className="wrap py-10 md:py-16">
-        <div className="sheet crops px-5 py-10 sm:px-8 md:px-12 md:py-16">
+        <div className="sheet px-5 py-10 sm:px-8 md:px-12 md:py-16">
         <h1 className="display max-w-[18ch] text-[clamp(2.2rem,4.6vw,3.8rem)]">
           {d.error.title}
         </h1>

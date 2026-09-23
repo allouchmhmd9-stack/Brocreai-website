@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AgentsRail } from "@/components/AgentsRail";
-import { Arrow, Heading, SectionBar } from "@/components/slip/Parts";
+import { Arrow, Heading } from "@/components/slip/Parts";
 import { agents } from "@/lib/content/agents";
 import type { Dictionary } from "@/lib/i18n";
 
@@ -9,8 +9,7 @@ import type { Dictionary } from "@/lib/i18n";
 export function AgentsTeaser({ t }: { t: Dictionary["agentsTeaser"] }) {
   const head = (
     <>
-      <SectionBar mark="§ 03" name="Lines" form="BAI-01 · p.3" />
-      <div className="mt-8 grid items-end gap-8 lg:grid-cols-12">
+      <div className="grid items-end gap-8 lg:grid-cols-12">
         <Heading id="agents-title" title={t.title} lead={t.lead} className="lg:col-span-8" />
         <div data-anim="rise" className="lg:col-span-4 lg:justify-self-end">
           <Link href="/agents" className="btn btn-secondary">

@@ -47,6 +47,10 @@ export const en = {
     secondary: "Meet the agents",
     chips: ["Nothing to install", "You approve everything", "Live in two weeks, guaranteed"],
   },
+  schedule: {
+    title: [s("Every line waits for your "), s("approval", true), s(".")],
+    lead: "An example of what five live agents hand over before the day starts. Each one writes its line and initials it. Nothing goes out until someone signs it off.",
+  },
   intro: {
     title: [s("The AI operating system built inside a real insurance brokerage. Now "), s("yours", true), s(".")],
     lead: "Every agent on this site runs each working day inside Brocare Insurance Brokerage, our own brokerage in Beirut. It quotes, prospects, follows up and reports for us first. Then it does the same for you.",
@@ -65,7 +69,7 @@ export const en = {
   },
   agentsTeaser: {
     title: [s("Meet the "), s("agents", true), s(" already doing the work.")],
-    lead: "Each one prepares its work and hands it to you for approval. Live agents carry the ice mark. The ones still in pilot or in build are printed as outlines, not dressed up as live.",
+    lead: "Each one prepares its work and hands it to you for approval. Live agents carry the ice mark. The ones still in pilot or in build are dimmed, never dressed up as live.",
     note: "What each agent does, what it produces, when it runs and how it is customised.",
     cta: "See all agents",
     prev: "Scroll agents left",

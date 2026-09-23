@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-23T13:42:28.597Z",
+  "generatedAt": "2026-09-23T14:41:44.489Z",
   "title": "Design System: Brocare AI",
   "extensions": {
     "colorMeta": {
@@ -96,7 +96,7 @@
       },
       "gradientblue": {
         "role": "tertiary",
-        "displayName": "Deep Cobalt (reserved, unused)",
+        "displayName": "Deep Cobalt",
         "canonical": "oklch(51.3% 0.160 255.7)",
         "tonalRamp": [
           "#000829",
@@ -158,19 +158,23 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Landing slip headline, set in the Insured field."
+        "purpose": "Landing hero headline and the closing sign-off title."
       },
       "display-page": {
         "displayName": "Display (page)",
-        "purpose": "Inner page hero titles and the 404 sheet."
+        "purpose": "Inner page hero titles."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section titles inside sheets."
+        "purpose": "Section titles."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Condition steps, clause and card titles."
+        "purpose": "Steps, clause and card titles."
+      },
+      "question": {
+        "displayName": "Question",
+        "purpose": "Accordion questions."
       },
       "lead": {
         "displayName": "Lead",
@@ -178,47 +182,76 @@
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Running copy, max 68ch."
+        "purpose": "Running copy and accordion answers, max 68ch."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Pill button labels."
       },
       "label": {
         "displayName": "Field Label",
-        "purpose": "Condensed caps printed on every form box and status mark."
+        "purpose": "Condensed caps naming a field or a status."
       },
       "reference": {
         "displayName": "Reference",
-        "purpose": "Form codes, folios, line numbers, dates, the Example tag."
+        "purpose": "Form codes, line numbers, dates, pill tags."
       },
       "entry": {
         "displayName": "Typed Entry",
-        "purpose": "Values written onto the slip by an agent or a person."
+        "purpose": "Values written by an agent or a person."
       },
       "stat": {
         "displayName": "Cadence Stat",
-        "purpose": "The big number on an agent line card."
+        "purpose": "The big number on an agent card."
       }
     },
     "shadows": [
       {
-        "name": "press-edge",
-        "value": "inset 0 -2px 0 rgba(5,8,26,0.35), 0 10px 28px -14px rgba(45,111,255,0.9)",
-        "purpose": "Primary button at rest: a pressed printed tab with a soft ink bleed."
+        "name": "panel",
+        "value": "inset 0 1px 0 rgba(176,196,222,0.06), 0 30px 80px -40px rgba(5,8,26,0.9)",
+        "purpose": "Every rounded panel: faint top light and a deep, diffuse fall-off."
       },
       {
-        "name": "press-edge-hover",
-        "value": "inset 0 -2px 0 rgba(5,8,26,0.3), 0 16px 36px -14px rgba(45,111,255,1)",
+        "name": "metal-primary",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -2px 4px rgba(5,8,26,0.5), 0 0 0 1px rgba(45,111,255,0.5), 0 10px 30px -10px rgba(45,111,255,0.7)",
+        "purpose": "Primary button at rest."
+      },
+      {
+        "name": "metal-primary-hover",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.65), inset 0 -2px 4px rgba(5,8,26,0.5), 0 0 0 1px rgba(79,195,247,0.55), 0 16px 44px -10px rgba(45,111,255,0.85)",
         "purpose": "Primary button hover and focus."
       },
       {
-        "name": "press-in",
-        "value": "inset 0 2px 4px rgba(5,8,26,0.45)",
-        "purpose": "Primary button active."
+        "name": "metal-secondary",
+        "value": "inset 0 1px 0 rgba(79,195,247,0.4), inset 0 -2px 4px rgba(5,8,26,0.55), 0 0 0 1px rgba(79,195,247,0.35)",
+        "purpose": "Secondary button at rest."
+      },
+      {
+        "name": "metal-secondary-hover",
+        "value": "inset 0 1px 0 rgba(79,195,247,0.7), inset 0 -2px 4px rgba(5,8,26,0.55), 0 0 0 1px rgba(79,195,247,0.6), 0 12px 36px -12px rgba(79,195,247,0.55)",
+        "purpose": "Secondary button hover and focus."
+      },
+      {
+        "name": "card-hover-glow",
+        "value": "0 24px 60px -28px rgba(45,111,255,0.7)",
+        "purpose": "Linked agent cards on hover."
+      },
+      {
+        "name": "feature-glow",
+        "value": "0 20px 60px -25px rgba(45,111,255,0.8)",
+        "purpose": "The filled all-agents card."
+      },
+      {
+        "name": "header-edge",
+        "value": "0 1px 0 rgba(30,58,110,0.35)",
+        "purpose": "Header bottom line."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "CSS state transitions: arrow nudge, nav underline, card lift, menu unroll. Mirrors GSAP expo.out."
+        "purpose": "CSS state transitions: arrow nudge, nav underline, card lift, accordion, menu unroll. Mirrors GSAP expo.out."
       },
       {
         "name": "ease-press",
@@ -226,9 +259,39 @@
         "purpose": "Declared overshoot curve for presses."
       },
       {
+        "name": "metal-sweep",
+        "value": "background-position 120% to -60%, 0.9s, cubic-bezier(0.2, 0.7, 0.2, 1)",
+        "purpose": "Highlight sweeping across pill buttons on hover and focus; off under reduced motion."
+      },
+      {
+        "name": "button-lift",
+        "value": "translateY(-1px) scale(1.02) on hover, scale(0.98) on active, 0.35s ease-out",
+        "purpose": "Pill buttons respond physically."
+      },
+      {
+        "name": "aurora-drift",
+        "value": "34s and 41s ease-in-out infinite alternate, translate up to 9vmax, scale 0.92 to 1.12",
+        "purpose": "Hero ambient light; off under reduced motion."
+      },
+      {
+        "name": "spotlight",
+        "value": "440px radial light, lerp 0.14 on requestAnimationFrame, fine pointers only",
+        "purpose": "Cursor-following light over the hero."
+      },
+      {
+        "name": "accordion",
+        "value": "grid-template-rows 0fr to 1fr with opacity, 0.5s ease-out; toggle bar scaleY to 0 in 0.3s",
+        "purpose": "FAQ answers drop down on click."
+      },
+      {
+        "name": "rail-wheel",
+        "value": "vertical wheel to horizontal glide, lerp 0.2; ignored within 380ms of page scroll; released at either end",
+        "purpose": "Agent strip browses under a resting pointer without taking over the page."
+      },
+      {
         "name": "rule-draw",
         "value": "scaleX 0 to 1, 1.3s, expo.out, once at top 94%",
-        "purpose": "Section rules draw left to right."
+        "purpose": "Lines draw left to right."
       },
       {
         "name": "lines-rise",
@@ -242,28 +305,18 @@
       },
       {
         "name": "type",
-        "value": "characters revealed with 0.02s stagger (0.012s in the hero), linear",
+        "value": "characters revealed with 0.02s stagger (0.012s on the example schedule), linear",
         "purpose": "Short entries type themselves in."
       },
       {
         "name": "stamp-press",
         "value": "scale 1.9 to 1, rotation +16deg to rest, 0.55s, back.out(2.4)",
-        "purpose": "Stamps drop and press with weight. The approval stamp uses scale 2.4 and back.out(2.8) plus a 2px jolt through the box."
-      },
-      {
-        "name": "draw",
-        "value": "drawSVG 0% to 100%, 0.7s, power2.out",
-        "purpose": "Ticks and small strokes draw once."
+        "purpose": "Stamps drop and press. The approval stamp uses scale 2.4 and back.out(2.8) plus a 2px jolt through the box."
       },
       {
         "name": "scrub-draw",
-        "value": "drawSVG scrubbed 0.6 from top 72% to bottom 55%",
+        "value": "drawSVG scrubbed from top 72% to bottom 55%",
         "purpose": "The signature and long connectors ink with the scroll."
-      },
-      {
-        "name": "spin",
-        "value": "rotation -18deg to 24deg, scrubbed 0.8 across the viewport",
-        "purpose": "Seals turn slowly as the page passes."
       },
       {
         "name": "lenis",
@@ -300,25 +353,25 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The printed tab that presses like a stamp; the demo action.",
+      "description": "Deep blue liquid-metal pill with a sweeping highlight; the demo action.",
       "html": "<button class=\"ds-btn-primary\">Book a demo <svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\" class=\"ds-arr\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"square\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></button>",
-      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:0.7rem;min-height:3.1rem;padding:0 1.35rem;border-radius:2px;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-weight:640;font-size:0.97rem;letter-spacing:0.005em;line-height:1;white-space:nowrap;cursor:pointer;transition:background-color .2s ease,border-color .2s ease,box-shadow .25s cubic-bezier(0.16,1,0.3,1),transform .12s ease;color:#fff;border:0;background:var(--primary,#1a3bdb);box-shadow:inset 0 -2px 0 rgba(5,8,26,.35),0 10px 28px -14px rgba(45,111,255,.9);} .ds-btn-primary:hover,.ds-btn-primary:focus-visible{background:var(--accent,#2d6fff);box-shadow:inset 0 -2px 0 rgba(5,8,26,.3),0 16px 36px -14px rgba(45,111,255,1);} .ds-btn-primary:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;} .ds-btn-primary:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(5,8,26,.45);} .ds-arr{transition:transform .35s cubic-bezier(0.16,1,0.3,1);} .ds-btn-primary:hover .ds-arr,.ds-btn-primary:focus-visible .ds-arr{transform:translateX(4px);}"
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;position:relative;isolation:isolate;overflow:hidden;min-height:3.1rem;padding:0 1.6rem;border-radius:9999px;border:0;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-weight:620;font-size:0.97rem;line-height:1;white-space:nowrap;color:#fff;cursor:pointer;transition:transform .35s cubic-bezier(0.16,1,0.3,1),box-shadow .3s ease;background:radial-gradient(120% 140% at 30% 0%,rgba(79,195,247,.5),transparent 55%),radial-gradient(120% 120% at 80% 110%,rgba(5,8,26,.55),transparent 60%),linear-gradient(120deg,#1a3bdb 0%,#2d6fff 45%,#1565c0 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 4px rgba(5,8,26,.5),0 0 0 1px rgba(45,111,255,.5),0 10px 30px -10px rgba(45,111,255,.7);} .ds-btn-primary:hover,.ds-btn-primary:focus-visible{box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 4px rgba(5,8,26,.5),0 0 0 1px rgba(79,195,247,.55),0 16px 44px -10px rgba(45,111,255,.85);} .ds-btn-primary::after{content:\"\";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 48%,rgba(255,255,255,.08) 54%,transparent 70%);background-size:250% 100%;background-position:120% 0;mix-blend-mode:screen;transition:background-position .9s cubic-bezier(0.2,0.7,0.2,1);} .ds-btn-primary:hover::after,.ds-btn-primary:focus-visible::after{background-position:-60% 0;} .ds-btn-primary:hover{transform:translateY(-1px) scale(1.02);} .ds-btn-primary:active{transform:scale(.98);} .ds-btn-primary:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;} .ds-btn-primary .ds-arr{transition:transform .35s cubic-bezier(0.16,1,0.3,1);} .ds-btn-primary:hover .ds-arr,.ds-btn-primary:focus-visible .ds-arr{transform:translateX(3px);}"
     },
     {
       "name": "Secondary Button",
       "kind": "button",
       "refersTo": "button-secondary",
-      "description": "Hairline-framed tab for the second action.",
+      "description": "Lighter, glassier navy metal pill with an ice rim.",
       "html": "<button class=\"ds-btn-secondary\">See the agents</button>",
-      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:0.7rem;min-height:3.1rem;padding:0 1.35rem;border-radius:2px;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-weight:640;font-size:0.97rem;letter-spacing:0.005em;line-height:1;white-space:nowrap;cursor:pointer;transition:background-color .2s ease,border-color .2s ease,box-shadow .25s cubic-bezier(0.16,1,0.3,1),transform .12s ease;color:#fff;background:transparent;border:1px solid var(--rule,#1e3a6e);} .ds-btn-secondary:hover,.ds-btn-secondary:focus-visible{border-color:var(--accent,#2d6fff);background:rgba(13,20,64,.7);} .ds-btn-secondary:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;} .ds-btn-secondary:active{transform:translateY(1px);}"
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;position:relative;isolation:isolate;overflow:hidden;min-height:3.1rem;padding:0 1.6rem;border-radius:9999px;border:0;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-weight:620;font-size:0.97rem;line-height:1;white-space:nowrap;color:#fff;cursor:pointer;transition:transform .35s cubic-bezier(0.16,1,0.3,1),box-shadow .3s ease;background:radial-gradient(120% 140% at 30% 0%,rgba(255,255,255,.18),transparent 55%),linear-gradient(120deg,rgba(13,20,64,.9) 0%,rgba(30,58,110,.85) 60%,rgba(13,20,64,.9) 100%);box-shadow:inset 0 1px 0 rgba(79,195,247,.4),inset 0 -2px 4px rgba(5,8,26,.55),0 0 0 1px rgba(79,195,247,.35);} .ds-btn-secondary:hover,.ds-btn-secondary:focus-visible{box-shadow:inset 0 1px 0 rgba(79,195,247,.7),inset 0 -2px 4px rgba(5,8,26,.55),0 0 0 1px rgba(79,195,247,.6),0 12px 36px -12px rgba(79,195,247,.55);} .ds-btn-secondary::after{content:\"\";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 48%,rgba(255,255,255,.08) 54%,transparent 70%);background-size:250% 100%;background-position:120% 0;mix-blend-mode:screen;transition:background-position .9s cubic-bezier(0.2,0.7,0.2,1);} .ds-btn-secondary:hover::after,.ds-btn-secondary:focus-visible::after{background-position:-60% 0;} .ds-btn-secondary:hover{transform:translateY(-1px) scale(1.02);} .ds-btn-secondary:active{transform:scale(.98);} .ds-btn-secondary:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;} .ds-btn-secondary .ds-arr{transition:transform .35s cubic-bezier(0.16,1,0.3,1);} .ds-btn-secondary:hover .ds-arr,.ds-btn-secondary:focus-visible .ds-arr{transform:translateX(3px);}"
     },
     {
       "name": "Field Box",
       "kind": "input",
       "refersTo": "field-box",
-      "description": "A printed form box with its label inside the top edge.",
+      "description": "Rounded 14px field with its label set inside the top edge.",
       "html": "<label class=\"ds-fbox\"><span class=\"ds-fbox-lbl\">Work email</span><input class=\"ds-finput\" placeholder=\"name@firm.com\"></label>",
-      "css": ".ds-fbox{position:relative;display:block;width:320px;border:1px solid var(--rule,#1e3a6e);background:rgba(5,8,26,.55);transition:border-color .2s ease,background-color .2s ease;} .ds-fbox:hover{border-color:rgba(45,111,255,.7);} .ds-fbox:focus-within{border-color:var(--ice,#4fc3f7);background:rgba(5,8,26,.85);} .ds-fbox-lbl{position:absolute;left:.85rem;top:.6rem;pointer-events:none;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-stretch:72%;font-weight:620;font-size:.7rem;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;color:var(--sec,#b0c4de);} .ds-finput{display:block;width:100%;box-sizing:border-box;background:transparent;border:0;color:#fff;padding:1.7rem .85rem .7rem;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-size:1rem;line-height:1.45;outline:none;caret-color:var(--ice,#4fc3f7);} .ds-finput::placeholder{color:rgba(176,196,222,.7);}"
+      "css": ".ds-fbox{position:relative;display:block;width:320px;border-radius:14px;border:1px solid rgba(30,58,110,.8);background:rgba(5,8,26,.55);transition:border-color .2s ease,background-color .2s ease;} .ds-fbox:hover{border-color:rgba(45,111,255,.7);} .ds-fbox:focus-within{border-color:var(--ice,#4fc3f7);background:rgba(5,8,26,.85);} .ds-fbox-lbl{position:absolute;left:.85rem;top:.6rem;pointer-events:none;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-stretch:72%;font-weight:620;font-size:.7rem;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;color:var(--sec,#b0c4de);} .ds-finput{display:block;width:100%;box-sizing:border-box;background:transparent;border:0;color:#fff;padding:1.7rem .85rem .7rem;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-size:1rem;line-height:1.45;outline:none;caret-color:var(--ice,#4fc3f7);} .ds-finput::placeholder{color:rgba(176,196,222,.7);}"
     },
     {
       "name": "Header Navigation",
@@ -326,56 +379,64 @@
       "refersTo": "navigation",
       "description": "Fixed midnight header; a stamp-ink underline draws in from the left.",
       "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\" aria-current=\"page\">Bundles</a><a href=\"#\" class=\"ds-nav-link\">Agents</a><a href=\"#\" class=\"ds-nav-link\">About</a><a href=\"#\" class=\"ds-nav-link\">FAQ</a></nav>",
-      "css": ".ds-nav{display:flex;height:64px;align-items:stretch;background:rgba(5,8,26,.97);border-bottom:1px solid var(--rule,#1e3a6e);padding:0 16px;} .ds-nav-link{position:relative;display:flex;align-items:center;padding:0 1rem;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-weight:500;font-size:.95rem;color:var(--sec,#b0c4de);text-decoration:none;transition:color .2s ease;} .ds-nav-link::after{content:\"\";position:absolute;left:1rem;right:1rem;bottom:-1px;height:2px;background:var(--accent,#2d6fff);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(0.16,1,0.3,1);} .ds-nav-link:hover,.ds-nav-link[aria-current=\"page\"]{color:#fff;} .ds-nav-link:hover::after,.ds-nav-link[aria-current=\"page\"]::after{transform:scaleX(1);} .ds-nav-link:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;border-radius:2px;}"
+      "css": ".ds-nav{display:flex;height:64px;align-items:stretch;background:rgba(5,8,26,.9);box-shadow:0 1px 0 rgba(30,58,110,.35);padding:0 16px;} .ds-nav-link{position:relative;display:flex;align-items:center;padding:0 1rem;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-weight:500;font-size:.95rem;color:var(--sec,#b0c4de);text-decoration:none;transition:color .2s ease;} .ds-nav-link::after{content:\"\";position:absolute;left:1rem;right:1rem;bottom:-1px;height:2px;background:var(--accent,#2d6fff);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(0.16,1,0.3,1);} .ds-nav-link:hover,.ds-nav-link[aria-current=\"page\"]{color:#fff;} .ds-nav-link:hover::after,.ds-nav-link[aria-current=\"page\"]::after{transform:scaleX(1);} .ds-nav-link:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;border-radius:8px;}"
     },
     {
-      "name": "Status Marks",
+      "name": "Pill Tag and Status",
       "kind": "chip",
-      "refersTo": "status-live",
-      "description": "Printed status: filled ice square for live, outline for everything else.",
-      "html": "<span class=\"ds-status ds-live\"><i></i>Live</span><span class=\"ds-status\"><i></i>In pilot</span><span class=\"ds-status\"><i></i>Coming soon</span>",
-      "css": ".ds-status{display:inline-flex;align-items:center;gap:.4rem;margin-right:1rem;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-stretch:72%;font-weight:620;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sec,#b0c4de);} .ds-status i{width:6px;height:6px;border:1px solid currentColor;box-sizing:border-box;} .ds-status.ds-live{color:var(--ice,#4fc3f7);} .ds-status.ds-live i{background:var(--ice,#4fc3f7);}"
+      "refersTo": "pill",
+      "description": "Round reference pill for Example and counts; status marks with ice only for live.",
+      "html": "<span class=\"ds-pill\">Example</span><span class=\"ds-status ds-live\"><i></i>Live</span><span class=\"ds-status\"><i></i>In pilot</span>",
+      "css": ".ds-pill{display:inline-flex;align-items:center;margin-right:1rem;border-radius:9999px;border:1px solid rgba(30,58,110,.7);background:rgba(13,20,64,.6);padding:.2rem .65rem;font-family:var(--font-mono, 'Martian Mono'), ui-monospace, monospace;font-size:.68rem;letter-spacing:.02em;color:rgba(176,196,222,.78);} .ds-status{display:inline-flex;align-items:center;gap:.4rem;margin-right:1rem;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-stretch:72%;font-weight:620;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sec,#b0c4de);} .ds-status i{width:6px;height:6px;border:1px solid currentColor;box-sizing:border-box;} .ds-status.ds-live{color:var(--ice,#4fc3f7);} .ds-status.ds-live i{background:var(--ice,#4fc3f7);}"
     },
     {
-      "name": "Sheet",
+      "name": "Panel",
       "kind": "card",
       "refersTo": "sheet",
-      "description": "A section printed on the slip: framed navy stock, crop marks, top strip with mark and folio.",
-      "html": "<div class=\"ds-sheet\"><div class=\"ds-strip\"><span><b>§ 05</b> · Conditions</span><span>BAI-01 · p.5</span></div><div class=\"ds-sheet-body\"><h2 class=\"ds-h2\">How it <em class=\"ds-grad\">connects</em> to your tools.</h2><p class=\"ds-lead\">Every email waits for your approval.</p></div></div>",
-      "css": ".ds-sheet{position:relative;max-width:560px;background:var(--mid,#0a0f2e);border:1px solid var(--rule,#1e3a6e);color:#fff;} .ds-sheet::before,.ds-sheet::after{content:\"\";position:absolute;width:14px;height:14px;border:solid var(--accent,#2d6fff);} .ds-sheet::before{top:-1px;left:-1px;border-width:2px 0 0 2px;} .ds-sheet::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;} .ds-strip{display:flex;justify-content:space-between;gap:24px;padding:10px 24px;border-bottom:1px solid var(--rule,#1e3a6e);font-family:var(--font-mono, 'Martian Mono'), ui-monospace, monospace;font-size:.68rem;letter-spacing:.02em;color:rgba(176,196,222,.78);} .ds-strip b{font-weight:400;color:var(--accent,#2d6fff);} .ds-sheet-body{padding:40px 32px;} .ds-h2{margin:0;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-weight:720;font-size:2.2rem;letter-spacing:-.03em;line-height:1.02;} .ds-grad{font-style:normal;background-image:linear-gradient(100deg,#fff 0%,var(--ice,#4fc3f7) 46%,var(--accent,#2d6fff) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;} .ds-lead{margin:20px 0 0;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-size:1.1rem;line-height:1.6;color:var(--sec,#b0c4de);max-width:62ch;}"
+      "description": "The site's one container: 28px corners, soft navy gradient, faint border, soft shadow.",
+      "html": "<div class=\"ds-sheet\"><h2 class=\"ds-h2\">How it <em class=\"ds-grad\">connects</em> to your tools.</h2><p class=\"ds-lead\">Every email waits for your approval.</p></div>",
+      "css": ".ds-sheet{position:relative;max-width:560px;padding:48px 40px;border-radius:28px;background:linear-gradient(180deg,rgba(13,20,64,.62) 0%,rgba(10,15,46,.5) 100%);border:1px solid rgba(30,58,110,.45);box-shadow:inset 0 1px 0 rgba(176,196,222,.06),0 30px 80px -40px rgba(5,8,26,.9);color:#fff;} .ds-h2{margin:0;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-weight:720;font-size:2.2rem;letter-spacing:-.03em;line-height:1.02;} .ds-grad{font-style:normal;background-image:linear-gradient(100deg,#fff 0%,var(--ice,#4fc3f7) 46%,var(--accent,#2d6fff) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;} .ds-lead{margin:20px 0 0;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-size:1.1rem;line-height:1.6;color:var(--sec,#b0c4de);max-width:62ch;}"
+    },
+    {
+      "name": "FAQ Accordion",
+      "kind": "custom",
+      "refersTo": "accordion-toggle",
+      "description": "Closed by default; clicking a question drops its answer down; round toggle turns accent when open.",
+      "html": "<div class=\"ds-acc\"><details class=\"ds-acc-item\" open><summary class=\"ds-acc-q\">Do I need to install anything?<span class=\"ds-acc-t\"></span></summary><p class=\"ds-acc-a\">No. The agents work inside the tools you already use.</p></details><details class=\"ds-acc-item\"><summary class=\"ds-acc-q\">Who approves what goes out?<span class=\"ds-acc-t\"></span></summary><p class=\"ds-acc-a\">You do. Nothing is sent until you sign it off.</p></details></div>",
+      "css": ".ds-acc{max-width:560px;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;} .ds-acc-item{border-bottom:1px solid rgba(30,58,110,.4);} .ds-acc-item:last-child{border-bottom:0;} .ds-acc-q{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;cursor:pointer;font-size:1.2rem;font-weight:600;line-height:1.375;letter-spacing:-.015em;color:rgba(255,255,255,.9);transition:color .2s;} .ds-acc-q::-webkit-details-marker{display:none;} .ds-acc-q:hover,.ds-acc-item[open] .ds-acc-q{color:#fff;} .ds-acc-q:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;border-radius:8px;} .ds-acc-t{position:relative;flex-shrink:0;width:36px;height:36px;border-radius:9999px;background:rgba(13,20,64,.7);box-shadow:inset 0 0 0 1px rgba(30,58,110,.7);transition:background-color .3s,box-shadow .3s;} .ds-acc-q:hover .ds-acc-t{box-shadow:inset 0 0 0 1px rgba(45,111,255,.7);} .ds-acc-item[open] .ds-acc-t{background:var(--accent,#2d6fff);box-shadow:inset 0 0 0 1px var(--accent,#2d6fff);} .ds-acc-t::before,.ds-acc-t::after{content:\"\";position:absolute;left:50%;top:50%;background:#fff;border-radius:9999px;transform:translate(-50%,-50%);} .ds-acc-t::before{width:14px;height:2px;} .ds-acc-t::after{width:2px;height:14px;transition:transform .3s cubic-bezier(0.16,1,0.3,1);} .ds-acc-item[open] .ds-acc-t::after{transform:translate(-50%,-50%) scaleY(0);} .ds-acc-a{margin:0;padding:0 48px 28px 0;font-size:1rem;line-height:1.7;color:var(--sec,#b0c4de);}"
     },
     {
       "name": "Rubber Stamp",
       "kind": "custom",
       "refersTo": "stamp",
-      "description": "The one round form: double ring, ring text, initials, rotated off square. Blue for an agent, ice for Approved.",
-      "html": "<span class=\"ds-stamp\"><svg viewBox=\"0 0 120 120\" width=\"96\" height=\"96\"><defs><path id=\"dsr1\" d=\"M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0\"/></defs><circle cx=\"60\" cy=\"60\" r=\"56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.2\"/><circle cx=\"60\" cy=\"60\" r=\"39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><text fill=\"currentColor\" style=\"font-size:9.6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase\"><textPath href=\"#dsr1\" textLength=\"292\" lengthAdjust=\"spacing\">Lead Engine · prepared · Lead Engine · prepared ·</textPath></text><text x=\"60\" y=\"61\" text-anchor=\"middle\" dominant-baseline=\"central\" fill=\"currentColor\" style=\"font-size:28px;font-weight:800\">LE</text></svg></span><span class=\"ds-stamp ds-stamp-ice\"><svg viewBox=\"0 0 120 120\" width=\"96\" height=\"96\"><defs><path id=\"dsr2\" d=\"M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0\"/></defs><circle cx=\"60\" cy=\"60\" r=\"56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.2\"/><circle cx=\"60\" cy=\"60\" r=\"39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><text fill=\"currentColor\" style=\"font-size:9.6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase\"><textPath href=\"#dsr2\" textLength=\"292\" lengthAdjust=\"spacing\">Approved · Brocare AI · Approved · Brocare AI ·</textPath></text><text x=\"60\" y=\"61\" text-anchor=\"middle\" dominant-baseline=\"central\" fill=\"currentColor\" style=\"font-size:28px;font-weight:800\">OK</text></svg></span>",
-      "css": ".ds-stamp{display:inline-block;margin-right:16px;color:var(--accent,#2d6fff);font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-stretch:75%;transform:rotate(-8deg);transition:transform .5s cubic-bezier(0.16,1,0.3,1);} .ds-stamp:hover{transform:rotate(-14deg) scale(1.05);} .ds-stamp-ice{color:var(--ice,#4fc3f7);}"
+      "description": "The signature round form: double ring, ring text, initials, rotated off square. Blue for an agent, ice for Approved.",
+      "html": "<span class=\"ds-stamp\"><svg viewBox=\"0 0 120 120\" width=\"100%\" height=\"100%\"><defs><path id=\"dsr1\" d=\"M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0\"/></defs><circle cx=\"60\" cy=\"60\" r=\"56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.2\"/><circle cx=\"60\" cy=\"60\" r=\"39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><text fill=\"currentColor\" style=\"font-size:9.6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase\"><textPath href=\"#dsr1\" textLength=\"292\" lengthAdjust=\"spacing\">Lead Engine · prepared · Lead Engine · prepared ·</textPath></text><text x=\"60\" y=\"61\" text-anchor=\"middle\" dominant-baseline=\"central\" fill=\"currentColor\" style=\"font-size:28px;font-weight:800\">LE</text></svg></span><span class=\"ds-stamp ds-stamp-ice\"><svg viewBox=\"0 0 120 120\" width=\"100%\" height=\"100%\"><defs><path id=\"dsr2\" d=\"M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0\"/></defs><circle cx=\"60\" cy=\"60\" r=\"56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.2\"/><circle cx=\"60\" cy=\"60\" r=\"39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><text fill=\"currentColor\" style=\"font-size:9.6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase\"><textPath href=\"#dsr2\" textLength=\"292\" lengthAdjust=\"spacing\">Approved · Brocare AI · Approved · Brocare AI ·</textPath></text><text x=\"60\" y=\"61\" text-anchor=\"middle\" dominant-baseline=\"central\" fill=\"currentColor\" style=\"font-size:28px;font-weight:800\">OK</text></svg></span>",
+      "css": ".ds-stamp{display:inline-block;width:96px;height:96px;margin-right:16px;color:var(--accent,#2d6fff);font-family:var(--font-archivo, Archivo), system-ui, sans-serif;font-stretch:75%;transform:rotate(-8deg);transition:transform .5s cubic-bezier(0.16,1,0.3,1);} .ds-stamp:hover{transform:rotate(-14deg) scale(1.05);} .ds-stamp-ice{color:var(--ice,#4fc3f7);}"
     },
     {
-      "name": "Agent Line Card",
+      "name": "Agent Card",
       "kind": "card",
       "refersTo": "line-card",
-      "description": "User-pinned anatomy: stamp breaking the top edge, name, line and group, two-line tagline, rule, cadence stat, status.",
-      "html": "<a href=\"#\" class=\"ds-line\"><span class=\"ds-line-stamp\"><svg viewBox=\"0 0 120 120\" width=\"72\" height=\"72\"><circle cx=\"60\" cy=\"60\" r=\"56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.2\"/><circle cx=\"60\" cy=\"60\" r=\"39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><text x=\"60\" y=\"61\" text-anchor=\"middle\" dominant-baseline=\"central\" fill=\"currentColor\" style=\"font-size:28px;font-weight:800\">LE</text></svg></span><span class=\"ds-line-name\">Lead Engine</span><span class=\"ds-line-meta\"><span class=\"ds-ref\">L.01</span><span class=\"ds-lbl\">Growth</span></span><span class=\"ds-line-tag\">Finds and verifies leads, scores them out of 100 and files them to the pipeline.</span><span class=\"ds-line-rule\"></span><span class=\"ds-line-foot\"><span><span class=\"ds-stat\">Daily</span><span class=\"ds-stat-l\">runs every morning</span></span><span class=\"ds-lbl ds-live\"><i></i>Live</span></span></a>",
-      "css": ".ds-line{position:relative;display:flex;flex-direction:column;width:17.5rem;margin-top:48px;padding:0 24px 24px;background:var(--mid,#0a0f2e);border:1px solid var(--rule,#1e3a6e);color:#fff;text-decoration:none;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;transition:transform .5s cubic-bezier(0.16,1,0.3,1),border-color .5s,background-color .5s;} .ds-line:hover,.ds-line:focus-visible{transform:translateY(-6px);border-color:var(--accent,#2d6fff);background:var(--card,#0d1440);} .ds-line:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;} .ds-line-stamp{position:absolute;left:24px;top:0;transform:translateY(-50%);padding:6px;border-radius:9999px;background:var(--deep,#05081a);color:var(--accent,#2d6fff);line-height:0;transition:transform .5s cubic-bezier(0.16,1,0.3,1);} .ds-line:hover .ds-line-stamp{transform:translateY(-50%) rotate(-12deg) scale(1.05);} .ds-line-name{padding-top:48px;font-size:1.3rem;font-weight:700;line-height:1.12;letter-spacing:-.02em;} .ds-line-meta{display:flex;gap:8px;align-items:baseline;margin-top:8px;} .ds-ref{font-family:var(--font-mono, 'Martian Mono'), ui-monospace, monospace;font-size:.68rem;color:rgba(176,196,222,.78);} .ds-lbl{display:inline-flex;align-items:center;gap:6px;font-stretch:72%;font-weight:620;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sec,#b0c4de);} .ds-line-tag{margin-top:12px;font-size:.92rem;line-height:1.45;color:var(--sec,#b0c4de);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;} .ds-line-rule{display:block;height:1px;margin-top:20px;background:var(--rule,#1e3a6e);transition:background-color .3s;} .ds-line:hover .ds-line-rule{background:var(--accent,#2d6fff);} .ds-line-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;} .ds-stat{display:block;font-size:2.6rem;font-weight:700;line-height:1;letter-spacing:-.04em;font-stretch:92%;font-variant-numeric:tabular-nums;} .ds-stat-l{display:block;margin-top:6px;font-size:.82rem;color:var(--sec,#b0c4de);} .ds-lbl.ds-live{color:var(--ice,#4fc3f7);} .ds-lbl i{width:6px;height:6px;background:currentColor;}"
+      "description": "36px-corner card: stamp breaking the top edge, name, line and group, two-line tagline, fading divider, cadence stat, status.",
+      "html": "<a href=\"#\" class=\"ds-line\"><span class=\"ds-line-stamp\"><span style=\"display:block;width:72px;height:72px\"><svg viewBox=\"0 0 120 120\" width=\"100%\" height=\"100%\"><defs><path id=\"dsr3\" d=\"M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0\"/></defs><circle cx=\"60\" cy=\"60\" r=\"56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.2\"/><circle cx=\"60\" cy=\"60\" r=\"39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"/><text fill=\"currentColor\" style=\"font-size:9.6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase\"><textPath href=\"#dsr3\" textLength=\"292\" lengthAdjust=\"spacing\">Lead Engine · live · Lead Engine · live ·</textPath></text><text x=\"60\" y=\"61\" text-anchor=\"middle\" dominant-baseline=\"central\" fill=\"currentColor\" style=\"font-size:28px;font-weight:800\">LE</text></svg></span></span><span class=\"ds-line-name\">Lead Engine</span><span class=\"ds-line-meta\"><span class=\"ds-ref\">L.01</span><span class=\"ds-lbl\">Growth</span></span><span class=\"ds-line-tag\">Finds and verifies leads, scores them out of 100 and files them to the pipeline.</span><span class=\"ds-line-rule\"></span><span class=\"ds-line-foot\"><span><span class=\"ds-stat\">Daily</span><span class=\"ds-stat-l\">runs every morning</span></span><span class=\"ds-lbl ds-live\"><i></i>Live</span></span></a>",
+      "css": ".ds-line{position:relative;display:flex;flex-direction:column;width:17.5rem;margin-top:48px;padding:0 24px 24px;border-radius:36px;background:linear-gradient(180deg,rgba(13,20,64,.8),rgba(10,15,46,.6));box-shadow:inset 0 0 0 1px rgba(30,58,110,.5);color:#fff;text-decoration:none;font-family:var(--font-archivo, Archivo), system-ui, sans-serif;transition:transform .5s cubic-bezier(0.16,1,0.3,1),box-shadow .5s;} .ds-line:hover,.ds-line:focus-visible{transform:translateY(-6px);box-shadow:inset 0 0 0 1px rgba(45,111,255,.6),0 24px 60px -28px rgba(45,111,255,.7);} .ds-line:focus-visible{outline:2px solid var(--ice,#4fc3f7);outline-offset:3px;} .ds-line-stamp{position:absolute;left:24px;top:0;transform:translateY(-50%);padding:6px;border-radius:9999px;background:var(--deep,#05081a);color:var(--accent,#2d6fff);line-height:0;transition:transform .5s cubic-bezier(0.16,1,0.3,1);} .ds-line:hover .ds-line-stamp{transform:translateY(-50%) rotate(-12deg) scale(1.05);} .ds-line-name{padding-top:48px;font-size:1.3rem;font-weight:700;line-height:1.12;letter-spacing:-.02em;} .ds-line-meta{display:flex;gap:8px;align-items:baseline;margin-top:8px;} .ds-ref{font-family:var(--font-mono, 'Martian Mono'), ui-monospace, monospace;font-size:.68rem;color:rgba(176,196,222,.78);} .ds-lbl{display:inline-flex;align-items:center;gap:6px;font-stretch:72%;font-weight:620;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sec,#b0c4de);} .ds-line-tag{margin-top:12px;font-size:.92rem;line-height:1.45;color:var(--sec,#b0c4de);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;} .ds-line-rule{display:block;height:1px;margin-top:20px;background:linear-gradient(90deg,rgba(30,58,110,.8),transparent);} .ds-line:hover .ds-line-rule{background:linear-gradient(90deg,var(--accent,#2d6fff),transparent);} .ds-line-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;} .ds-stat{display:block;font-size:2.6rem;font-weight:700;line-height:1;letter-spacing:-.04em;font-stretch:92%;font-variant-numeric:tabular-nums;} .ds-stat-l{display:block;margin-top:6px;font-size:.82rem;color:var(--sec,#b0c4de);} .ds-lbl.ds-live{color:var(--ice,#4fc3f7);} .ds-lbl i{width:6px;height:6px;background:currentColor;}"
     }
   ],
   "narrative": {
-    "northStar": "The Placing Slip",
-    "overview": "The site is set as a live insurance placing slip. Every surface is a printed form sheet on navy stock: hairline rules, condensed field labels, typed entries, reference codes, tick boxes, sign-here lines and round rubber stamps. Each agent writes and initials its own line; the last box on the document always belongs to the visitor, who approves it with a stamp. The system refuses the category default of a 3D robot hero floating over glass feature cards.\n\nDensity is that of a working document: tight labels, generous reading measure, sections that read as consecutive pages of one form (folio marks such as \"§ 05 · Conditions\" and \"BAI-01 · p.5\"). Depth comes from ink and paper, never from light: tonal navy sheets, hairline borders, crop marks at the corners and a faint fixed grain over everything. Motion follows the same metaphor: rules draw, headings rise out of their baseline, entries type, stamps press.\n\nThe brand palette is fixed and blue-only. Ice is the scarcest colour on any screen because it means something: live, or approved.",
+    "northStar": "The Soft Slip",
+    "overview": "The site opens on light, not paper: an interactive Spline robot on the right of the hero, slow aurora drifting behind the headline, and a soft spotlight that follows the cursor. Below it, every section sits on a rounded navy panel with a faint border and a soft shadow, so the page reads as a sequence of calm, gently lifted surfaces rather than a ruled form. The insurance document survives where it earns its place: typed mono entries, condensed field labels, round rubber stamps, and one approval box that always belongs to the visitor.\n\nDensity is relaxed. Panels breathe (56px by 48px of padding on desktop), dividers are faint and appear only where they help reading, and nothing is boxed in for the sake of it. Corners are soft everywhere: 28px on panels, 36px on agent cards, full pills on buttons, tags and toggles. Motion is fluid and continuous: aurora drift, a spotlight that glides, a metallic highlight sweeping across buttons, headings rising by line, entries typing, stamps pressing.\n\nThe brand palette is fixed and blue-only. Ice is the brightest note on any screen and signals live, approved or promised states; elsewhere it appears only as light inside metal and glow.",
     "keyCharacteristics": [
-      "Navy form stock with hairline rules and registration crop marks; no glass, no glow cards.",
-      "One variable family (Archivo) carrying three voices through its width axis, plus Martian Mono for anything typed onto the slip.",
-      "Square corners everywhere; only stamps are round.",
-      "Ice reserved for live and approved states.",
-      "Pilot and coming-soon items print as dashed outlines and ghost stamps, never as live.",
-      "Motion grammar: rules draw, entries type, stamps press; fully gated behind reduced-motion."
+      "Rounded everything: panels 28px, cards 36px, fields 14px, buttons, tags and toggles fully round.",
+      "Soft navy panels with a faint border and a soft ambient shadow; no crop marks, section folios, printed strips or ruled margins.",
+      "Interactive robot hero with aurora drift and a cursor spotlight, desktop only and never under reduced motion.",
+      "Liquid-metal pill buttons with a sweeping highlight.",
+      "The document survives as detail: Martian Mono entries, condensed caps labels, rubber stamps, the visitor's approval box.",
+      "Pilot and coming-soon items are dimmed with ghost stamps, never dressed as live."
     ],
     "rules": [
       {
         "name": "The Earned Ice Rule",
-        "body": "Ice appears only when something is live or has been approved (plus the functional focus ring and caret). If an element is not live, not approved and not focused, it is not ice.",
+        "body": "Ice as a colour of text, fill or stamp means live, approved, or one of the hero's promises (plus the focus ring and caret). Ice may also appear as light inside button metal and the cursor spotlight. It is never a decorative fill or a heading colour.",
         "section": "colors"
       },
       {
@@ -390,48 +451,50 @@
       },
       {
         "name": "The Typed Entry Rule",
-        "body": "Mono means written onto the form: entries, references, codes, dates and line numbers. Headlines, body and buttons are never mono.",
+        "body": "Mono means written onto the document: entries, references, codes, dates and line numbers. Headlines, body, questions and buttons are never mono.",
         "section": "typography"
       },
       {
-        "name": "The Printed Label Rule",
-        "body": "Field labels are always condensed caps in Archivo at 72% width, sitting on or inside a hairline. They name a field; they do not introduce a heading.",
+        "name": "The Field Label Rule",
+        "body": "Condensed caps name a field or a status. They never introduce a heading as a stacked line above it.",
         "section": "typography"
       },
       {
-        "name": "The Folio Rule",
-        "body": "A section mark lives in a sheet's top strip or at the right-hand end of a section rule, set small in the reference face with the mark in stamp-ink blue. It is never stacked above a heading.",
+        "name": "The Header Row Rule",
+        "body": "A form code or reference inside a panel sits in a header row paired with a counterpart on the right (a breadcrumb or a date), not alone above a heading.",
         "section": "layout"
       },
       {
-        "name": "The Printed Not Lifted Rule",
-        "body": "Sheets, cards, fields and chips carry no shadow. The primary button is the single element with a cast, and it is soft and blue, never a hard offset.",
+        "name": "The Soft Light Rule",
+        "body": "Shadows are diffuse and blue or navy, with large blur and negative spread. Never a hard offset shadow.",
         "section": "elevation"
       },
       {
-        "name": "The Square Form Rule",
-        "body": "If it is not a stamp, it is not round.",
+        "name": "The Soft Corner Rule",
+        "body": "Nothing that holds content has a sharp corner. Containers start at 14px; anything tag-like or pressable is a full pill.",
         "section": "shapes"
       }
     ],
     "dos": [
-      "Do build every section as a sheet of the same document: form-stock navy, hairline frame, crop marks, top strip with mark and folio.",
-      "Do keep ice for live and approved states, the focus ring and the caret only.",
+      "Do set every content section on a rounded panel: 28px corners, soft navy gradient, faint border, panel shadow.",
+      "Do make every button a liquid-metal pill, and every tag, toggle and small control fully round.",
+      "Do keep ice for live, approved and the hero's promises, plus the focus ring, caret and the light inside metal.",
       "Do set exactly one gradient word per title.",
-      "Do set anything typed onto the slip (entries, codes, dates, line numbers) in Martian Mono, and field labels in 72%-width Archivo caps.",
-      "Do print pilot and coming-soon items as dashed outlines with ghost stamps and outlined status squares.",
-      "Do tag demonstration content with the boxed \"Example\" reference so nothing reads as a claim.",
-      "Do follow the motion grammar: rules draw (1.3s, expo out), headings rise by line (1.15s, 0.085s stagger), blocks settle from a 6px blur, entries type by character, stamps press with a back-out overshoot.",
+      "Do set anything typed (entries, codes, dates, line numbers) in Martian Mono, and field labels in 72%-width Archivo caps.",
+      "Do dim pilot and coming-soon items to 75% with ghost stamps and outlined status marks.",
+      "Do tag demonstration content with the \"Example\" pill so nothing reads as a claim.",
+      "Do keep FAQ answers folded until the question is clicked.",
+      "Do keep the robot desktop-only and off under reduced motion; the aurora carries the hero everywhere else.",
       "Do keep content visible by default: entrance states apply only after the motion gate opts in, reduced motion skips all of it, and a 4s fallback restores everything if the choreographer never starts."
     ],
     "donts": [
-      "Don't round anything that is not a stamp beyond 4px.",
-      "Don't stack a section mark, form code or label above a heading; it belongs in the top strip or at the end of a rule.",
-      "Don't add shadows to sheets, cards, fields or chips, and never use a hard offset shadow.",
+      "Don't use sharp corners or square boxes on anything that holds content.",
+      "Don't outline every part: no registration crop marks, section folios, printed top strips, ruled paper or margin rules. Dividers stay faint and only where they help reading.",
+      "Don't use hard offset shadows.",
       "Don't add colours outside the fixed brand palette.",
-      "Don't dress a pilot or coming-soon item as live (no ice, no solid border, no blue stamp).",
-      "Don't use em dashes in any typeset copy, and don't set titles that address brokers directly.",
-      "Don't fall back to the category default: 3D robot heroes, glass feature cards, glowing gradient panels."
+      "Don't dress a pilot or coming-soon item as live (no ice, no blue stamp, no full opacity).",
+      "Don't show FAQ answers open by default on the landing page.",
+      "Don't use em dashes in any typeset copy, and don't set titles that address brokers directly."
     ]
   }
 }
