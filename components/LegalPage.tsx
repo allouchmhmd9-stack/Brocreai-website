@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { getDictionary } from "@/lib/i18n";
-import { forms } from "@/lib/slip";
 
 const d = getDictionary();
 type LegalKey = "privacy" | "terms" | "cookies" | "refunds";
@@ -27,7 +26,7 @@ export function LegalPage({ page }: { page: LegalKey }) {
   const p = d.legal[page];
   return (
     <>
-      <PageHero form={{ code: forms.legal.code, title: p.title }} crumb={p.title} path={`/${page}`} title={[{ t: p.title }]}>
+      <PageHero crumb={p.title} path={`/${page}`} title={[{ t: p.title }]}>
         <p className="lbl-ref mt-6">
           {d.legal.updatedLabel}: <span className="text-white">{d.legal.updated}</span>
         </p>

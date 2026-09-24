@@ -97,7 +97,6 @@ export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dic
           <p className="lbl-ref">
             © {year} {brokerage.name} {footer.rights}
           </p>
-          <p className="lbl-ref">End of schedule</p>
         </div>
       </div>
     </footer>

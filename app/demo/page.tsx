@@ -5,7 +5,6 @@ import { PageHero } from "@/components/PageHero";
 import { Arrow } from "@/components/slip/Parts";
 import { getDictionary } from "@/lib/i18n";
 import { bookingUrl, contact, whatsappLink } from "@/lib/site";
-import { forms } from "@/lib/slip";
 
 const d = getDictionary();
 const demo = d.demo;
@@ -26,7 +25,7 @@ export default function DemoPage() {
   ];
   return (
     <>
-      <PageHero form={forms.demo} crumb={d.nav.demo} path="/demo" title={demo.title} lead={demo.lead} />
+      <PageHero crumb={d.nav.demo} path="/demo" title={demo.title} lead={demo.lead} />
       <section aria-label={demo.metaTitle} className="pb-24 pt-10 md:pb-32">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Aurora } from "@/components/Aurora";
 import { WhatsAppIcon } from "@/components/icons";
 import { Arrow } from "@/components/slip/Parts";
-import { Stamp } from "@/components/slip/Stamp";
 import { getDictionary } from "@/lib/i18n";
 import { whatsappLink } from "@/lib/site";
 
@@ -13,30 +13,26 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-// A form that was never issued: the sheet is printed, the reference is void.
+// Page not found: a calm centred message and the two ways back.
 export default function NotFound() {
   return (
-    <section className="pt-16">
-      <div className="wrap py-10 md:py-16">
-        <div className="sheet grid gap-10 px-5 py-10 sm:px-8 md:grid-cols-12 md:px-12 md:py-16">
-          <div className="md:col-span-8">
-            <h1 className="display text-[clamp(2.4rem,5.4vw,4.6rem)]">{d.notFound.title}</h1>
-            <p className="lbl-ref mt-4">Form {d.notFound.code} · Not issued</p>
-            <p className="lead mt-6">{d.notFound.body}</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href="/" className="btn btn-primary">
-                {d.notFound.home}
-                <Arrow />
-              </Link>
-              <a href={whatsappLink(d.demo.whatsappPrefill)} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                <WhatsAppIcon className="h-5 w-5" />
-                {d.nav.whatsapp}
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center justify-start md:col-span-4 md:justify-end">
-            <Stamp ring="Void · not issued · 404" center="VOID" tone="white" size={200} rotate={-14} className="opacity-80" />
-          </div>
+    <section className="relative overflow-hidden pb-24 pt-36 text-center md:pb-32 md:pt-44">
+      <Aurora className="opacity-60" />
+      <div className="wrap relative">
+        <p className="font-display text-[clamp(4rem,12vw,8rem)] font-bold leading-none text-white/10" aria-hidden="true">
+          404
+        </p>
+        <h1 className="display mx-auto -mt-6 max-w-3xl text-[clamp(2.2rem,4.8vw,4rem)]">{d.notFound.title}</h1>
+        <p className="lead mx-auto mt-6">{d.notFound.body}</p>
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link href="/" className="btn btn-primary">
+            {d.notFound.home}
+            <Arrow />
+          </Link>
+          <a href={whatsappLink(d.demo.whatsappPrefill)} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+            <WhatsAppIcon className="h-5 w-5" />
+            {d.nav.whatsapp}
+          </a>
         </div>
       </div>
     </section>

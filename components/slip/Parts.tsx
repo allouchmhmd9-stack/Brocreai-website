@@ -3,12 +3,7 @@ import { Segs } from "@/components/Segs";
 import type { Seg } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-/** A section set on a soft rounded panel, the site's one container. */
-export function Sheet({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("sheet px-5 py-10 sm:px-8 md:px-12 md:py-14", className)}>{children}</div>;
-}
-
-/** Heading + optional lead, set on the schedule's content column. */
+/** Section heading + optional lead. `center` sets both on the page's centre line. */
 export function Heading({
   title,
   lead,
@@ -16,6 +11,7 @@ export function Heading({
   className,
   size = "h2",
   id,
+  center = false,
 }: {
   title: Seg[];
   lead?: string;
@@ -23,18 +19,52 @@ export function Heading({
   className?: string;
   size?: "h2" | "display";
   id?: string;
+  center?: boolean;
 }) {
   return (
-    <div className={className}>
-      <Tag id={id} data-anim="lines" className={size === "display" ? "display text-[clamp(2.6rem,6vw,5.6rem)]" : "h2"}>
+    <div className={cn(center && "mx-auto max-w-3xl text-center", className)}>
+      <Tag id={id} data-anim="lines" className={size === "display" ? "display text-[clamp(2.4rem,5.4vw,4.6rem)]" : "h2"}>
         <Segs segs={title} />
       </Tag>
       {lead ? (
-        <p data-anim="rise" className="lead mt-5">
+        <p data-anim="rise" className={cn("lead mt-5", center && "mx-auto")}>
           {lead}
         </p>
       ) : null}
     </div>
+  );
+}
+
+type TileTone = "blue" | "ice" | "ghost";
+
+const TILE_TONE: Record<TileTone, string> = {
+  blue: "bg-primary/25 text-ice",
+  ice: "bg-ice/15 text-ice",
+  ghost: "bg-card/70 text-textsec ring-1 ring-inset ring-cardborder/70",
+};
+
+const TILE_SIZE = {
+  sm: "h-8 w-8 rounded-xl text-[0.62rem] [&_svg]:h-4 [&_svg]:w-4",
+  md: "h-12 w-12 rounded-2xl text-[0.8rem] [&_svg]:h-6 [&_svg]:w-6",
+  lg: "h-14 w-14 rounded-2xl text-[0.9rem] [&_svg]:h-7 [&_svg]:w-7",
+};
+
+/** Icon tile: an icon (or initials) on a soft rounded square. Replaces the old rubber stamps. */
+export function Tile({
+  children,
+  tone = "blue",
+  size = "md",
+  className,
+}: {
+  children: ReactNode;
+  tone?: TileTone;
+  size?: keyof typeof TILE_SIZE;
+  className?: string;
+}) {
+  return (
+    <span aria-hidden="true" className={cn("grid shrink-0 place-items-center font-semibold", TILE_TONE[tone], TILE_SIZE[size], className)}>
+      {children}
+    </span>
   );
 }
 
@@ -48,7 +78,7 @@ export function Tick({ ticked = true, tone = "blue", className }: { ticked?: boo
   );
 }
 
-/** Field: a label printed above a value, used for dl-style form fields. */
+/** Field: a label printed above a value, used for dl-style fields. */
 export function Field({ label, children, className }: { label: string; children: ReactNode; className?: string }) {
   return (
     <div className={className}>
@@ -60,7 +90,7 @@ export function Field({ label, children, className }: { label: string; children:
 
 export function Arrow({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" className={cn("arr shrink-0", className)} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" className={cn("arr shrink-0", className)} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 12h15M13 6l6 6-6 6" />
     </svg>
   );

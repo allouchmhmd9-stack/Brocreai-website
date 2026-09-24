@@ -19,7 +19,7 @@ export function Hero({ hero, demoLabel }: { hero: Dictionary["hero"]; demoLabel:
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-deep" />
       <div className="wrap relative z-10 lg:grid lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <h1 id="hero-title" data-anim="lines" className="display max-w-[15ch] text-[clamp(2.7rem,6vw,5.6rem)]">
+          <h1 id="hero-title" data-anim="lines" className="display max-w-[16ch] text-[clamp(2.5rem,5.2vw,4.7rem)]">
             <Segs segs={hero.title} />
           </h1>
           <p data-anim="rise" className="lead mt-7 max-w-[46ch] md:text-[1.25rem]">

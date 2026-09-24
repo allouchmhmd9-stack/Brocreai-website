@@ -4,10 +4,8 @@ import { Clauses } from "@/components/Clauses";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Arrow } from "@/components/slip/Parts";
-import { Stamp } from "@/components/slip/Stamp";
 import { about } from "@/lib/content/pages";
 import { getDictionary } from "@/lib/i18n";
-import { forms } from "@/lib/slip";
 
 const d = getDictionary();
 
@@ -22,16 +20,10 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        form={forms.about}
         crumb={d.nav.about}
         path="/about"
         title={about.title}
         lead={about.intro}
-        aside={
-          <div data-spin>
-            <Stamp ring="Brocare Insurance Brokerage · Beirut" center="BEIRUT" size={180} rotate={0} />
-          </div>
-        }
       />
       <div className="mt-10">
         <Clauses blocks={about.blocks} />

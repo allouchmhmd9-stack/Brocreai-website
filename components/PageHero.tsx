@@ -1,53 +1,41 @@
 import type { ReactNode } from "react";
+import { Aurora } from "@/components/Aurora";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Segs } from "@/components/Segs";
 import type { Seg } from "@/lib/i18n";
 
-// Inner-page opener: the page printed as its own form. Strip with the form code and the
-// breadcrumb, then the title set large, the lead, and whatever the page adds.
+// Inner-page opener: centred over soft drifting light. Breadcrumb, the title set large,
+// the lead, and whatever the page adds underneath.
 export function PageHero({
-  form,
   crumb,
   path,
   title,
   lead,
   children,
-  aside,
 }: {
-  form: { code: string; title: string };
   crumb: string;
   path: string;
   title: Seg[];
   lead?: string | string[];
   children?: ReactNode;
-  aside?: ReactNode;
 }) {
   const leads = Array.isArray(lead) ? lead : lead ? [lead] : [];
   return (
-    <section aria-labelledby="page-title" className="pt-16">
-      <div className="wrap pt-5 md:pt-8">
-        <div className="sheet">
-          <div className="flex flex-col gap-2 px-5 pt-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:pt-6 xl:px-10">
-            <p className="lbl-ref">
-              Form {form.code} · {form.title}
-            </p>
-            <Breadcrumbs trail={[{ name: crumb, path }]} />
-          </div>
-          <div className="grid gap-10 px-5 pb-10 pt-6 sm:px-8 md:pb-14 md:pt-10 lg:grid-cols-12 xl:px-10">
-            <div className={aside ? "lg:col-span-8" : "lg:col-span-10"}>
-              <h1 id="page-title" data-anim="lines" className="display text-[clamp(2.4rem,5.2vw,4.8rem)]">
-                <Segs segs={title} />
-              </h1>
-              {leads.map((p) => (
-                <p key={p} data-anim="rise" className="lead mt-6">
-                  {p}
-                </p>
-              ))}
-              {children}
-            </div>
-            {aside ? <div className="flex items-end justify-start lg:col-span-4 lg:justify-end">{aside}</div> : null}
-          </div>
+    <section aria-labelledby="page-title" className="relative overflow-hidden pb-16 pt-32 text-center md:pb-24 md:pt-40">
+      <Aurora className="opacity-60" />
+      <div className="wrap relative">
+        <div className="flex justify-center">
+          <Breadcrumbs trail={[{ name: crumb, path }]} />
         </div>
+        <h1 id="page-title" data-anim="lines" className="display mx-auto mt-6 max-w-4xl text-[clamp(2.3rem,5vw,4.3rem)]">
+          <Segs segs={title} />
+        </h1>
+        {leads.map((p) => (
+          <p key={p} data-anim="rise" className="lead mx-auto mt-6">
+            {p}
+          </p>
+        ))}
+        {children ? <div className="mx-auto flex max-w-3xl flex-col items-center">{children}</div> : null}
       </div>
     </section>
   );

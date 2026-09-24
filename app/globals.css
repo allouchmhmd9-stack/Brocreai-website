@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Soft navy panels with rounded corners, an interactive robot in the hero, liquid-metal
-   buttons, and the details of an insurance document where they earn it: typed entries,
-   condensed field labels and rubber stamps. Ice is kept for live and approved moments. */
+/* Calm glass: open navy sections that fade into each other, soft glass cards with icon
+   tiles, an interactive robot in the hero and liquid-metal buttons. Syne for headings,
+   Inter for reading. Ice is kept for live and approved moments. */
 
 :root {
   --deep: #05081a;
@@ -42,7 +42,7 @@ body {
   background: var(--deep);
   color: #fff;
   overflow-x: clip;
-  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -89,8 +89,6 @@ body::after {
    the visitor allows motion; the choreographer then plays each element in. If it never
    starts, .motion-done restores everything after a few seconds. */
 html.motion:not(.motion-done) [data-anim="rise"],
-html.motion:not(.motion-done) [data-anim="stamp"],
-html.motion:not(.motion-done) [data-anim="type"],
 html.motion:not(.motion-done) [data-anim="lines"],
 html.motion:not(.motion-done) [data-hero] {
   opacity: 0;
@@ -133,65 +131,54 @@ html.motion:not(.motion-done) [data-anim="rule"] {
   }
 }
 
-@keyframes caret {
-  50% {
-    opacity: 0;
-  }
-}
-
 @layer components {
   .wrap {
     @apply mx-auto w-full max-w-sheet px-5 sm:px-8 lg:px-10;
   }
 
-  /* Field label: the small condensed caps printed on every form box. */
+  /* Small caps label, used sparingly: field names and short tags. */
   .lbl {
-    font-stretch: 72%;
-    font-weight: 620;
-    font-size: 0.7rem;
+    font-weight: 600;
+    font-size: 0.72rem;
     line-height: 1.2;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--sec);
+    color: rgba(176, 196, 222, 0.8);
   }
   .lbl-ref {
-    @apply font-mono;
-    font-size: 0.68rem;
-    letter-spacing: 0.02em;
-    color: rgba(176, 196, 222, 0.78);
+    font-size: 0.8rem;
+    color: rgba(176, 196, 222, 0.8);
   }
-
-  /* Typed entries: what an agent or a person wrote into a field. */
+  /* Short written entries (agent outputs, notes): plain body text, a touch smaller. */
   .entry {
-    @apply font-mono;
-    font-stretch: 88%;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
 
   .display {
-    font-stretch: 104%;
-    font-weight: 760;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.06;
     text-wrap: balance;
   }
   .h2 {
-    font-stretch: 100%;
-    font-weight: 720;
-    font-size: clamp(2rem, 3.9vw, 3.5rem);
-    letter-spacing: -0.03em;
-    line-height: 1.02;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 3.6vw, 3.1rem);
+    letter-spacing: 0;
+    line-height: 1.1;
     text-wrap: balance;
   }
   .h3 {
-    font-weight: 680;
-    font-size: clamp(1.25rem, 1.8vw, 1.6rem);
-    letter-spacing: -0.02em;
-    line-height: 1.12;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    letter-spacing: 0.01em;
+    line-height: 1.2;
   }
   .lead {
-    font-size: clamp(1.05rem, 1.25vw, 1.2rem);
-    line-height: 1.6;
+    font-size: clamp(1.03rem, 1.2vw, 1.15rem);
+    line-height: 1.7;
     color: var(--sec);
     max-width: 62ch;
     text-wrap: pretty;
@@ -215,17 +202,59 @@ html.motion:not(.motion-done) [data-anim="rule"] {
     padding-right: 0.04em;
   }
 
-  /* The panel: a soft rounded navy surface, the site's one container. */
+  /* Glass: the one card surface. Soft, see-through navy with a thin border. */
+  .glass,
   .sheet {
     position: relative;
     border-radius: 28px;
-    background: linear-gradient(180deg, rgba(13, 20, 64, 0.62) 0%, rgba(10, 15, 46, 0.5) 100%);
-    border: 1px solid rgba(30, 58, 110, 0.45);
-    box-shadow:
-      inset 0 1px 0 rgba(176, 196, 222, 0.06),
-      0 30px 80px -40px rgba(5, 8, 26, 0.9);
+    background: rgba(13, 20, 64, 0.55);
+    border: 1px solid rgba(30, 58, 110, 0.55);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
   }
-  /* Soft dividers: present where they help reading, never boxing everything in. */
+  .glass-hover {
+    transition:
+      transform 0.35s var(--ease-out),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .glass-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(45, 111, 255, 0.6);
+    box-shadow: 0 20px 50px -24px rgba(45, 111, 255, 0.55);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glass-hover:hover {
+      transform: none;
+    }
+  }
+  /* Icon tile: an icon on a soft royal square, the brokerage site's signature detail. */
+  .tile {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 16px;
+    background: rgba(26, 59, 219, 0.25);
+    color: var(--ice);
+  }
+  /* Sections fade through a near-black ink with transparent ends, so they blend together
+     with no hard lines. */
+  .bg-flow {
+    background: linear-gradient(180deg, rgba(2, 4, 16, 0) 0%, #020410 32%, #020410 68%, rgba(2, 4, 16, 0) 100%);
+  }
+  .section {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+  @media (min-width: 768px) {
+    .section {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+  /* Soft dividers, only where they help reading. */
   .hair {
     border-color: rgba(30, 58, 110, 0.4);
   }
@@ -434,17 +463,6 @@ html.motion:not(.motion-done) [data-anim="rule"] {
 
   .menu-in {
     animation: menu-in 0.35s var(--ease-out) both;
-  }
-
-  .caret::after {
-    content: "";
-    display: inline-block;
-    width: 0.5ch;
-    height: 1em;
-    margin-left: 1px;
-    vertical-align: -0.12em;
-    background: var(--ice);
-    animation: caret 1s steps(1) infinite;
   }
 
   /* Touch devices snap card to card; pointer devices glide freely under the wheel. */

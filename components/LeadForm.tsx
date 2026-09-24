@@ -1,10 +1,10 @@
 "use client";
 
+import { Check } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { InfoIcon, WhatsAppIcon } from "@/components/icons";
-import { Arrow } from "@/components/slip/Parts";
-import { Stamp } from "@/components/slip/Stamp";
+import { Arrow, Tile } from "@/components/slip/Parts";
 import type { Dictionary } from "@/lib/i18n";
 import { LIMITS, validateLead, type FieldErrors, type LeadField } from "@/lib/leads/validate";
 import { whatsappLink } from "@/lib/site";
@@ -111,7 +111,9 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
     return (
       <div className="sheet p-6 sm:p-8 md:p-10">
         <div ref={successRef} tabIndex={-1} role="status" className="flex flex-col items-start gap-6 outline-none sm:flex-row sm:items-center">
-          <Stamp ring="Received · Brocare AI" center="OK" tone="ice" size={112} rotate={-10} />
+          <Tile size="lg" tone="ice" className="h-16 w-16 [&_svg]:h-8 [&_svg]:w-8">
+            <Check strokeWidth={2.2} />
+          </Tile>
           <div>
             <p className="text-[1.8rem] font-bold tracking-[-0.02em]">{f.successTitle}</p>
             <p className="mt-2 text-textsec">{f.successBody}</p>
@@ -129,7 +131,7 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
   return (
     <form onSubmit={onSubmit} noValidate className="sheet relative">
       <div className="flex items-baseline justify-between px-5 pt-6 sm:px-7">
-        <p className="lbl">Part 1 · About you</p>
+        <p className="lbl">About you</p>
         <p className="lbl-ref">BAI-07</p>
       </div>
       <div className="grid gap-3 p-5 sm:grid-cols-2 sm:p-7">
@@ -143,7 +145,7 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
       </div>
 
       <div className="px-5 pt-3 sm:px-7">
-        <p className="lbl">Part 2 · The work</p>
+        <p className="lbl">The work</p>
       </div>
       <div className="p-5 sm:p-7">
         <label htmlFor="message" className="fbox" data-invalid={errors.message ? "true" : undefined}>
@@ -171,7 +173,7 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
       </div>
 
       <div className="px-5 sm:px-7">
-        <p className="lbl">Part 3 · Declaration</p>
+        <p className="lbl">Consent</p>
       </div>
       <div className="space-y-5 p-5 sm:p-7">
         <div>

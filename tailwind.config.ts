@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
 // Brand tokens from the Brocare AI brief. Colour values are fixed; do not add new ones.
-// The visual world: soft navy panels with rounded corners, typed entries and rubber stamps,
-// an interactive robot in the hero, and liquid-metal buttons.
+// The visual world: open navy sections that blend into each other, soft glass cards with
+// icon tiles, an interactive robot in the hero, and liquid-metal buttons.
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
@@ -19,9 +19,8 @@ const config: Config = {
         cardborder: "#1E3A6E",
       },
       fontFamily: {
-        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
-        display: ["var(--font-archivo)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         sm: "8px",
@@ -45,6 +44,9 @@ const config: Config = {
       animation: {
         "drift-a": "drift-a 34s ease-in-out infinite alternate",
         "drift-b": "drift-b 41s ease-in-out infinite alternate",
+      },
+      boxShadow: {
+        glow: "0 20px 50px -24px rgba(45, 111, 255, 0.55)",
       },
       maxWidth: {
         sheet: "84rem",

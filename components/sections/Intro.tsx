@@ -1,35 +1,29 @@
-import { Heading, Sheet, Tick } from "@/components/slip/Parts";
-import { Stamp } from "@/components/slip/Stamp";
+import { Briefcase, Globe, ShieldCheck } from "lucide-react";
+import { Heading, Tile } from "@/components/slip/Parts";
 import type { Dictionary } from "@/lib/i18n";
 
-// Provenance: where the system comes from. The claim, the brokerage's seal, and three
-// declarations ticked like the particulars on a proposal form, on the same slip stock.
+const ICONS = [Briefcase, ShieldCheck, Globe];
+
+// Where the system comes from: the claim, centred, then three calm cards.
 export function Intro({ intro }: { intro: Dictionary["intro"] }) {
   return (
-    <section id="provenance" aria-labelledby="provenance-title" className="py-6 md:py-8">
+    <section id="provenance" aria-labelledby="provenance-title" className="section bg-flow">
       <div className="wrap">
-        <Sheet>
-          <div className="grid items-start gap-10 lg:grid-cols-12">
-            <Heading id="provenance-title" title={intro.title} lead={intro.lead} className="lg:col-span-8" />
-            <div className="flex justify-start lg:col-span-4 lg:justify-end">
-              <div data-spin>
-                <Stamp ring="Brocare Insurance Brokerage · Beirut" center="BEIRUT" size={184} rotate={0} tone="blue" className="opacity-90" />
-              </div>
-            </div>
-          </div>
-
-          <dl className="mt-12 border-b hair md:mt-16">
-            {intro.facts.map((f) => (
-              <div key={f.title} data-anim="rise" className="grid gap-x-8 gap-y-2 border-t hair py-6 md:grid-cols-12 md:py-7">
-                <dt className="flex items-start gap-4 md:col-span-5">
-                  <Tick className="mt-1 h-6 w-6" />
-                  <span className="h3">{f.title}</span>
-                </dt>
-                <dd className="body pl-10 md:col-span-7 md:pl-0 md:text-[1.05rem]">{f.body}</dd>
-              </div>
-            ))}
-          </dl>
-        </Sheet>
+        <Heading id="provenance-title" title={intro.title} lead={intro.lead} center />
+        <ul className="mt-14 grid gap-5 md:mt-16 md:grid-cols-3">
+          {intro.facts.map((f, i) => {
+            const Icon = ICONS[i] ?? ShieldCheck;
+            return (
+              <li key={f.title} data-anim="rise" className="glass glass-hover p-7 md:p-8">
+                <Tile>
+                  <Icon strokeWidth={1.7} />
+                </Tile>
+                <h3 className="h3 mt-6">{f.title}</h3>
+                <p className="body mt-3 text-[0.95rem]">{f.body}</p>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );
