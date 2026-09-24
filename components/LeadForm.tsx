@@ -130,9 +130,8 @@ export function LeadForm({ f, waText }: { f: FormDict; waText?: string }) {
 
   return (
     <form onSubmit={onSubmit} noValidate className="sheet relative">
-      <div className="flex items-baseline justify-between px-5 pt-6 sm:px-7">
+      <div className="px-5 pt-6 sm:px-7">
         <p className="lbl">About you</p>
-        <p className="lbl-ref">BAI-07</p>
       </div>
       <div className="grid gap-3 p-5 sm:grid-cols-2 sm:p-7">
         <Field id="name" label={f.name} error={msg("name")} auto="name" max={LIMITS.name} />
