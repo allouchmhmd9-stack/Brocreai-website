@@ -113,7 +113,7 @@ export function AgentsRail({
         ref={viewport}
         className="rail coarse-snap mt-10 overflow-x-auto [mask-image:linear-gradient(to_right,transparent,black_2.5rem,black_calc(100%-2.5rem),transparent)]"
       >
-        <div className="flex w-max gap-5 px-5 pb-8 pt-4 sm:px-8 lg:px-[max(2.5rem,calc((100vw-84rem)/2+2.5rem))]">
+        <div className="flex w-max gap-5 px-5 pb-6 pt-12 sm:px-8 lg:px-[max(2.5rem,calc((100vw-84rem)/2+2.5rem))]">
           {agents.map((a) => (
             <div key={a.slug} className="snap-start">
               <LineCard agent={a} href={`/agents#${a.slug}`} />
@@ -122,11 +122,11 @@ export function AgentsRail({
           <div className="snap-start">
             <Link
               href="/agents"
-              className="group flex h-full w-[17rem] flex-col justify-between rounded-[28px] bg-gradient-to-br from-primary via-accent to-gradientblue p-7 text-white shadow-glow transition-transform duration-500 ease-out hover:-translate-y-1 sm:w-[18rem]"
+              className="group flex h-full w-[17.5rem] flex-col justify-between rounded-3xl bg-gradient-to-br from-primary via-accent to-gradientblue p-7 text-white shadow-[0_20px_60px_-25px_rgba(45,111,255,0.8)] transition-transform duration-500 ease-out hover:-translate-y-1.5 sm:w-[18.5rem]"
             >
               <Arrow className="h-6 w-6 -rotate-45 transition-transform duration-300 group-hover:rotate-0" />
               <span>
-                <span className="block font-display text-[1.7rem] font-bold leading-[1.1]">{allLabel}</span>
+                <span className="block text-[1.9rem] font-bold leading-[1.05] tracking-[-0.03em]">{allLabel}</span>
                 <span className="mt-3 block text-[0.92rem] leading-snug text-white/85">{allNote}</span>
               </span>
             </Link>
@@ -138,7 +138,7 @@ export function AgentsRail({
         <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-cardborder/40" aria-hidden="true">
           <span ref={marker} className="absolute inset-y-0 left-0 block w-[16%] rounded-full bg-accent" />
         </div>
-        <p className="hidden text-[0.82rem] text-textsec [@media(pointer:fine)]:block">Scroll over the cards to browse</p>
+        <p className="lbl hidden text-[0.62rem] [@media(pointer:fine)]:block">Scroll over the cards to browse</p>
         <div className="flex gap-2">
           <button type="button" onClick={() => step(-1)} aria-label={prevLabel} className="grid h-11 w-11 place-items-center rounded-full bg-card/70 text-textsec ring-1 ring-cardborder/60 transition hover:text-white hover:ring-accent">
             <Arrow className="h-4 w-4 rotate-180" />

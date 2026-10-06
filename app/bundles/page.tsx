@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AgentIcon } from "@/components/AgentIcon";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Segs } from "@/components/Segs";
 import { StatusChip } from "@/components/StatusChip";
-import { Arrow, Tile } from "@/components/slip/Parts";
+import { Arrow } from "@/components/slip/Parts";
+import { Stamp } from "@/components/slip/Stamp";
 import { agentBySlug } from "@/lib/content/agents";
 import { beyond, bundles } from "@/lib/content/bundles";
 import { getDictionary } from "@/lib/i18n";
+import { forms, initials } from "@/lib/slip";
 import { cn } from "@/lib/utils";
 
 const d = getDictionary();
@@ -21,18 +22,21 @@ export const metadata: Metadata = {
   openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/bundles" },
 };
 
+const letter = (i: number) => String.fromCharCode(65 + i);
 
 export default function BundlesPage() {
   return (
     <>
       <PageHero
+        form={forms.bundles}
         crumb={d.nav.bundles}
         path="/bundles"
         title={t.title}
         lead={t.lead}
+        aside={<Stamp data-anim="stamp" ring="Any agent · any bundle" center="ALL" size={170} rotate={-10} />}
       >
-        <p data-anim="rise" className="mt-8 flex max-w-[62ch] items-center gap-3 text-left text-white">
-          <span className="shrink-0 rounded-full bg-accent/15 px-2.5 py-0.5 text-[0.76rem] font-medium text-ice">Any agent</span>
+        <p data-anim="rise" className="mt-8 flex max-w-[62ch] items-center gap-3 text-white">
+          <span className="lbl-ref pill shrink-0 text-accent">Any agent</span>
           {t.rule}
         </p>
       </PageHero>
@@ -40,9 +44,10 @@ export default function BundlesPage() {
       {/* Index of schedules */}
       <nav aria-label="Bundles on this page" className="wrap mt-10">
         <ol className="flex flex-wrap gap-2">
-          {bundles.map((b) => (
+          {bundles.map((b, i) => (
             <li key={b.slug}>
               <a href={`#${b.slug}`} className="group flex items-baseline gap-2 rounded-full bg-card/50 px-4 py-2.5 text-[0.88rem] text-textsec ring-1 ring-inset ring-cardborder/50 transition hover:bg-card hover:text-white hover:ring-accent/60">
+                <span className="lbl-ref group-hover:text-accent">{letter(i)}.</span>
                 <span className="leading-tight">{b.name}</span>
               </a>
             </li>
@@ -75,9 +80,7 @@ export default function BundlesPage() {
                             return a ? (
                               <li key={slug}>
                                 <Link href={`/agents#${slug}`} className="group flex items-center gap-3 py-2.5 text-[0.92rem] text-textsec transition-colors hover:text-white">
-                                  <Tile size="sm" tone={a.status === "live" ? "blue" : "ghost"}>
-                                    <AgentIcon name={a.icon} />
-                                  </Tile>
+                                  <Stamp ring={a.name} center={initials(a.name)} size={34} rotate={-6} tone={a.status === "live" ? "blue" : "ghost"} ink={false} />
                                   <span className="leading-tight">{a.name}</span>
                                 </Link>
                               </li>

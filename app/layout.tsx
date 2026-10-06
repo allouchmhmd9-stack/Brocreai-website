@@ -1,16 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Syne } from "next/font/google";
+import { Archivo, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Choreographer } from "@/components/motion/Choreographer";
+import { InkDefs } from "@/components/slip/Stamp";
 import { getDictionary } from "@/lib/i18n";
 import { brokerage, contact, hasProductionDomain, siteName, siteUrl } from "@/lib/site";
 
-// Syne sets the headings, wide and calm; Inter carries everything you read. The same pair
-// as the brokerage site, so the two Brocare sites read as one family.
-const display = Syne({ subsets: ["latin"], variable: "--font-display", display: "swap" });
-const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+// Archivo carries the whole voice through its width axis: condensed caps for the printed
+// field labels, normal for reading, slightly expanded and heavy for the display lines.
+// Martian Mono is the typewriter: every entry an agent or a person writes onto the slip.
+const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo", display: "swap" });
+const mono = Martian_Mono({ subsets: ["latin"], axes: ["wdth"], variable: "--font-mono", display: "swap" });
 
 // Runs before first paint: opt into entrance motion only when the visitor allows it, and
 // restore everything if the choreographer has not started within four seconds.
@@ -111,11 +113,12 @@ const jsonLd = JSON.stringify({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${archivo.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: motionGate }} />
       </head>
       <body className="font-sans">
+        <InkDefs />
         <span id="top" aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-3 w-px" />
         <a href="#main" className="skip-link">
           {dict.nav.skip}

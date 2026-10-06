@@ -49,7 +49,7 @@ export const en = {
   },
   schedule: {
     title: [s("Every line waits for your "), s("approval", true), s(".")],
-    lead: "An example of what five live agents hand over before the day starts. Each one prepares its work and waits. Nothing goes out until someone approves it.",
+    lead: "An example of what five live agents hand over before the day starts. Each one writes its line and initials it. Nothing goes out until someone signs it off.",
   },
   intro: {
     title: [s("The AI operating system built inside a real insurance brokerage. Now "), s("yours", true), s(".")],

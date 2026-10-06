@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { AgentIcon } from "@/components/AgentIcon";
-import { Tile } from "@/components/slip/Parts";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { StatusChip } from "@/components/StatusChip";
+import { Stamp } from "@/components/slip/Stamp";
 import { agentGroups, agents } from "@/lib/content/agents";
 import { getDictionary } from "@/lib/i18n";
+import { forms, lineNo, pad2 } from "@/lib/slip";
 import { cn } from "@/lib/utils";
 
 const d = getDictionary();
@@ -23,9 +24,9 @@ const FIELDS = ["does", "outputs", "how", "when", "custom"] as const;
 export default function AgentsPage() {
   return (
     <>
-      <PageHero crumb={d.nav.agents} path="/agents" title={t.title} lead={t.lead}>
-        <p data-anim="rise" className="mt-8 flex max-w-[62ch] items-center gap-3 text-left text-white">
-          <span className="shrink-0 rounded-full bg-accent/15 px-2.5 py-0.5 text-[0.76rem] font-medium text-ice">Any agent</span>
+      <PageHero form={forms.agents} crumb={d.nav.agents} path="/agents" title={t.title} lead={t.lead}>
+        <p data-anim="rise" className="mt-8 flex max-w-[62ch] items-center gap-3 text-white">
+          <span className="lbl-ref pill shrink-0 text-accent">Any agent</span>
           {t.rule}
         </p>
       </PageHero>
@@ -33,9 +34,10 @@ export default function AgentsPage() {
       {/* Jump to a group: a printed tab strip that stays under the header */}
       <nav aria-label={t.jump} className="sticky top-[4.6rem] z-30 mt-10">
         <ul className="wrap rail flex gap-2 overflow-x-auto py-1">
-          {agentGroups.map((g) => (
+          {agentGroups.map((g, i) => (
             <li key={g.key} className="shrink-0">
               <a href={`#${g.key}`} className="group flex items-baseline gap-2 rounded-full bg-mid/90 px-4 py-2.5 text-[0.88rem] text-textsec ring-1 ring-inset ring-cardborder/60 backdrop-blur-md transition hover:text-white hover:ring-accent/70">
+                <span className="lbl-ref group-hover:text-accent">{pad2(i + 1)}</span>
                 {g.title}
               </a>
             </li>
@@ -65,14 +67,20 @@ export default function AgentsPage() {
                       <article aria-labelledby={`${a.slug}-name`} className="grid gap-8 lg:grid-cols-12 lg:gap-12">
                         <div className="lg:col-span-4">
                           <div className="flex items-start gap-5 lg:flex-col">
-                            <Tile size="lg" tone={live ? "blue" : "ghost"} className="h-16 w-16 [&_svg]:h-8 [&_svg]:w-8">
-                              <AgentIcon name={a.icon} />
-                            </Tile>
+                            <Stamp
+                              data-anim="stamp"
+                              ring={`${a.name} · ${live ? "live" : a.status}`}
+                              icon={<AgentIcon name={a.icon} />}
+                              tone={live ? "blue" : "ghost"}
+                              size={112}
+                              rotate={-8}
+                            />
                             <div>
                               <h3 id={`${a.slug}-name`} className="text-[1.75rem] font-bold leading-[1.08] tracking-[-0.025em] text-white">
                                 {a.name}
                               </h3>
                               <p className="mt-3 flex items-center gap-3">
+                                <span className="lbl-ref">{lineNo(a)}</span>
                                 <StatusChip status={a.status} />
                               </p>
                             </div>

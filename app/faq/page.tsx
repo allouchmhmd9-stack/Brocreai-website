@@ -3,6 +3,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { faqGroups } from "@/lib/content/faq";
 import { getDictionary } from "@/lib/i18n";
+import { forms, pad2 } from "@/lib/slip";
 
 const d = getDictionary();
 const t = d.pages.faq;
@@ -23,17 +24,19 @@ const faqLd = JSON.stringify({
 }).replace(/</g, "\\u003c");
 
 export default function FaqPage() {
+  let n = 0;
   return (
     <>
-      <PageHero crumb={d.nav.faq} path="/faq" title={t.title} lead={t.lead} />
+      <PageHero form={forms.faq} crumb={d.nav.faq} path="/faq" title={t.title} lead={t.lead} />
       <div className="wrap mt-12 grid gap-12 pb-8 lg:grid-cols-12">
         <nav aria-label={t.jump} className="lg:col-span-3">
           <div className="lg:sticky lg:top-28">
             <p className="lbl">{t.jump}</p>
             <ol className="mt-3 space-y-1">
-              {faqGroups.map((g) => (
+              {faqGroups.map((g, i) => (
                 <li key={g.title}>
                   <a href={`#${slug(g.title)}`} className="group flex items-baseline gap-3 rounded-2xl px-3 py-2.5 text-[0.95rem] text-textsec transition-colors hover:bg-card/50 hover:text-white">
+                    <span className="lbl-ref group-hover:text-accent">{pad2(i + 1)}</span>
                     {g.title}
                   </a>
                 </li>
@@ -50,8 +53,10 @@ export default function FaqPage() {
               </h2>
               <dl className="mt-6">
                 {g.items.map((it) => {
+                  n += 1;
                   return (
-                    <div key={it.q} data-anim="rise" className="border-t hair py-7">
+                    <div key={it.q} data-anim="rise" className="grid grid-cols-[3.4rem_minmax(0,1fr)] gap-x-4 border-t hair py-7 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-x-6">
+                      <span className="lbl-ref pt-1">Q.{pad2(n)}</span>
                       <div>
                         <dt className="h3">{it.q}</dt>
                         <dd className="body mt-3">{it.a}</dd>

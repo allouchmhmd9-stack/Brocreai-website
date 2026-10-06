@@ -10,13 +10,15 @@ import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
 
-// One place orchestrates the page's motion, kept calm on purpose:
-//   rule   thin rules draw left to right
+// One place orchestrates the page's motion grammar, so every section speaks it the same way:
+//   rule   printed rules draw left to right
 //   lines  headings rise line by line out of their own baseline
-//   rise   blocks fade up a short way
-//   [data-draw]   ticks draw once
-//   [data-scrub-x] a connector fills with the scroll
-// Anything inside [data-self] runs its own timeline and is skipped here.
+//   rise   blocks settle into place, sharpening from a slight blur
+//   type   short entries type themselves in
+//   stamp  stamps drop and press with weight
+//   [data-draw]        ticks and small strokes draw once
+//   [data-scrub-draw]  long strokes (connectors, the signature) draw with the scroll
+// Anything inside [data-self] runs its own timeline (the hero) and is skipped here.
 
 let lenis: Lenis | null = null;
 export const getLenis = () => lenis;
@@ -91,7 +93,7 @@ export function Choreographer() {
       });
 
       const rise = all('[data-anim="rise"]');
-      if (rise.length) gsap.set(rise, { autoAlpha: 0, y: 18 });
+      if (rise.length) gsap.set(rise, { autoAlpha: 0, y: 26, filter: "blur(6px)" });
       if (rise.length) ScrollTrigger.batch(rise, {
         start: "top 92%",
         once: true,
@@ -99,11 +101,42 @@ export function Choreographer() {
           gsap.to(batch, {
             autoAlpha: 1,
             y: 0,
-            duration: 0.9,
+            filter: "blur(0px)",
+            duration: 1,
             ease: EASE,
-            stagger: 0.07,
-            clearProps: "transform",
+            stagger: 0.08,
+            clearProps: "filter,transform",
           }),
+      });
+
+      all('[data-anim="type"]').forEach((el) => {
+        const split = SplitText.create(el, { type: "chars" });
+        splits.push(split);
+        gsap.set(el, { autoAlpha: 1 });
+        gsap.from(split.chars, {
+          autoAlpha: 0,
+          duration: 0.01,
+          stagger: 0.02,
+          ease: "none",
+          scrollTrigger: { trigger: el, start: "top 92%", once: true },
+        });
+      });
+
+      all('[data-anim="stamp"]').forEach((el) => {
+        const rot = Number(gsap.getProperty(el, "rotation")) || 0;
+        gsap.fromTo(
+          el,
+          { autoAlpha: 0, scale: 1.9, rotation: rot + 16 },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            rotation: rot,
+            duration: 0.55,
+            ease: "back.out(2.4)",
+            delay: Number(el.dataset.delay ?? 0),
+            scrollTrigger: { trigger: el, start: "top 90%", once: true },
+          },
+        );
       });
 
       all("[data-draw]").forEach((el) => {
@@ -116,11 +149,24 @@ export function Choreographer() {
         });
       });
 
+      // Seals turn slowly as the page passes them.
+      all("[data-spin]").forEach((el) => {
+        gsap.fromTo(el, { rotation: -18 }, { rotation: 24, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: 0.8 } });
+      });
+
       all("[data-scrub-x]").forEach((el) => {
         const trigger = el.closest("[data-scrub-root]") ?? el;
         gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger, start: "top 72%", end: "bottom 60%", scrub: 0.6 } });
       });
 
+      all("[data-scrub-draw]").forEach((el) => {
+        const trigger = el.closest("[data-scrub-root]") ?? el;
+        gsap.from(el, {
+          drawSVG: "0%",
+          ease: "none",
+          scrollTrigger: { trigger, start: "top 72%", end: "bottom 55%", scrub: 0.6 },
+        });
+      });
     });
 
     const refresh = requestAnimationFrame(() => ScrollTrigger.refresh());

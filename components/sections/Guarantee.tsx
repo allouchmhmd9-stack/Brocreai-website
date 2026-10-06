@@ -1,47 +1,124 @@
-import { Aurora } from "@/components/Aurora";
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Segs } from "@/components/Segs";
+import { Sheet } from "@/components/slip/Parts";
+import { Stamp } from "@/components/slip/Stamp";
 import type { Dictionary } from "@/lib/i18n";
+import { pad2 } from "@/lib/slip";
 
-// An example of how the fortnight usually runs, labelled as such. The guarantee itself is
-// the commitment; the milestones are illustrative.
-const MILESTONES = [
-  { day: "Day 1", title: "Kickoff", body: "Access given and the first bundle chosen." },
-  { day: "Day 5", title: "Agents connected", body: "Linked to the tools your team already uses." },
-  { day: "Day 8", title: "First drafts to you", body: "Real output, waiting for your review." },
-  { day: "Day 14", title: "Live", body: "Your first workflow producing real work.", live: true },
-];
+gsap.registerPlugin(ScrollTrigger);
 
-// The guarantee: one clear statement, centred, and four milestones underneath.
+const DAYS = 14;
+
+// An example of how the fortnight usually runs, labelled as such on the sheet. The guarantee
+// itself is the commitment; the day-by-day steps are illustrative.
+const ENTRIES: Record<number, string> = {
+  1: "Kickoff",
+  2: "Access given",
+  3: "Scope chosen",
+  5: "Agents connected",
+  8: "First drafts to you",
+  10: "Your review",
+  12: "Tuned to you",
+};
+
+// Warranty: the real commitment, printed as a period of cover. Fourteen days fill as you
+// scroll, day fourteen is stamped live, and the clause after it is the free extension.
 export function Guarantee({ guarantee }: { guarantee: Dictionary["guarantee"] }) {
-  return (
-    <section id="guarantee" aria-labelledby="guarantee-title" className="section relative overflow-hidden bg-flow">
-      <Aurora className="opacity-40" />
-      <div className="wrap relative">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 id="guarantee-title" data-anim="lines" className="h2">
-            <Segs segs={guarantee.title} />
-          </h2>
-          <p data-anim="rise" className="lead mx-auto mt-5">
-            {guarantee.body}
-          </p>
-        </div>
+  const cal = useRef<HTMLDivElement>(null);
 
-        <ol className="mt-14 grid gap-5 sm:grid-cols-2 md:mt-16 lg:grid-cols-4">
-          {MILESTONES.map((m) => (
-            <li
-              key={m.day}
-              data-anim="rise"
-              className={m.live ? "glass p-7 ring-1 ring-inset ring-ice/40 [background:rgba(79,195,247,0.07)]" : "glass p-7"}
-            >
-              <p className={m.live ? "lbl text-ice" : "lbl"}>{m.day}</p>
-              <h3 className="h3 mt-4">{m.title}</h3>
-              <p className="body mt-2 text-[0.92rem]">{m.body}</p>
-            </li>
-          ))}
-        </ol>
-        <p data-anim="rise" className="mx-auto mt-8 max-w-2xl text-center text-[0.88rem] leading-relaxed text-textsec">
-          An example of how the two weeks usually run. {guarantee.definition}
-        </p>
+  useEffect(() => {
+    const el = cal.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = gsap.context(() => {
+      const fills = gsap.utils.toArray<HTMLElement>("[data-fill]");
+      gsap.set(fills, { scaleY: 0, transformOrigin: "bottom center" });
+      gsap.to(fills, {
+        scaleY: 1,
+        ease: "none",
+        stagger: 0.12,
+        scrollTrigger: { trigger: el, start: "top 78%", end: "bottom 50%", scrub: 0.5 },
+      });
+      const stamp = el.querySelector("[data-live]");
+      if (stamp) {
+        gsap.fromTo(
+          stamp,
+          { autoAlpha: 0, scale: 2, rotation: 20 },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            rotation: -9,
+            duration: 0.5,
+            ease: "back.out(2.6)",
+            scrollTrigger: { trigger: el, start: "bottom 52%", toggleActions: "play none none reverse" },
+          },
+        );
+      }
+    }, el);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="guarantee" aria-labelledby="guarantee-title" className="section bg-flow">
+      <div className="wrap">
+        <Sheet>
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-6">
+            <h2 id="guarantee-title" data-anim="lines" className="h2">
+              <Segs segs={guarantee.title} />
+            </h2>
+            <p data-anim="rise" className="lead mt-6">
+              {guarantee.body}
+            </p>
+            <div data-anim="rise" className="mt-8 border-t hair pt-3">
+              <p className="lbl">Definition</p>
+              <p className="entry mt-2 max-w-[56ch] text-[0.8rem] leading-relaxed text-textsec">{guarantee.definition}</p>
+            </div>
+          </div>
+
+          <div ref={cal} className="lg:col-span-6">
+            <div className="rounded-3xl bg-deep/50 p-3 ring-1 ring-inset ring-cardborder/40 sm:p-4">
+              <div className="flex items-baseline justify-between px-2 pb-3 pt-1">
+                <p className="lbl">Period · example timeline</p>
+                <p className="lbl-ref">{guarantee.big}</p>
+              </div>
+              <ol className="grid grid-cols-[repeat(7,minmax(0,1fr))] gap-1.5 sm:gap-2">
+                {Array.from({ length: DAYS }, (_, i) => {
+                  const day = i + 1;
+                  const lastDay = day === DAYS;
+                  return (
+                    <li key={day} className="relative aspect-[3/4] overflow-hidden rounded-lg bg-card/60 sm:rounded-xl">
+                      <span data-fill aria-hidden="true" className={`absolute inset-0 ${lastDay ? "bg-primary" : "bg-primary/30"}`} />
+                      <span className="lbl-ref relative z-10 block p-1.5 sm:p-2">{pad2(day)}</span>
+                      {ENTRIES[day] ? (
+                        <span className={`entry absolute inset-x-1.5 bottom-1.5 text-[0.5rem] leading-tight text-white sm:inset-x-2 sm:bottom-2 sm:text-[0.56rem] ${day === 1 ? "" : "hidden sm:block"}`}>
+                          {ENTRIES[day]}
+                        </span>
+                      ) : null}
+                      {lastDay ? (
+                        <span data-live className="absolute inset-0 grid items-end justify-items-center pb-1 sm:place-items-center sm:pb-0">
+                          {/* Scaled down on phones so the stamp stays inside its day cell */}
+                          <span className="block h-[38px] w-[38px] sm:h-16 sm:w-16"><span className="block origin-top-left scale-[0.6] sm:scale-100">
+                            <Stamp ring="Live · first workflow" center="LIVE" tone="ice" size={64} rotate={-9} />
+                          </span></span>
+                        </span>
+                      ) : null}
+                      <span className="sr-only">{lastDay ? `Day ${day}: live` : ENTRIES[day] ? `Day ${day}: ${ENTRIES[day]}` : `Day ${day}`}</span>
+                    </li>
+                  );
+                })}
+              </ol>
+              <div className="flex items-center gap-4 px-2 pb-1 pt-4">
+                <span className="lbl-ref pill shrink-0">15+</span>
+                <p className="entry text-[0.78rem] leading-snug text-textsec">If it is not live by day 14, we keep working at no additional cost until it is.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </Sheet>
       </div>
     </section>
   );
