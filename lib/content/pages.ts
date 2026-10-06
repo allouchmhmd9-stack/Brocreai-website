@@ -67,7 +67,7 @@ export const caseStudy = {
     {
       h: "How it became our best lead-generation channel",
       p: [
-        "The clearest proof of what this system can do did not come from a sales pitch. It came from the system itself, working. An agent searching for prospects matching our targeting profile surfaced Rawsur, the Democratic Republic of Congo's largest non-life insurer by market share, rated Moody's AA- and reinsured by Munich Re, as a ranked lead, the same way it surfaces every other prospect. The outreach engine drafted the first approach. A reply became a meeting. The meeting became a real, ongoing relationship. Mayfair Insurance Congo followed the exact same path shortly after.",
+        "The clearest proof of what this system can do did not come from a sales pitch. It came from the system itself, working. An agent searching for prospects matching our targeting profile surfaced a major non-life insurer in the Democratic Republic of Congo, backed by a global reinsurer, as a ranked lead, the same way it surfaces every other prospect. The outreach engine drafted the first approach. A reply became a meeting. The meeting became a real, ongoing relationship. A second insurer in Congo followed the exact same path shortly after.",
         "That is not a demo we built to impress anyone. It is what happened when we pointed our own prospecting system at our own targets and let it work, and it is the single best argument we have for what it can do for you, because we did not build it to prove a point. We built it to find business, and it found some of the most respected insurers in the region.",
       ],
     },

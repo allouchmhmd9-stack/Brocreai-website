@@ -216,7 +216,7 @@ packaged, deployed, and run for you." is 11 words in Syne ExtraBold, a very wide
 headline of 5–7 words, and *then* a lighter weight. See B6.
 
 **1.7 The most important bundle is missing.** Lead Generation (HUNTER + HUNTER Processor +
-SCOUT) is Bundle 1 in the catalog, the thing that found Rawsur, and the reason the company
+SCOUT) is Bundle 1 in the catalog, the thing that found the first DRC insurer, and the reason the company
 exists. The site lists four bundles and it is not one of them. Outreach & Follow-Up is also
 absent as its own idea; it's folded into a single sentence under Sales Enablement.
 
@@ -567,7 +567,7 @@ is the real schedule, otherwise use B.
 - detail: `Health, Motor + vehicle valuation, Offer cards, comparisons, invoices, Quotes
   chased at day 7 and 14`
 
-**Constraint (catalog Bundle 6):** the rate books belong to Fidelity and UFA. Until they agree
+**Constraint (catalog Bundle 6):** the rate books belong to the partner insurers. Until they agree
 in writing, this bundle is only sellable to Brocare Insurance itself. Decide **B6-SHOW:
 YES / NO / YES-WITH-NOTE** ("available to partner brokerages on request").
 

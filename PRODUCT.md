@@ -47,7 +47,7 @@ The agents were built and run inside a real insurance brokerage (Brocare Insuran
 
 ## Evidence on Hand
 
-- The Brocare Insurance Brokerage itself as the proving ground, and a case study (Rawsur/Mayfair) in `lib/content/pages.ts`, kept off the main nav.
+- The Brocare Insurance Brokerage itself as the proving ground, and a case study in `lib/content/pages.ts` (clients, insurers and reinsurers are never named), kept off the main nav.
 - Real active relationships named in copy: DRC, Congo-Brazzaville, Nigeria, Cote d'Ivoire, Guinea.
 - No testimonials, client logos, usage counts or benchmarks exist. None may be invented.
 
