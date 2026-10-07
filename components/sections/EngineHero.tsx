@@ -134,13 +134,13 @@ export function EngineHero({ hero, demoLabel, agentCount, bundleCount }: { hero:
       <canvas ref={fieldRef} className={st.field} aria-hidden="true" />
       <div className="wrap">
         <div className={st.top}>
-          <span className={st.tagline}><b>{agentCount} agents</b><span className={st.dot} />{bundleCount} bundles<span className={st.dot} />built inside a real brokerage</span>
+          <span className={st.tagline}><b>{agentCount} agents</b><span className={st.dot} />{bundleCount} engines<span className={st.dot} />built inside a real brokerage</span>
           <h1 id="hero-title" className={`display ${st.title}`}><Segs segs={hero.title} /></h1>
           <p className={st.turn} aria-live="polite">
             <span>Turn your business into</span>
             <span><span className={st.role}>{role}</span><span className={st.caret} aria-hidden="true" /></span>
           </p>
-          <div className={st.ctas}>
+          <div className={`${st.ctas} btn-row`}>
             <Link href="/demo" className="btn btn-primary">{demoLabel}<Arrow /></Link>
             <Link href="/engines" className="btn btn-secondary">See the engines</Link>
           </div>

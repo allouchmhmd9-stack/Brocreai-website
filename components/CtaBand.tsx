@@ -40,14 +40,15 @@ export function CtaBand({ lead }: { lead?: string }) {
               </div>
               <p className="lbl mt-2">Sign here: a 30-minute call</p>
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+            <div className="btn-row mt-8 flex flex-row gap-3 lg:flex-col xl:flex-row">
               <Link href="/demo" className="btn btn-primary">
                 {d.nav.demo}
                 <Arrow />
               </Link>
               <a href={whatsappLink(d.demo.whatsappPrefill)} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
                 <WhatsAppIcon className="h-5 w-5" />
-                {d.nav.whatsapp}
+                <span className="sm:hidden">WhatsApp</span>
+                <span className="hidden sm:inline">{d.nav.whatsapp}</span>
               </a>
             </div>
           </div>

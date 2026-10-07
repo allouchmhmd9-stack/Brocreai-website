@@ -34,9 +34,9 @@ export const about = {
       ],
     },
     {
-      h: "Beyond the standard bundles",
+      h: "Beyond the standard engines",
       p: [
-        "Not every business fits a standard package, and we do not force it to. Alongside the bundles on this site, we build fully custom AI tools and agents for specific businesses and workflows, priced individually, based on what it actually takes and what it is worth to you, never off a rate card. If what you need does not exist in our catalog yet, that is a conversation, not a dead end.",
+        "Not every business fits a standard package, and we do not force it to. Alongside the engines on this site, we build fully custom AI tools and agents for specific businesses and workflows, priced individually, based on what it actually takes and what it is worth to you, never off a rate card. If what you need does not exist in our catalog yet, that is a conversation, not a dead end.",
       ],
     },
     {

@@ -27,7 +27,6 @@ export const en = {
   },
   nav: {
     engines: "Engines",
-    bundles: "Bundles",
     agents: "Agents",
     about: "About",
     faq: "FAQ",
@@ -62,11 +61,11 @@ export const en = {
     ],
   },
   bundlesTeaser: {
-    title: [s("Pick a bundle. Add "), s("any", true), s(" agent.")],
-    lead: "Bundles are complete pieces of your operation, built from agents already running in a real brokerage. Start with one and add more as you grow.",
-    rule: "Bundles are there to guide you. Nothing is fixed: any agent can be added to any bundle.",
-    more: "See the bundle",
-    cta: "See all bundles",
+    title: [s("Pick an engine. Add "), s("any", true), s(" agent.")],
+    lead: "Engines are complete pieces of your operation, built from agents already running in a real brokerage. Start with one and add more as you grow.",
+    rule: "Engines are there to guide you. Nothing is fixed: any agent can be added to any engine.",
+    more: "See the engine",
+    cta: "See all engines",
   },
   agentsTeaser: {
     title: [s("Meet the "), s("agents", true), s(" already doing the work.")],
@@ -89,7 +88,7 @@ export const en = {
     big: "2 weeks",
     title: [s("Live in two "), s("weeks.", true), s(" Or we keep working free.")],
     body: "Your first workflow is live and producing real output within two weeks of kickoff. If it is not, we keep working at no additional cost until it is.",
-    definition: "A workflow means one bundle, connected to your tools, producing its first real output.",
+    definition: "A workflow means one engine, connected to your tools, producing its first real output.",
   },
   faqTeaser: {
     title: [s("The questions we get asked "), s("most", true), s(".")],
@@ -102,17 +101,17 @@ export const en = {
   },
   pages: {
     bundles: {
-      metaTitle: "AI bundles for insurance: sales, intelligence, quoting and more",
+      metaTitle: "AI engines for insurance: sales, intelligence, quoting and more",
       metaDescription:
-        "Packaged AI agent bundles for insurance: lead generation, market intelligence, quoting and documents, content, and inbox automation. See what each bundle does.",
+        "Packaged AI engines for insurance: lead generation, market intelligence, quoting and documents, content, and inbox automation. See what each engine does.",
       title: [s("Quote faster. Follow up faster. Close "), s("faster", true), s(".")],
-      lead: "Brocare AI is sold in bundles, not single features, because a lead generator without a way to reach out is half a tool, and a quoting engine without documents to send is the same. Every bundle below is a complete, working piece of your operation, built from agents already proven inside a real brokerage. Start with one. Add more as you grow.",
-      rule: "Bundles are there to guide you. Nothing is fixed: any agent can be added to any bundle.",
-      agentsIn: "Agents in this bundle",
+      lead: "Brocare AI is sold in engines, not single features, because a lead generator without a way to reach out is half a tool, and a quoting engine without documents to send is the same. Every engine below is a complete, working piece of your operation, built from agents already proven inside a real brokerage. Start with one. Add more as you grow.",
+      rule: "Engines are there to guide you. Nothing is fixed: any agent can be added to any engine.",
+      agentsIn: "Agents in this engine",
       produces: "What it produces",
       why: "Why it matters",
-      beyondTitle: [s("Beyond the "), s("bundles", true), s(".")],
-      promise: "Every bundle ships with the same promise: live and producing real output within two weeks, or we keep working free until it is.",
+      beyondTitle: [s("Beyond the "), s("engines", true), s(".")],
+      promise: "Every engine ships with the same promise: live and producing real output within two weeks, or we keep working free until it is.",
     },
     agents: {
       metaTitle: "Meet the agents: Brocare AI's full roster",
@@ -120,7 +119,7 @@ export const en = {
         "Every AI agent inside Brocare AI, explained: what it does, what it produces, how it runs, and how to customise it for your business.",
       title: [s("Meet the "), s("agents", true), s(".")],
       lead: "Every agent below is real, running, and already doing this work inside our own brokerage. Not a concept, not a prototype. Each one prepares its work and hands it to you for approval; none of them act on your behalf without your say-so.",
-      rule: "Any agent can be added to any bundle. The bundles are a guide, not a fixed menu.",
+      rule: "Any agent can be added to any engine. The engines are a guide, not a fixed menu.",
       jump: "Jump to a group",
       fields: {
         does: "What it does",
@@ -148,7 +147,7 @@ export const en = {
     metaTitle: "Book a demo",
     metaDescription: "A 30-minute call where we show a live Brocare AI agent working on a real example from your market. Or message us on WhatsApp.",
     title: [s("Book a "), s("demo", true), s(".")],
-    lead: "A 30-minute call. We show you a live agent working on a real example from your market, not a slideshow, and tell you which bundle fits.",
+    lead: "A 30-minute call. We show you a live agent working on a real example from your market, not a slideshow, and tell you which engine fits.",
     afterTitle: "What happens after you book",
     afterBody: "A short call with a live agent on a real example. If it is a fit, the next step is a Readiness Audit: a short, paid engagement where we map your workflows, quantify what is costing you time, and scope exactly what to build first.",
     bookLead: "Pick a 30-minute slot. It goes straight into our calendar.",
@@ -287,7 +286,7 @@ export const en = {
         {
           h: "What this site is",
           p: [
-            "This site describes our services. It does not sell anything and takes no payments. Descriptions of bundles and agents are a summary and can change as the services develop.",
+            "This site describes our services. It does not sell anything and takes no payments. Descriptions of engines and agents are a summary and can change as the services develop.",
           ],
         },
         {

@@ -5,7 +5,6 @@ import type { DeepPartial, Dictionary } from "./en";
 export const fr: DeepPartial<Dictionary> = {
   nav: {
     engines: "Moteurs",
-    bundles: "Offres",
     agents: "Agents",
     about: "A propos",
     faq: "FAQ",

@@ -12,7 +12,7 @@ export function BundlesTeaser({ t }: { t: Dictionary["bundlesTeaser"] }) {
         <div className="grid items-end gap-8 lg:grid-cols-12">
           <Heading id="bundles-title" title={t.title} lead={t.lead} className="lg:col-span-8" />
           <div data-anim="rise" className="lg:col-span-4 lg:justify-self-end">
-            <Link href="/bundles" className="btn btn-secondary">
+            <Link href="/engines" className="btn btn-secondary">
               {t.cta}
               <Arrow />
             </Link>

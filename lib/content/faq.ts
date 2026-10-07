@@ -26,8 +26,8 @@ export const faqGroups: FaqGroup[] = [
         a: "A short call where we show a live agent working on a real example from your market, not a slideshow. If it is a fit, the next step is a Readiness Audit: a short, paid engagement where we map your actual workflows, quantify what is costing you time, and scope exactly what to build first.",
       },
       {
-        q: "Do you only sell fixed bundles, or can you build something custom for us?",
-        a: "Both. The bundles on this site are built once and sold repeatedly, which is why they are fast and affordable. If what you need is genuinely different (a custom tool, a new agent for a specific process, even a website or an app) we build that to order, priced on the scope, the time, and the value it creates for your business specifically. No two custom builds are priced the same, on purpose.",
+        q: "Do you only sell fixed engines, or can you build something custom for us?",
+        a: "Both. The engines on this site are built once and sold repeatedly, which is why they are fast and affordable. If what you need is genuinely different (a custom tool, a new agent for a specific process, even a website or an app) we build that to order, priced on the scope, the time, and the value it creates for your business specifically. No two custom builds are priced the same, on purpose.",
       },
     ],
   },
@@ -55,8 +55,8 @@ export const faqGroups: FaqGroup[] = [
         a: "English and French, the two languages our markets do business in. Tell us your markets during onboarding and we set each agent to the right one.",
       },
       {
-        q: "Can any agent go in any bundle?",
-        a: "Yes. The bundles are there to guide you towards a starting point that works on day one. Nothing in them is fixed. Any agent can be added to any bundle, and the Readiness Audit is where we put together the exact set for your business.",
+        q: "Can any agent go in any engine?",
+        a: "Yes. The engines are there to guide you towards a starting point that works on day one. Nothing in them is fixed. Any agent can be added to any engine, and the Readiness Audit is where we put together the exact set for your business.",
       },
     ],
   },
@@ -77,7 +77,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "You work with other insurers and brokers. Could you ever be a conflict of interest?",
-        a: "No. Every client's data and configuration is fully isolated from every other client's, with contractual data isolation in writing. Where a bundle depends on a specific insurer's own rate books, we only extend it to another broker with that insurer's written permission, never quietly.",
+        a: "No. Every client's data and configuration is fully isolated from every other client's, with contractual data isolation in writing. Where an engine depends on a specific insurer's own rate books, we only extend it to another broker with that insurer's written permission, never quietly.",
       },
       {
         q: "What happens to my data if I stop using Brocare AI?",
@@ -90,7 +90,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "How much does this cost?",
-        a: "It depends entirely on what you need. A single bundle for a small agency and a full network rollout for a regional insurer are priced completely differently, and we would rather price it honestly against your situation than publish a number that is wrong for almost everyone who reads it. Book a discovery call or a Readiness Audit and you will have a real number, specific to you, fast.",
+        a: "It depends entirely on what you need. A single engine for a small agency and a full network rollout for a regional insurer are priced completely differently, and we would rather price it honestly against your situation than publish a number that is wrong for almost everyone who reads it. Book a discovery call or a Readiness Audit and you will have a real number, specific to you, fast.",
       },
       {
         q: "What is the Readiness Audit, and do I need it?",

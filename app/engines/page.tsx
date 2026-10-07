@@ -1,69 +1,150 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AgentIcon } from "@/components/AgentIcon";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
+import { Segs } from "@/components/Segs";
+import { StatusChip } from "@/components/StatusChip";
 import { Arrow } from "@/components/slip/Parts";
-import { enginePages, showcase } from "@/lib/content/engines";
-import type { Seg } from "@/lib/i18n/en";
+import { Stamp } from "@/components/slip/Stamp";
+import { agentBySlug } from "@/lib/content/agents";
+import { beyond, bundles } from "@/lib/content/bundles";
+import { enginePages } from "@/lib/content/engines";
+import { getDictionary } from "@/lib/i18n";
+import { forms, initials } from "@/lib/slip";
+import { cn } from "@/lib/utils";
 import { ogImages } from "@/lib/og";
 
-const description =
-  "Six engines, each a team of AI agents working together: lead generation, outreach, marketing, accounting, quoting and the morning brief. Every one waits for your approval.";
+const d = getDictionary();
+const t = d.pages.bundles;
 
 export const metadata: Metadata = {
-  title: "Engines: the Brocare AI products",
-  description,
+  title: t.metaTitle,
+  description: t.metaDescription,
   alternates: { canonical: "/engines" },
-  openGraph: { title: "Engines: the Brocare AI products | Brocare AI", description, url: "/engines", images: ogImages },
+  openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/engines", images: ogImages },
 };
 
-const title: Seg[] = [{ t: "Six engines. One team. All under your " }, { t: "approval", g: true }, { t: "." }];
-
-const BLURB: Record<string, { body: string; icon: string }> = {
-  "Lead Engine": { body: "Finds companies that fit your market, scores every lead out of 100 and hands over a ready list.", icon: "Radar" },
-  "Outreach Engine": { body: "Personal first emails, follow-ups on schedule and reply drafts, all waiting for your approval.", icon: "Megaphone" },
-  "Marketing Engine": { body: "Plans, writes and designs your content in your brand voice, then schedules it once you approve.", icon: "Sparkles" },
-  "Accounting Engine": { body: "Reads insurer statements, matches every line to your records and prepares the month for sign-off.", icon: "Calculator" },
-  "Quote Desk": { body: "Reads the client's request, pulls rates from your sheets and builds a branded proposal.", icon: "FileOutput" },
-  "Morning Brief": { body: "One brief before 8:00: the overnight inbox, the hot leads and what needs your approval.", icon: "Sunrise" },
-};
+const letter = (i: number) => String.fromCharCode(65 + i);
 
 export default function EnginesPage() {
-  const withPage = new Set(enginePages.map((e) => e.name));
   return (
     <>
       <PageHero
-        form={{ code: "BAI-E", title: "Engines" }}
-        crumb="Engines"
+        form={forms.bundles}
+        crumb={d.nav.engines}
         path="/engines"
-        title={title}
-        lead="Each engine is a group of agents working together on one part of your business. Start with one, add the next when you are ready. Nothing goes out until someone approves it."
-      />
-      <section aria-label="All engines" className="section pt-6 md:pt-8">
+        title={t.title}
+        lead={t.lead}
+        aside={<Stamp data-anim="stamp" ring="Any agent · any engine" center="ALL" size={170} rotate={-10} />}
+      >
+        <p data-anim="rise" className="mt-8 flex max-w-[62ch] items-center gap-3 text-white">
+          <span className="lbl-ref pill shrink-0 text-accent">Any agent</span>
+          {t.rule}
+        </p>
+        <p data-anim="rise" className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.95rem] text-textsec">
+          <span>Take a closer look:</span>
+          {enginePages.map((e) => (
+            <Link key={e.slug} href={`/engines/${e.slug}`} className="ln text-white">
+              {e.name}
+            </Link>
+          ))}
+        </p>
+      </PageHero>
+
+      {/* Index of schedules */}
+      <nav aria-label="Engines on this page" className="wrap mt-10">
+        <ol className="flex flex-wrap gap-2">
+          {bundles.map((b, i) => (
+            <li key={b.slug}>
+              <a href={`#${b.slug}`} className="group flex items-baseline gap-2 rounded-full bg-card/50 px-4 py-2.5 text-[0.88rem] text-textsec ring-1 ring-inset ring-cardborder/50 transition hover:bg-card hover:text-white hover:ring-accent/60">
+                <span className="lbl-ref group-hover:text-accent">{letter(i)}.</span>
+                <span className="leading-tight">{b.name}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <div className="wrap mt-6 pb-8">
+        {bundles.map((b) => {
+          const live = b.status === "live";
+          return (
+            <section key={b.slug} id={b.slug} aria-labelledby={`${b.slug}-title`} className="scroll-mt-24 py-12 md:py-16">
+              <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+                <div className="lg:col-span-5">
+                  <div className="lg:sticky lg:top-28">
+                    <h2 id={`${b.slug}-title`} data-anim="lines" className="h2">
+                      {b.name}
+                    </h2>
+                    <StatusChip status={b.status} className="mt-4" />
+                    <p data-anim="rise" className="mt-4 text-[1.2rem] leading-snug text-white">
+                      {b.tagline}
+                    </p>
+                    {b.statusNote ? <p className="entry mt-3 text-[0.78rem] text-textsec">{b.statusNote}</p> : null}
+                    {b.agents.length ? (
+                      <div data-anim="rise" className="mt-8">
+                        <p className="lbl">{t.agentsIn}</p>
+                        <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1">
+                          {b.agents.map((slug) => {
+                            const a = agentBySlug(slug);
+                            return a ? (
+                              <li key={slug}>
+                                <Link href={`/agents#${slug}`} className="group flex items-center gap-3 py-2.5 text-[0.92rem] text-textsec transition-colors hover:text-white">
+                                  <Stamp ring={a.name} center={initials(a.name)} size={34} rotate={-6} tone={a.status === "live" ? "blue" : "ghost"} ink={false} />
+                                  <span className="leading-tight">{a.name}</span>
+                                </Link>
+                              </li>
+                            ) : null;
+                          })}
+                        </ul>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+                <div className={cn("lg:col-span-7", !live && "opacity-85")}>
+                  <p data-anim="rise" className="body text-[1.06rem]">
+                    {b.body}
+                  </p>
+                  <dl className="mt-8 space-y-6">
+                    <div data-anim="rise">
+                      <dt className="lbl">{t.produces}</dt>
+                      <dd className="entry mt-2 text-[0.82rem] leading-relaxed text-white">{b.produces}</dd>
+                    </div>
+                    <div data-anim="rise">
+                      <dt className="lbl">{t.why}</dt>
+                      <dd className="body mt-2">{b.why}</dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      <section aria-labelledby="beyond-title" className="py-16 md:py-24">
         <div className="wrap">
-          <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {showcase.map((e) => {
-              const b = BLURB[e.name];
-              return (
-                <li key={e.name} data-anim="rise">
-                  <Link href={e.href} className="group flex h-full flex-col rounded-3xl bg-gradient-to-b from-card/80 to-mid/50 p-7 ring-1 ring-inset ring-cardborder/50 transition duration-500 hover:-translate-y-1 hover:ring-white/50">
-                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/25 text-ice">
-                      <AgentIcon name={b?.icon ?? "Sparkles"} className="h-6 w-6" />
-                    </span>
-                    <span className="h3 mt-6 block">{e.name}</span>
-                    <span className="body mt-2 block text-[0.97rem]">{b?.body}</span>
-                    <span className="mt-auto inline-flex items-center gap-2 pt-6 text-[0.92rem] font-medium text-ice group-hover:text-white">
-                      {withPage.has(e.name) ? "See the engine" : "See the agent"}
-                      <Arrow className="h-4 w-4" />
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <h2 id="beyond-title" data-anim="lines" className="h2 max-w-[20ch]">
+            <Segs segs={t.beyondTitle} />
+          </h2>
+          <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+            {beyond.map((x) => (
+              <li key={x.title} data-anim="rise" className="rounded-3xl bg-card/40 p-6 ring-1 ring-inset ring-cardborder/40 sm:p-7">
+                <h3 className="h3">{x.title}</h3>
+                <p className="body mt-3">{x.body}</p>
+              </li>
+            ))}
+          </ol>
+          <div data-anim="rise" className="mt-10 flex flex-col gap-5 rounded-3xl bg-gradient-to-r from-primary/30 via-accent/10 to-transparent p-6 ring-1 ring-inset ring-accent/30 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <p className="max-w-[56ch] text-[1.1rem] text-white">{t.promise}</p>
+            <Link href="/demo" className="btn btn-primary shrink-0">
+              {d.nav.demo}
+              <Arrow />
+            </Link>
+          </div>
         </div>
       </section>
+
       <CtaBand />
     </>
   );

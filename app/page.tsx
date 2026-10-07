@@ -25,11 +25,11 @@ export const metadata: Metadata = {
 const servicesLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "OfferCatalog",
-  name: "Brocare AI bundles",
-  url: `${siteUrl}/bundles`,
+  name: "Brocare AI engines",
+  url: `${siteUrl}/engines`,
   itemListElement: bundles.map((b) => ({
     "@type": "Offer",
-    url: `${siteUrl}/bundles#${b.slug}`,
+    url: `${siteUrl}/engines#${b.slug}`,
     itemOffered: {
       "@type": "Service",
       name: b.name,
@@ -43,7 +43,7 @@ const servicesLd = JSON.stringify({
 export default function HomePage() {
   return (
     <>
-      <EngineHero hero={d.hero} demoLabel={d.nav.demo} agentCount={agents.length} bundleCount={bundles.length} />
+      <EngineHero hero={d.hero} demoLabel={d.nav.demo} agentCount={agents.length} bundleCount={bundles.filter((b) => b.status !== "custom").length} />
       <AgentsMarquee />
       <ExampleSchedule t={d.schedule} demoLabel={d.nav.demo} />
       <Intro intro={d.intro} />

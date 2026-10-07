@@ -21,7 +21,7 @@ export const pad2 = (n: number) => String(n).padStart(2, "0");
 /** The form code printed in each page's header strip. */
 export const forms = {
   home: { code: "BAI-01", title: "Schedule of work" },
-  bundles: { code: "BAI-02", title: "Schedule of bundles" },
+  bundles: { code: "BAI-02", title: "Schedule of engines" },
   agents: { code: "BAI-03", title: "Schedule of agents" },
   about: { code: "BAI-04", title: "Declaration" },
   caseStudy: { code: "BAI-05", title: "Record of use" },

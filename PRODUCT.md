@@ -30,8 +30,8 @@ The agents were built and run inside a real insurance brokerage (Brocare Insuran
 ## Capabilities and Constraints
 
 - Next.js 15 App Router, React 19, TypeScript, Tailwind 3, framer-motion. Deployed on Vercel from GitHub `main`; redesign work stays local until the user approves.
-- Pages: landing, /bundles, /agents, /about, /faq, /demo, /case-study (footer only, not in nav), privacy, terms, cookies, refunds, custom 404.
-- 24 agents and 9 bundles, defined in `lib/content/agents.ts` and `lib/content/bundles.ts`. Only live agents are promised; NEW, pilot and coming-soon agents are labelled.
+- Pages: landing, /engines, /agents, /about, /faq, /demo, /case-study (footer only, not in nav), privacy, terms, cookies, refunds, custom 404.
+- 24 agents and 9 engines (the catalog formerly called bundles), defined in `lib/content/agents.ts` and `lib/content/engines.ts`. Only live agents are promised; NEW, pilot and coming-soon agents are labelled.
 - Strict CSP in `next.config.mjs`; no cookies, analytics or trackers; fonts self-hosted.
 - Demo form posts to `/api/lead` (Resend); consent checkbox required.
 

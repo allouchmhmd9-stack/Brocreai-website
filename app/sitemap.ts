@@ -7,7 +7,6 @@ const pages: { path: string; priority: number; freq: "weekly" | "monthly" | "yea
   { path: "/engines/accounting", priority: 0.8, freq: "monthly" },
   { path: "/engines/outreach", priority: 0.8, freq: "monthly" },
   { path: "/engines/marketing", priority: 0.8, freq: "monthly" },
-  { path: "/bundles", priority: 0.9, freq: "monthly" },
   { path: "/agents", priority: 0.9, freq: "monthly" },
   { path: "/about", priority: 0.7, freq: "monthly" },
   { path: "/case-study", priority: 0.6, freq: "monthly" },

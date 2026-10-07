@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Pick a bundle on the left; its agents ink in on the grid of all agents. Tap any other
- * agent to stamp it into the bundle: the rule "any agent can be added to any bundle",
+ * agent to stamp it into the bundle: the rule "any agent can be added to any engine",
  * shown instead of told. Additions are only for this page and reset per bundle.
  */
 export function BundlesMatrix({ bundles, seeLabel, rule }: { bundles: Bundle[]; seeLabel: string; rule: string }) {
@@ -70,7 +70,7 @@ export function BundlesMatrix({ bundles, seeLabel, rule }: { bundles: Bundle[]; 
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
       {/* The index of bundles */}
       <div className="lg:col-span-5">
-        <ul aria-label="Choose a bundle" className="space-y-1.5">
+        <ul aria-label="Choose an engine" className="space-y-1.5">
           {bundles.map((x, i) => {
             const on = i === active;
             return (
@@ -158,7 +158,7 @@ export function BundlesMatrix({ bundles, seeLabel, rule }: { bundles: Bundle[]; 
               <span className="lbl-ref pill mt-0.5 shrink-0 text-accent">Any agent</span>
               {rule}
             </p>
-            <Link href={`/bundles#${b.slug}`} className="btn btn-secondary btn-sm shrink-0">
+            <Link href={`/engines#${b.slug}`} className="btn btn-secondary btn-sm shrink-0">
               {seeLabel}
               <Arrow />
             </Link>

@@ -11,7 +11,6 @@ import { contact, whatsappLink } from "@/lib/site";
 
 const LINKS = [
   { key: "engines", href: "/engines" },
-  { key: "bundles", href: "/bundles" },
   { key: "agents", href: "/agents" },
   { key: "about", href: "/about" },
   { key: "faq", href: "/faq" },

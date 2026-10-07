@@ -44,6 +44,10 @@ const nextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   images: { formats: ["image/avif", "image/webp"] },
+  async redirects() {
+    // Bundles were renamed to engines; old links keep working.
+    return [{ source: "/bundles", destination: "/engines", permanent: true }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

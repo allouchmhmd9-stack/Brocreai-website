@@ -577,3 +577,9 @@ html.motion:not(.motion-done) [data-anim="rule"] {
     display: none;
   }
 }
+
+/* Phones: button pairs sit side by side, a size smaller, instead of stacking. */
+@media (max-width: 639px) {
+  .btn-row { flex-direction: row; flex-wrap: nowrap; justify-content: center; gap: 0.5rem; }
+  .btn-row > .btn { min-height: 2.6rem; padding: 0 1.1rem; font-size: 0.86rem; gap: 0.4rem; }
+}

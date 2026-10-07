@@ -8,7 +8,6 @@ export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dic
   const year = new Date().getFullYear();
   const pages = [
     { href: "/engines", label: nav.engines },
-    { href: "/bundles", label: nav.bundles },
     { href: "/agents", label: nav.agents },
     { href: "/about", label: nav.about },
     { href: "/case-study", label: nav.caseStudy },
