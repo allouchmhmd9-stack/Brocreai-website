@@ -97,7 +97,7 @@ export const en = {
   },
   closing: {
     title: [s("Insurance is slow. We made it "), s("fast", true), s(".")],
-    lead: "A 20-minute call. We show you a live agent working on a real example from your market, not a slideshow.",
+    lead: "A 30-minute call. We show you a live agent working on a real example from your market, not a slideshow.",
   },
   pages: {
     bundles: {
@@ -145,12 +145,12 @@ export const en = {
   },
   demo: {
     metaTitle: "Book a demo",
-    metaDescription: "A 20-minute call where we show a live Brocare AI agent working on a real example from your market. Or message us on WhatsApp.",
+    metaDescription: "A 30-minute call where we show a live Brocare AI agent working on a real example from your market. Or message us on WhatsApp.",
     title: [s("Book a "), s("demo", true), s(".")],
-    lead: "A 20-minute call. We show you a live agent working on a real example from your market, not a slideshow, and tell you which bundle fits.",
+    lead: "A 30-minute call. We show you a live agent working on a real example from your market, not a slideshow, and tell you which bundle fits.",
     afterTitle: "What happens after you book",
     afterBody: "A short call with a live agent on a real example. If it is a fit, the next step is a Readiness Audit: a short, paid engagement where we map your workflows, quantify what is costing you time, and scope exactly what to build first.",
-    bookLead: "Pick a 20-minute slot. It goes straight into our calendar.",
+    bookLead: "Pick a 30-minute slot. It goes straight into our calendar.",
     bookCta: "Pick a time",
     orLead: "Prefer to write? WhatsApp is the fastest way to reach us.",
     whatsappLead: "The fastest way to reach us is WhatsApp.",
