@@ -44,11 +44,11 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "Can I see what an agent is about to do before it happens?",
-        a: "Yes, always, unless you have specifically chosen a higher-autonomy tier for a product designed for it. Every agent's default behaviour is to prepare and queue its work (a drafted email, a proposal, a follow-up) for your one-tap approval. Nothing goes out on its own by default.",
+        a: "Yes, always. Every agent prepares and queues its work (a drafted email, a proposal, a follow-up) for your one-tap approval, and nothing goes out without it. The one exception is the instant acknowledgement to someone who sends an enquiry through your website: it confirms the enquiry arrived and that a person will reply.",
       },
       {
         q: "What if an agent makes a mistake?",
-        a: "Every agent's output goes through your review before anything client-facing happens, which is exactly the point of the approval step. Beyond that, agents are tested against real examples of what good looks like for your business, gathered from you directly during onboarding, so the system is checked against your own standard, not a generic one.",
+        a: "Every agent's output goes through your review before it reaches a client, which is exactly the point of the approval step. Beyond that, agents are tested against real examples of what good looks like for your business, gathered from you directly during onboarding, so the system is checked against your own standard, not a generic one.",
       },
       {
         q: "What languages does it work in?",
@@ -73,7 +73,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "We are a regulated company and our data is sensitive. Is that a problem?",
-        a: "It is exactly what we built for. Client-owned accounts and credentials, a full audit log of every action, an approval gate on anything that leaves the system, and a documented data processing agreement and retention policy are all standard, not upgrades.",
+        a: "It is exactly what we built for. Client-owned accounts and credentials, a full audit log of every action, an approval gate on everything that leaves the system (apart from the instant acknowledgement to a website enquiry), and a documented data processing agreement and retention policy are all standard, not upgrades.",
       },
       {
         q: "You work with other insurers and brokers. Could you ever be a conflict of interest?",

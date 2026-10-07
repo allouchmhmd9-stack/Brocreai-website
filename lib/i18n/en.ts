@@ -118,7 +118,7 @@ export const en = {
       metaDescription:
         "Every AI agent inside Brocare AI, explained: what it does, what it produces, how it runs, and how to customise it for your business.",
       title: [s("Meet the "), s("agents", true), s(".")],
-      lead: "Every agent below is real, running, and already doing this work inside our own brokerage. Not a concept, not a prototype. Each one prepares its work and hands it to you for approval; none of them act on your behalf without your say-so, unless you have specifically opted into a higher-autonomy product built for it.",
+      lead: "Every agent below is real, running, and already doing this work inside our own brokerage. Not a concept, not a prototype. Each one prepares its work and hands it to you for approval; none of them act on your behalf without your say-so.",
       rule: "Any agent can be added to any bundle. The bundles are a guide, not a fixed menu.",
       jump: "Jump to a group",
       fields: {

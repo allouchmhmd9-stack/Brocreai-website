@@ -24,7 +24,7 @@ export const about = {
     {
       h: "How we think about AI: it prepares, you decide",
       p: [
-        "Every agent inside Brocare AI drafts, scores, flags and prepares. None of them send, publish or act on your behalf without your review, until you have explicitly told the system you are ready for more autonomy, and even then, the control stays fully in your hands. We built it this way for our own brokerage first, because we were not willing to let a system make a client-facing decision without us seeing it. That standard does not change for anyone we sell to.",
+        "Every agent inside Brocare AI drafts, scores, flags and prepares. None of them send, publish or act on your behalf without your review. The one exception is the instant acknowledgement to a website enquiry, which only confirms the enquiry arrived and that a person will reply. We built it this way for our own brokerage first, because we were not willing to let a system make a client-facing decision without us seeing it. That standard does not change for anyone we sell to.",
       ],
     },
     {
