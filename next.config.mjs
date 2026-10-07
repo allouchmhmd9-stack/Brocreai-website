@@ -10,6 +10,8 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://prod.spline.design",
   "font-src 'self' data:",
+  // The hero robot scene carries a video texture that Spline loads as a data: URL.
+  "media-src 'self' data: blob:",
   // The hero robot: Spline loads its scene from prod.spline.design and wasm from cdn.spline.design.
   "connect-src 'self' https://prod.spline.design https://cdn.spline.design",
   "worker-src 'self' blob:",
