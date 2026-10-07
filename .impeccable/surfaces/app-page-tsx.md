@@ -11,7 +11,7 @@ Whole marketing site (landing first, then bundles, agents, about, case study, FA
 
 ## Audience and job
 
-Anyone working in insurance, often a staff member who will recommend it upward, and the heads of larger firms (never named or addressed). Must believe in ten seconds: a full AI team that does real work, safely and under their control. Action: book a 20-minute demo, or WhatsApp.
+Anyone working in insurance, often a staff member who will recommend it upward, and the heads of larger firms (never named or addressed). Must believe in ten seconds: a full AI team that does real work, safely and under their control. Action: book a 30-minute demo, or WhatsApp.
 
 ## Proof and constraints
 

@@ -12,7 +12,7 @@ Anyone who works in insurance and could become a client: brokerages, agencies, i
 
 ## Product Purpose
 
-Brocare AI sells AI agents that do real insurance work: finding and scoring leads, researching prospects before calls, drafting follow-ups, producing quotes, proposals and pitch decks, morning briefs, market and regulatory intelligence, content, document work and inbox triage. The site's job is to get a qualified visitor to book a 20-minute demo (or message on WhatsApp). Success is a booked demo.
+Brocare AI sells AI agents that do real insurance work: finding and scoring leads, researching prospects before calls, drafting follow-ups, producing quotes, proposals and pitch decks, morning briefs, market and regulatory intelligence, content, document work and inbox triage. The site's job is to get a qualified visitor to book a 30-minute demo (or message on WhatsApp). Success is a booked demo.
 
 ## Positioning
 

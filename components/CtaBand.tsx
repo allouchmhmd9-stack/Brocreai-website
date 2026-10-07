@@ -38,7 +38,7 @@ export function CtaBand({ lead }: { lead?: string }) {
               <div className="flex items-end gap-3 border-b border-white/70 pb-1">
                 <span className="text-xl font-bold text-accent">X</span>
               </div>
-              <p className="lbl mt-2">Sign here: a 20-minute call</p>
+              <p className="lbl mt-2">Sign here: a 30-minute call</p>
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Link href="/demo" className="btn btn-primary">
