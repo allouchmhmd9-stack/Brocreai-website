@@ -210,7 +210,7 @@ afternoon a broker spends building a prospect list by hand, or the lead that wen
 because nobody followed up. Marketing language starts from the reader's problem; this starts
 from our product.
 
-**1.6 The hero headline is too long for the type it's set in.** "AI agents built for insurance —
+**1.6 The hero headline is too long for the type it's set in.** "AI agents built for insurance -
 packaged, deployed, and run for you." is 11 words in Syne ExtraBold, a very wide face. At
 1440px it needs five lines. That is a copy problem before it is a CSS problem: the fix is a
 headline of 5–7 words, and *then* a lighter weight. See B6.
@@ -258,12 +258,12 @@ marks; no sentence that ends in "for you" twice on one page.
 | Safe to say | Not safe |
 |---|---|
 | HUNTER runs twice a week | Anything about volume of leads per run `[needs number]` |
-| Outreach drafts are under 150 words | That outreach "sends" — it drafts only |
-| Follow-up reminder at 7 days, draft at 14 | — |
-| Proposal drafted in under two minutes | — |
+| Outreach drafts are under 150 words | That outreach "sends" - it drafts only |
+| Follow-up reminder at 7 days, draft at 14 | - |
+| Proposal drafted in under two minutes | - |
 | Quote in ~2 minutes vs ~45 by hand | Selling Quoting to another brokerage before insurer permission (catalog Bundle 6) |
-| Daily brief (HERALD), weekly country risk, competitor and regulatory watch | — |
-| Nothing sends automatically, ever (hard platform rule) | — |
+| Daily brief (HERALD), weekly country risk, competitor and regulatory watch | - |
+| Nothing sends automatically, ever (hard platform rule) | - |
 | Marketing & Content: "in build" | That the scheduler or video exist today |
 | Custom work is priced per case | Any fixed price, anywhere |
 
@@ -290,20 +290,20 @@ Search Console once the domain is live; drop anything with zero impressions afte
 | Long-tail | AI outreach for insurance brokers, insurance proposal generator, insurance follow-up automation | bundle bodies, FAQ |
 | Local | insurance AI Lebanon, Beirut, MENA, Africa, francophone Africa, DRC | hero sub or "who it's for" line, footer, Organization schema `areaServed` |
 
-### B3.2 Title and description (`meta`) — **ID S1**
+### B3.2 Title and description (`meta`) - **ID S1**
 
 Current title: *Brocare AI: agents built for insurance* (41 chars, no query).
 Current description: generic list, 158 chars.
 
 - **A:** title `AI Agents for Insurance Brokers & Insurers | Brocare AI` (55)
-  description `Brocare AI builds and runs AI agents for insurance brokers: prospects found twice a week, outreach drafted for your approval, quotes in two minutes. Beirut, MENA and Africa.` (169 — trim "and Africa" if you want ≤160)
+  description `Brocare AI builds and runs AI agents for insurance brokers: prospects found twice a week, outreach drafted for your approval, quotes in two minutes. Beirut, MENA and Africa.` (169 - trim "and Africa" if you want ≤160)
 - **B:** title `Brocare AI: AI Agents That Find and Chase Insurance Leads` (58)
   description `Lead generation, outreach, quoting and market intelligence, run by AI agents and approved by you. Built by an insurance brokerage for brokerages and insurers.` (157)
 
 Recommend A: it puts the search phrase first. The `%s | Brocare AI` template for sub-pages
 stays.
 
-### B3.3 Heading map — **ID S2**
+### B3.3 Heading map - **ID S2**
 
 Search engines read H1/H2 as the outline. Right now the outline is a list of slogans. Proposed
 outline (copy for each is in §4; this is only the *structure*):
@@ -327,7 +327,7 @@ H2  Book a demo                                            (demo)
 The slogan lines don't disappear; they become the *lead sentence* under each topic H2. You keep
 the voice, the crawler gets the topic.
 
-### B3.4 Schema — **ID S3**
+### B3.4 Schema - **ID S3**
 
 The Organization JSON-LD in `app/layout.tsx` is good. Add:
 - `areaServed: ["LB","AE","SA","CD","CI","SN"]` (edit to the real target list) and
@@ -336,7 +336,7 @@ The Organization JSON-LD in `app/layout.tsx` is good. Add:
   Organization, `areaServed`). Six small nodes. No FAQ schema (Google restricts it to
   government and health sites now; the FAQ *content* still helps, the markup doesn't).
 
-### B3.5 Second phase: pages that can rank — **ID S4** (decision, not copy)
+### B3.5 Second phase: pages that can rank - **ID S4** (decision, not copy)
 
 One URL per bundle: `/lead-generation`, `/outreach-and-follow-up`, `/proposals`,
 `/intelligence`, `/quoting`, `/marketing`. Each 500–800 words: what the agent does, a
@@ -347,7 +347,7 @@ separate build; mark `YES` if you want it planned.
 
 ### B3.6 Small technical items
 
-- `alt` on the header logo is "Brocare" — fine. OG image alt (in `layout.tsx` `openGraph.images`)
+- `alt` on the header logo is "Brocare" - fine. OG image alt (in `layout.tsx` `openGraph.images`)
   should read "Brocare AI: AI agents for insurance brokers".
 - Keep `lang="en"`. If a French page ships, add `hreflang`.
 - Keep the indexing lockout until the domain is set (already in place).
@@ -359,7 +359,7 @@ separate build; mark `YES` if you want it planned.
 Format: **Current** → **Problem** → **Proposed** (options) → notes. Gradient-word markers are
 shown as `{…}`; the implementer maps them to `g: true` segments.
 
-### B4.1 Navigation — **ID N1**
+### B4.1 Navigation - **ID N1**
 
 Current: Product / How It Works / Pricing Model / Book a Demo.
 
@@ -371,9 +371,9 @@ misled. "Product" is vague for a company that sells bundles.
 
 Recommend A. Nav labels are also anchor text, so "Bundles" beats "Product".
 
-### B4.2 Hero headline — **ID H1**
+### B4.2 Hero headline - **ID H1**
 
-Current (11 words, five lines at 1440): *AI agents built for insurance — packaged, deployed,
+Current (11 words, five lines at 1440): *AI agents built for insurance - packaged, deployed,
 and run for you.*
 
 Problem: too long for a wide extrabold face (§1.6); "packaged, deployed, and run" is a triad
@@ -391,7 +391,7 @@ that describes us, not them; no search phrase.
 Note on the gradient: it currently sits on "run for you", which is the least meaningful part.
 In each option above it marks the buyer or the promise.
 
-### B4.3 Hero sub-line — **ID H2**
+### B4.3 Hero sub-line - **ID H2**
 
 Current: *We build, deploy and run AI agents for quoting, sales follow-up, market intelligence
 and content, so your team does not have to.*
@@ -409,7 +409,7 @@ close.
 "Uses every agent it sells" is true (Brocare Insurance is the first client) and it is the
 strongest proof line available without a testimonial. Confirm you're comfortable saying it.
 
-### B4.4 Hero CTAs — **ID H3**
+### B4.4 Hero CTAs - **ID H3**
 
 Current: `Book a Demo` / `See How It Works`.
 
@@ -420,13 +420,13 @@ Current: `Book a Demo` / `See How It Works`.
 The dictionary already contains `bookLead: "Pick a 20-minute slot…"`, so "20-minute" is a
 commitment someone already made; use it.
 
-### B4.5 Hero right rail label — **ID H4**
+### B4.5 Hero right rail label - **ID H4**
 
 Current: `What we run` over four bundle names.
 Proposed: `Six bundles` (or `Five bundles` per B1 decision) and list them in the new order,
 Lead Generation first. Minor.
 
-### B4.6 Bundles section heading and lead — **ID B0**
+### B4.6 Bundles section heading and lead - **ID B0**
 
 Current: *Choose the outcome. We run the agents behind it.* / *Each bundle is described by the
 work that gets done, not by the software behind it.*
@@ -439,7 +439,7 @@ Problem: slogan H2 (B3.3); the lead sentence is the "not X, Y" shape.
 - **B:** H2 `Six bundles, one rule: {you approve everything}` + lead `Here is what each one
   actually does, agent by agent, with the schedule it runs on.`
 
-### B4.7 The bundles — **ID B1 (structure decision)**
+### B4.7 The bundles - **ID B1 (structure decision)**
 
 The catalog lists each agent under one bundle. That was a way to say the roster out loud on
 a call, not a rule about what a client gets. The right test is per pair: *does this agent make
@@ -496,7 +496,7 @@ merging Proposals into Outreach.
 
 Each row has: **name** (H3), **body** (two to four sentences), **detail** (the small line).
 
-#### B2 — Lead Generation (new; must be first)
+#### B2 - Lead Generation (new; must be first)
 
 - name: `Lead generation`
 - body **A:** `Every Tuesday and Friday, HUNTER searches for companies that match the profile
@@ -514,7 +514,7 @@ Each row has: **name** (H3), **body** (two to four sentences), **detail** (the s
 Note: "Tuesday and Friday" is an example of the specificity that sells; keep it only if that
 is the real schedule, otherwise use B.
 
-#### B3 — Outreach & Follow-Up
+#### B3 - Outreach & Follow-Up
 
 - name: `Outreach and follow-up`
 - body: `For every lead worth pursuing, a first email under 150 words is drafted in the
@@ -528,7 +528,7 @@ is the real schedule, otherwise use B.
   hand? The Lead-to-Close engine sends and follows up on a schedule from your own mailbox. In
   build; ask us where it stands.`
 
-#### B4 — Proposals & Pitch Decks
+#### B4 - Proposals & Pitch Decks
 
 - name: `Proposals and pitch decks`
 - body: `ARCHITECT drafts a complete, client-ready proposal for a named lead in under two
@@ -540,7 +540,7 @@ is the real schedule, otherwise use B.
 
 (These three rows together are "Sales Enablement". Optional eyebrow above B2–B4.)
 
-#### B5 — Intelligence
+#### B5 - Intelligence
 
 - name: `Market, competitor and regulatory intelligence`
 - body **A:** `A standing research desk without the hire. HERALD writes the morning brief:
@@ -556,7 +556,7 @@ is the real schedule, otherwise use B.
 - detail: `Daily brief, Weekly competitor, country-risk, regulatory and strategy reports ·
   Deep dive on request`
 
-#### B6 — Quoting & Documents
+#### B6 - Quoting & Documents
 
 - name: `Instant branded quotes and documents`
 - body: `Health and motor quotes from real rate books, branded to you, in about two minutes
@@ -571,7 +571,7 @@ is the real schedule, otherwise use B.
 in writing, this bundle is only sellable to Brocare Insurance itself. Decide **B6-SHOW:
 YES / NO / YES-WITH-NOTE** ("available to partner brokerages on request").
 
-#### B7 — Marketing & Content
+#### B7 - Marketing & Content
 
 - name: `Marketing and content` with a small `in build` tag on the two NEW pieces only
 - body: `ECHO drafts your social posts twice a week, seeded by what ATLAS found that morning
@@ -586,7 +586,7 @@ YES / NO / YES-WITH-NOTE** ("available to partner brokerages on request").
 rather wait until it is re-prompted and tested, drop the third sentence and the memo from the
 detail line.
 
-### B4.8 How It Works — **ID W1**
+### B4.8 How It Works - **ID W1**
 
 Current H2: *Nothing to install, ever.* Lead: *You give us access the way you would give a new
 hire access…* Steps: Give access / Set the scope / Watch the work land.
@@ -598,17 +598,17 @@ already use") when the connector list is a selling point.
   ever. You give us access the way you'd give a new hire access, and you can take it back the
   same afternoon.`)
 - Steps (keep the three; sharpen):
-  1. `Give access` — `A login to your dashboard, or a connection to Gmail or Outlook, WhatsApp
+  1. `Give access` - `A login to your dashboard, or a connection to Gmail or Outlook, WhatsApp
      and your CRM. Read scope by default; nothing is written to your systems until you say so.`
-  2. `Set the scope` — `You choose which agents run, what they can see, and which markets and
+  2. `Set the scope` - `You choose which agents run, what they can see, and which markets and
      profiles they work. Narrow it or switch any of it off from the dashboard, at any time.`
-  3. `Watch the work land` — `Leads, drafts and briefs appear in the dashboard and in your
+  3. `Watch the work land` - `Leads, drafts and briefs appear in the dashboard and in your
      inbox. Every outgoing email sits in an approval queue with one button on it.`
 
 Confirm the connector list (Gmail / Outlook / WhatsApp / CRM) against what is actually LIVE
 in `docs/PERMISSIONS-DEMO-CONNECTORS.md` before it ships. Mark **W1-CONNECTORS: …**.
 
-### B4.9 Guarantee — **ID G1**
+### B4.9 Guarantee - **ID G1**
 
 Current: *First workflow live in two weeks.* / *Your first real workflow is live and producing
 output within two weeks of kickoff. If it is not, the work continues at no cost until it is.*
@@ -621,7 +621,7 @@ This is the best section on the page. Two tweaks only:
 - Define "workflow" once so the promise is testable: add a small line `A workflow means one
   bundle, connected to your tools, producing its first real output.`
 
-### B4.10 Engagement model — **ID M1**
+### B4.10 Engagement model - **ID M1**
 
 Current H2: *Start small. Add more when it proves out.* Stages: Workshop / Readiness Audit /
 The Build / Platform Access / Expansion. CTA: Book a Readiness Audit.
@@ -633,15 +633,15 @@ sees.
 - H2 **A:** `How an engagement works` with lead `Start with one bundle. Add the next when the
   first one has paid for itself.`
 - Stage bodies (tighter, each with what the client gets):
-  1. `Workshop` — `Ninety minutes with the people who do the selling. We map where the week
+  1. `Workshop` - `Ninety minutes with the people who do the selling. We map where the week
      actually goes and pick the first bundle.`
-  2. `Readiness audit` — `We look at your tools, data and rate books and tell you what will
+  2. `Readiness audit` - `We look at your tools, data and rate books and tell you what will
      work in two weeks and what won't. Low commitment; you keep the findings either way.`
-  3. `The build` — `Connectors, scope, first runs. Delivered in milestones you can see in the
+  3. `The build` - `Connectors, scope, first runs. Delivered in milestones you can see in the
      dashboard, not a launch date at the end.`
-  4. `Platform access` — `The bundle runs on its schedule. You approve, we maintain.`
-  5. `Expansion` — `The next bundle, or a custom agent for a process only you have.`
-- Add one paragraph under the stairs — **M2:** `Bundles are priced as fixed monthly ranges
+  4. `Platform access` - `The bundle runs on its schedule. You approve, we maintain.`
+  5. `Expansion` - `The next bundle, or a custom agent for a process only you have.`
+- Add one paragraph under the stairs - **M2:** `Bundles are priced as fixed monthly ranges
   because they're built once and run for many clients. Custom work (a bespoke agent, a
   website, a tool that isn't in the catalog) is priced per project on scope, time and the
   value it creates for your business. We don't publish a menu price for that on purpose.`
@@ -650,7 +650,7 @@ sees.
 
 Confirm "ninety minutes" for the workshop or replace with the real length.
 
-### B4.11 FAQ — **ID F1 (new section)**
+### B4.11 FAQ - **ID F1 (new section)**
 
 Objections, answered in the buyer's words. Six is enough; place it between the model and the
 demo. These are search queries as much as questions.
@@ -670,7 +670,7 @@ demo. These are search queries as much as questions.
 6. **Where are you?** `Beirut. We work with brokerages and insurers in Lebanon, the Gulf and
    French- and English-speaking Africa, in English and French.`
 
-### B4.12 Demo section — **ID D1**
+### B4.12 Demo section - **ID D1**
 
 Current H2: *Book a demo.* Lead: *Tell us what you want to automate and we will come back to
 you.* WhatsApp line: *The fastest route is WhatsApp.*
@@ -684,9 +684,9 @@ you.* WhatsApp line: *The fastest route is WhatsApp.*
 - Form labels: keep. Change `What do you want to automate?` → `Where does your week go?` with
   hint `Prospecting, follow-ups, quotes, reports. Tell us the one that hurts.` (**D2**)
 - Success: `Thank you, we have your request.` → **A:** `Got it. You'll hear from Ali within one
-  working day.` (**D3** — only if that is a promise you'll keep; else keep current)
+  working day.` (**D3** - only if that is a promise you'll keep; else keep current)
 
-### B4.13 Footer, 404, error — **ID X1**
+### B4.13 Footer, 404, error - **ID X1**
 
 - Footer line `An initiative of Brocare Insurance Brokerage s.a.r.l.` is right; add `Beirut`
   after it for the local signal: `An initiative of Brocare Insurance Brokerage s.a.r.l., Beirut.`
@@ -694,7 +694,7 @@ you.* WhatsApp line: *The fastest route is WhatsApp.*
   `That link is old or mistyped. The home page has everything; or message us on WhatsApp.`
   Optional.
 
-### B4.14 Privacy page — **ID P1**
+### B4.14 Privacy page - **ID P1**
 
 Copy is clear and honest. Two additions the rewrite makes necessary:
 - If the demo form gains the "where does your week go" field, "What we collect" already
@@ -704,7 +704,7 @@ Copy is clear and honest. Two additions the rewrite makes necessary:
   your name and email.` (the dictionary already has booking strings, so a calendar tool is
   coming).
 
-### B4.15 OG share image text — **ID O1**
+### B4.15 OG share image text - **ID O1**
 
 Current: "AI agents built for insurance." / "Packaged, deployed, and run for you."
 Proposed: headline = whichever H1 option you choose; sub = `Built by a Beirut brokerage that
@@ -775,4 +775,4 @@ their name and a number, goes directly under the hero. Until then, no proof sect
 After applying: `npm run typecheck && npm run lint && npm test && npm run build`, then the
 anti-slop lint on the built page (`deslop.py .next/server/app/index.html`), then the same
 Playwright pass as before (no horizontal scroll at 320/375/768/1440, no console errors, all
-anchors resolve — note `#product` becomes `#bundles`).
+anchors resolve - note `#product` becomes `#bundles`).
