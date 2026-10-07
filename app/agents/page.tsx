@@ -8,6 +8,7 @@ import { agentGroups, agents } from "@/lib/content/agents";
 import { getDictionary } from "@/lib/i18n";
 import { forms, lineNo, pad2 } from "@/lib/slip";
 import { cn } from "@/lib/utils";
+import { ogImages } from "@/lib/og";
 
 const d = getDictionary();
 const t = d.pages.agents;
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   title: t.metaTitle,
   description: t.metaDescription,
   alternates: { canonical: "/agents" },
-  openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/agents" },
+  openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/agents", images: ogImages },
 };
 
 const FIELDS = ["does", "outputs", "how", "when", "custom"] as const;

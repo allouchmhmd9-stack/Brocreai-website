@@ -8,6 +8,7 @@ import { Stamp } from "@/components/slip/Stamp";
 import { about } from "@/lib/content/pages";
 import { getDictionary } from "@/lib/i18n";
 import { forms } from "@/lib/slip";
+import { ogImages } from "@/lib/og";
 
 const d = getDictionary();
 
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   title: about.metaTitle,
   description: about.metaDescription,
   alternates: { canonical: "/about" },
-  openGraph: { title: `${about.metaTitle} | Brocare AI`, description: about.metaDescription, url: "/about" },
+  openGraph: { title: `${about.metaTitle} | Brocare AI`, description: about.metaDescription, url: "/about", images: ogImages },
 };
 
 export default function AboutPage() {

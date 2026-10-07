@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { faqGroups } from "@/lib/content/faq";
 import { getDictionary } from "@/lib/i18n";
 import { forms, pad2 } from "@/lib/slip";
+import { ogImages } from "@/lib/og";
 
 const d = getDictionary();
 const t = d.pages.faq;
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   title: t.metaTitle,
   description: t.metaDescription,
   alternates: { canonical: "/faq" },
-  openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/faq" },
+  openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/faq", images: ogImages },
 };
 
 // Questions answered as numbered notes, every answer visible. Structured data mirrors them.

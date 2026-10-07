@@ -6,6 +6,7 @@ import { Arrow } from "@/components/slip/Parts";
 import { getDictionary } from "@/lib/i18n";
 import { bookingUrl, contact, whatsappLink } from "@/lib/site";
 import { forms } from "@/lib/slip";
+import { ogImages } from "@/lib/og";
 
 const d = getDictionary();
 const demo = d.demo;
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   title: demo.metaTitle,
   description: demo.metaDescription,
   alternates: { canonical: "/demo" },
-  openGraph: { title: `${demo.metaTitle} | Brocare AI`, description: demo.metaDescription, url: "/demo" },
+  openGraph: { title: `${demo.metaTitle} | Brocare AI`, description: demo.metaDescription, url: "/demo", images: ogImages },
 };
 
 export default function DemoPage() {

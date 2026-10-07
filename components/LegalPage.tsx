@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { getDictionary } from "@/lib/i18n";
+import { ogImages } from "@/lib/og";
 import { forms } from "@/lib/slip";
 
 const d = getDictionary();
@@ -16,7 +17,7 @@ export function legalMetadata(key: LegalKey): Metadata {
       title: `${p.metaTitle} | Brocare AI`,
       description: p.metaDescription,
       url: `/${key}`,
-      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: d.meta.ogAlt }],
+      images: ogImages,
     },
   };
 }

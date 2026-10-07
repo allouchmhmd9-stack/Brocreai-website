@@ -6,6 +6,7 @@ import { Stamp } from "@/components/slip/Stamp";
 import { caseStudy } from "@/lib/content/pages";
 import { getDictionary } from "@/lib/i18n";
 import { forms } from "@/lib/slip";
+import { ogImages } from "@/lib/og";
 
 const d = getDictionary();
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   title: caseStudy.metaTitle,
   description: caseStudy.metaDescription,
   alternates: { canonical: "/case-study" },
-  openGraph: { title: `${caseStudy.metaTitle} | Brocare AI`, description: caseStudy.metaDescription, url: "/case-study" },
+  openGraph: { title: `${caseStudy.metaTitle} | Brocare AI`, description: caseStudy.metaDescription, url: "/case-study", images: ogImages },
 };
 
 export default function CaseStudyPage() {

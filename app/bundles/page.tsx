@@ -11,6 +11,7 @@ import { beyond, bundles } from "@/lib/content/bundles";
 import { getDictionary } from "@/lib/i18n";
 import { forms, initials } from "@/lib/slip";
 import { cn } from "@/lib/utils";
+import { ogImages } from "@/lib/og";
 
 const d = getDictionary();
 const t = d.pages.bundles;
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   title: t.metaTitle,
   description: t.metaDescription,
   alternates: { canonical: "/bundles" },
-  openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/bundles" },
+  openGraph: { title: `${t.metaTitle} | Brocare AI`, description: t.metaDescription, url: "/bundles", images: ogImages },
 };
 
 const letter = (i: number) => String.fromCharCode(65 + i);
