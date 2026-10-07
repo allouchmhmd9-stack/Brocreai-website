@@ -5,9 +5,11 @@ import { BundlesTeaser } from "@/components/sections/BundlesTeaser";
 import { FaqTeaser } from "@/components/sections/FaqTeaser";
 import { Guarantee } from "@/components/sections/Guarantee";
 import { ExampleSchedule } from "@/components/sections/ExampleSchedule";
-import { Hero } from "@/components/sections/Hero";
+import { AgentsMarquee } from "@/components/sections/AgentsMarquee";
+import { EngineHero } from "@/components/sections/EngineHero";
 import { How } from "@/components/sections/How";
 import { Intro } from "@/components/sections/Intro";
+import { agents } from "@/lib/content/agents";
 import { bundles } from "@/lib/content/bundles";
 import { getDictionary } from "@/lib/i18n";
 import { siteUrl } from "@/lib/site";
@@ -41,7 +43,8 @@ const servicesLd = JSON.stringify({
 export default function HomePage() {
   return (
     <>
-      <Hero hero={d.hero} demoLabel={d.nav.demo} />
+      <EngineHero hero={d.hero} demoLabel={d.nav.demo} agentCount={agents.length} bundleCount={bundles.length} />
+      <AgentsMarquee />
       <ExampleSchedule t={d.schedule} demoLabel={d.nav.demo} />
       <Intro intro={d.intro} />
       <AgentsTeaser t={d.agentsTeaser} />

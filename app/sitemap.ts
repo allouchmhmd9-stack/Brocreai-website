@@ -3,6 +3,10 @@ import { siteUrl } from "@/lib/site";
 
 const pages: { path: string; priority: number; freq: "weekly" | "monthly" | "yearly" }[] = [
   { path: "/", priority: 1, freq: "weekly" },
+  { path: "/engines", priority: 0.9, freq: "monthly" },
+  { path: "/engines/accounting", priority: 0.8, freq: "monthly" },
+  { path: "/engines/outreach", priority: 0.8, freq: "monthly" },
+  { path: "/engines/marketing", priority: 0.8, freq: "monthly" },
   { path: "/bundles", priority: 0.9, freq: "monthly" },
   { path: "/agents", priority: 0.9, freq: "monthly" },
   { path: "/about", priority: 0.7, freq: "monthly" },

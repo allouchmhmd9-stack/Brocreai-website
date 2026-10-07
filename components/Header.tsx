@@ -10,6 +10,7 @@ import type { Dictionary } from "@/lib/i18n";
 import { contact, whatsappLink } from "@/lib/site";
 
 const LINKS = [
+  { key: "engines", href: "/engines" },
   { key: "bundles", href: "/bundles" },
   { key: "agents", href: "/agents" },
   { key: "about", href: "/about" },

@@ -26,6 +26,7 @@ export const en = {
     ogAlt: "Brocare AI: the AI teams insurers never had to hire",
   },
   nav: {
+    engines: "Engines",
     bundles: "Bundles",
     agents: "Agents",
     about: "About",

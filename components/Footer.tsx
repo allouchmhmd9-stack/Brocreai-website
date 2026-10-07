@@ -7,6 +7,7 @@ import { brokerage, contact, whatsappLink } from "@/lib/site";
 export function Footer({ footer, nav }: { footer: Dictionary["footer"]; nav: Dictionary["nav"] }) {
   const year = new Date().getFullYear();
   const pages = [
+    { href: "/engines", label: nav.engines },
     { href: "/bundles", label: nav.bundles },
     { href: "/agents", label: nav.agents },
     { href: "/about", label: nav.about },

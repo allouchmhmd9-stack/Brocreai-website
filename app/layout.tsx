@@ -3,6 +3,7 @@ import { Archivo, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { ButtonRipple } from "@/components/motion/ButtonRipple";
 import { Choreographer } from "@/components/motion/Choreographer";
 import { InkDefs } from "@/components/slip/Stamp";
 import { getDictionary } from "@/lib/i18n";
@@ -127,6 +128,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer footer={dict.footer} nav={dict.nav} />
         <Choreographer />
+        <ButtonRipple />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       </body>
     </html>
