@@ -82,7 +82,7 @@ export const agents: Agent[] = [
     outputs: "A ready-to-send email draft per lead, under 150 words, sitting in your approval queue.",
     how: "It drafts automatically for leads needing a first touch, and every draft waits for a person to approve it. It never sends on its own.",
     when: "Every Tuesday and Thursday morning, automatically.",
-    custom: "Tone, language (English, French or Arabic) and messaging angle are all set to match how your team actually talks to prospects.",
+    custom: "Tone, language (English or French) and messaging angle are all set to match how your team actually talks to prospects.",
     status: "live",
   },
   {
@@ -250,7 +250,7 @@ export const agents: Agent[] = [
     outputs: "Ready-to-review social post drafts, seeded by real signals your Market Intelligence agents just found.",
     how: "It pulls from real, current signals relevant to your market and writes content grounded in them, rather than generating generic filler.",
     when: "Every Tuesday and Thursday morning.",
-    custom: "Tone, platform, language (English, French or Arabic) and content pillars are all set to your brand voice and audience. Nothing publishes without your sign-off.",
+    custom: "Tone, platform, language (English or French) and content pillars are all set to your brand voice and audience. Nothing publishes without your sign-off.",
     status: "live",
   },
   {

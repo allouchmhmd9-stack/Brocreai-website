@@ -66,7 +66,7 @@ export const bundles: Bundle[] = [
     tagline: "Content grounded in something real, not generic filler.",
     short: "Social content drafted twice a week from real market signals, and a calendar planned every Sunday.",
     body: "Twice a week, on-brand social content gets drafted for you. Unlike a generic content tool, it is seeded by real signals your own Market Intelligence bundle is already tracking, so posts are grounded in something real happening in your market. A full content calendar is planned every Sunday evening, so posting never starts from a blank page on a Monday. Nothing publishes without your sign-off.",
-    produces: "Twice-weekly drafted social content, in English, French or Arabic; a full weekly content calendar, planned in advance.",
+    produces: "Twice-weekly drafted social content, in English or French; a full weekly content calendar, planned in advance.",
     why: "Consistent, credible content is one of the first things to slip when a team gets busy. This keeps it running without taking anyone off their actual job.",
     status: "live",
     agents: ["content-engine", "content-calendar", "opportunity-scanner"],

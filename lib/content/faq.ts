@@ -52,7 +52,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "What languages does it work in?",
-        a: "English, French and Arabic, because that is how our markets actually talk. Tell us your markets during onboarding and we configure the language mix accordingly.",
+        a: "English and French, the two languages our markets do business in. Tell us your markets during onboarding and we set each agent to the right one.",
       },
       {
         q: "Can any agent go in any bundle?",
