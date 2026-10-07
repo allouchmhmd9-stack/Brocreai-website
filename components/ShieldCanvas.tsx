@@ -66,6 +66,7 @@ export function ShieldCanvas({ scene, pulse, approved, className }: { scene: num
     for (let k = 0; k < N; k++) P.push({ x: Math.random(), y: Math.random(), vx: 0, vy: 0, tx: 0.5, ty: 0.5, inner: 0, s: 0.8 + Math.random() * 1.3 });
 
     const draw = () => {
+      if (!S) { if (!reduce) raf = requestAnimationFrame(draw); return; }
       ctx.clearRect(0, 0, S, S);
       const g = ctx.createRadialGradient(S / 2, S / 2, 0, S / 2, S / 2, S * 0.5);
       g.addColorStop(0, `rgba(45,111,255,${0.16 + pulseV * 0.2})`); g.addColorStop(1, "rgba(45,111,255,0)");

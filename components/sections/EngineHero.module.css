@@ -61,10 +61,9 @@
 @keyframes swapIn { from { opacity: 0; transform: translateY(8px); filter: blur(4px); } }
 
 @media (max-width: 960px) {
-  .stage { grid-template-columns: minmax(0,1fr); gap: 2.2rem; }
-  .center { order: -1; }
-  .shield { width: min(78vw, 320px); }
-  .beams { display: none; }
+  .hero { padding-bottom: 1rem; }
+  .stage, .tabs { display: none; }
+  .turn { flex-direction: column; gap: .15rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .caret, .beam, .on .g { animation: none; }

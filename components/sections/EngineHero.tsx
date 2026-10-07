@@ -137,7 +137,7 @@ export function EngineHero({ hero, demoLabel, agentCount, bundleCount }: { hero:
           <span className={st.tagline}><b>{agentCount} agents</b><span className={st.dot} />{bundleCount} bundles<span className={st.dot} />built inside a real brokerage</span>
           <h1 id="hero-title" className={`display ${st.title}`}><Segs segs={hero.title} /></h1>
           <p className={st.turn} aria-live="polite">
-            <span>Turn your brokerage into</span>
+            <span>Turn your business into</span>
             <span><span className={st.role}>{role}</span><span className={st.caret} aria-hidden="true" /></span>
           </p>
           <div className={st.ctas}>

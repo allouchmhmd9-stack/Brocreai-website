@@ -13,7 +13,7 @@ export function AgentsMarquee() {
     <section aria-labelledby="team-title" className="pb-6 pt-14 text-center md:pt-16">
       <div className="wrap">
         <p className="lbl">The team &middot; {agents.length} agents &middot; one approval inbox</p>
-        <h2 id="team-title" className="h2 mx-auto mt-3 max-w-3xl">Every desk in a brokerage, already staffed.</h2>
+        <h2 id="team-title" className="h2 mx-auto mt-3 max-w-3xl">Every desk, already staffed.</h2>
       </div>
       <div className="marquee mt-9" aria-label="The Brocare AI agents">
         {lanes.map((lane, k) => (
