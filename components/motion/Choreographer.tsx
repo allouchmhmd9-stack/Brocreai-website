@@ -7,6 +7,7 @@ import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
+import { hashTarget } from "@/lib/hash";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
 
@@ -51,8 +52,7 @@ export function Choreographer() {
 
     // Keep Lenis in step with the router: new page starts at the top, or at its anchor.
     if (lenis) {
-      const hash = window.location.hash;
-      const target = hash ? document.querySelector<HTMLElement>(hash) : null;
+      const target = hashTarget(window.location.hash, document);
       lenis.scrollTo(target ?? 0, { immediate: true, force: true, offset: target ? -96 : 0 });
     }
 
