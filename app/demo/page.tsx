@@ -63,7 +63,7 @@ export default function DemoPage() {
                   <dt className="lbl pt-0.5">{o.label}</dt>
                   <dd className="entry text-[0.8rem] leading-relaxed text-white">
                     {o.href ? (
-                      <a href={o.href} {...(o.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="ln break-words">
+                      <a href={o.href} {...(o.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="ln [overflow-wrap:anywhere]">
                         {o.value}
                       </a>
                     ) : (
