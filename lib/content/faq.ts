@@ -44,7 +44,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: "Can I see what an agent is about to do before it happens?",
-        a: "Yes, always. Every agent prepares and queues its work (a drafted email, a proposal, a follow-up) for your one-tap approval, and nothing goes out without it. The one exception is the instant acknowledgement to someone who sends an enquiry through your website: it confirms the enquiry arrived and that a person will reply.",
+        a: "Yes, always. Every agent prepares and queues its work (a drafted email, a proposal, a follow-up) for your one-tap approval. No outreach, post or accounting entry goes out without a person on your team saying yes. The only automatic message is the instant acknowledgement to someone who contacts you first. It confirms the enquiry arrived and that a person will reply.",
       },
       {
         q: "What if an agent makes a mistake?",

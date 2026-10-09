@@ -45,18 +45,18 @@ export const en = {
     title: [s("The AI "), s("teams", true), s(" insurers never had to hire.")],
     sub: "The insurance-native AI operating system for brokers, agents and insurers. Built inside a real brokerage, proven every day, ready for yours.",
     secondary: "Meet the agents",
-    chips: ["Nothing to install", "You approve everything", "Live in two weeks, guaranteed"],
+    chips: ["Nothing to install", "You approve every outreach", "Live in two weeks, guaranteed"],
   },
   schedule: {
     title: [s("Every line waits for your "), s("approval", true), s(".")],
-    lead: "An example of what five live agents hand over before the day starts. Each one writes its line and initials it. Nothing goes out until someone signs it off.",
+    lead: "An example of what five live agents hand over before the day starts. Each one writes its line and initials it. No outreach, post or accounting entry goes out without a person on your team saying yes. The only automatic message is the instant acknowledgement to someone who contacts you first.",
   },
   intro: {
     title: [s("The AI operating system built inside a real insurance brokerage. Now "), s("yours", true), s(".")],
     lead: "Every agent on this site runs each working day inside Brocare Insurance Brokerage, our own brokerage in Beirut. It quotes, prospects, follows up and reports for us first. Then it does the same for you.",
     facts: [
       { title: "Built by insurance people", body: "Quoting, renewals, bordereaux, statements. We have done the work the agents now do." },
-      { title: "It prepares, you decide", body: "Every agent drafts, scores and flags. Nothing reaches a prospect until you approve it." },
+      { title: "It prepares, you decide", body: "Every agent drafts, scores and flags. No outreach, post or accounting entry goes out without a person on your team saying yes. The only automatic message is the instant acknowledgement to someone who contacts you first." },
       { title: "Middle East and Africa first", body: "Beirut is home. Active relationships across the DRC, Congo-Brazzaville, Nigeria, Cote d'Ivoire and Guinea. The Gulf is next." },
     ],
   },
@@ -81,7 +81,7 @@ export const en = {
     steps: [
       { title: "Give access", body: "A login to a scoped dashboard, or an OAuth or API connection to the tools you already use." },
       { title: "Choose the scope", body: "You pick which agents run and what they can see. Switch any of it off whenever you want." },
-      { title: "Approve the work", body: "Leads, drafts and briefs arrive where your team already works. Every email waits for your approval." },
+      { title: "Approve the work", body: "Leads, drafts and briefs arrive where your team already works. Every outreach email waits for your approval." },
     ],
   },
   guarantee: {
@@ -118,7 +118,7 @@ export const en = {
       metaDescription:
         "Every AI agent inside Brocare AI, explained: what it does, what it produces, how it runs, and how to customise it for your business.",
       title: [s("Meet the "), s("agents", true), s(".")],
-      lead: "Every agent below is real, running, and already doing this work inside our own brokerage. Not a concept, not a prototype. Each one prepares its work and hands it to you for approval; none of them act on your behalf without your say-so.",
+      lead: "Every agent below is real, running, and already doing this work inside our own brokerage. Not a concept, not a prototype. Each one prepares its work and hands it to you for approval. No outreach, post or accounting entry goes out without a person on your team saying yes. The only automatic message is the instant acknowledgement to someone who contacts you first.",
       rule: "Any agent can be added to any engine. The engines are a guide, not a fixed menu.",
       jump: "Jump to a group",
       fields: {

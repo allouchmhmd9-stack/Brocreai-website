@@ -14,7 +14,7 @@ export function GET() {
 
 > ${d.meta.description}
 
-Brocare AI is an initiative of Brocare Insurance Brokerage s.a.r.l., Beirut, Lebanon. It builds and runs AI agents for insurers, brokerages and agents, first in the Middle East and Africa. Every agent drafts, scores or prepares; nothing reaches a prospect until the client approves it. Engines are a guide: any agent can be added to any engine.
+Brocare AI is an initiative of Brocare Insurance Brokerage s.a.r.l., Beirut, Lebanon. It builds and runs AI agents for insurers, brokerages and agents, first in the Middle East and Africa. Every agent drafts, scores or prepares. No outreach, post or accounting entry goes out without a person on your team saying yes. The only automatic message is the instant acknowledgement to someone who contacts you first. Engines are a guide: any agent can be added to any engine.
 
 ## Engines (${siteUrl}/engines)
 

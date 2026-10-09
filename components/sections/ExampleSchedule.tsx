@@ -206,7 +206,7 @@ export function ExampleSchedule({ t, demoLabel }: { t: Dictionary["schedule"]; d
                 className="relative mt-2 block h-[6.5rem] w-full cursor-none overflow-hidden rounded-2xl bg-deep/60 text-left ring-1 ring-inset ring-accent/40 transition-[background-color,box-shadow] hover:bg-deep/80 hover:ring-accent/80"
               >
                 <span className="entry absolute left-5 top-1/2 max-w-[60%] -translate-y-1/2 text-[0.8rem] leading-snug text-textsec">
-                  Nothing goes out until you stamp it. Try it.
+                  Nothing on this slip goes out until you stamp it. Try it.
                 </span>
                 <span
                   ref={ghost}

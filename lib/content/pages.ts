@@ -24,7 +24,7 @@ export const about = {
     {
       h: "How we think about AI: it prepares, you decide",
       p: [
-        "Every agent inside Brocare AI drafts, scores, flags and prepares. None of them send, publish or act on your behalf without your review. The one exception is the instant acknowledgement to a website enquiry, which only confirms the enquiry arrived and that a person will reply. We built it this way for our own brokerage first, because we were not willing to let a system make a client-facing decision without us seeing it. That standard does not change for anyone we sell to.",
+        "Every agent inside Brocare AI drafts, scores, flags and prepares. No outreach, post or accounting entry goes out without a person on your team saying yes. The only automatic message is the instant acknowledgement to someone who contacts you first. It only confirms the enquiry arrived and that a person will reply. We built it this way for our own brokerage first, because we were not willing to let a system make a client-facing decision without us seeing it. That standard does not change for anyone we sell to.",
       ],
     },
     {
@@ -61,7 +61,7 @@ export const caseStudy = {
     {
       h: "How we actually use it",
       p: [
-        "Every morning at Brocare Insurance starts with one brief instead of five separate check-ins: pipeline, new leads, market signals, what needs approval, and the day's call list, all in one place before anyone has had coffee. Through the day, quoting that used to take the better part of an hour now takes seconds. Leads that would have needed a manual search now land in the pipeline twice a week, already verified and scored. Follow-ups that used to depend on someone remembering now happen on their own. None of this is a pilot programme running alongside our real work. It is our real work now.",
+        "Every morning at Brocare Insurance starts with one brief instead of five separate check-ins: pipeline, new leads, market signals, what needs approval, and the day's call list, all in one place before anyone has had coffee. Through the day, quoting that used to take the better part of an hour now takes seconds. Leads that would have needed a manual search now land in the pipeline twice a week, already verified and scored. Follow-ups that used to depend on someone remembering are now drafted on time and wait for a yes. None of this is a pilot programme running alongside our real work. It is our real work now.",
       ],
     },
     {
