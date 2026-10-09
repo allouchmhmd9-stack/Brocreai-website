@@ -62,7 +62,7 @@ const jsonLd = JSON.stringify({
       logo: `${siteUrl}/logo/brocare-ai-mark.png`,
       description: dict.meta.description,
       email: contact.email,
-      telephone: "+96118233300",
+      telephone: "+9611823300",
       parentOrganization: { "@type": "Organization", name: brokerage.name, url: brokerage.url },
       knowsAbout: ["insurance brokerage", "insurance lead generation", "insurance quoting", "AI agents"],
       contactPoint: [
@@ -81,7 +81,7 @@ const jsonLd = JSON.stringify({
       name: siteName,
       url: siteUrl,
       image: `${siteUrl}/opengraph-image.png`,
-      telephone: "+96118233300",
+      telephone: "+9611823300",
       email: contact.email,
       parentOrganization: { "@id": `${siteUrl}/#organization` },
       address: {

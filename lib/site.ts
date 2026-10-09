@@ -29,7 +29,7 @@ export const brokerage = {
 
 export const contact = {
   phoneDisplay: "+961 1 82 33 00",
-  phoneHref: "tel:+96118233300",
+  phoneHref: "tel:+9611823300",
   // Brocare AI has its own WhatsApp line, separate from the brokerage mobile (+961 81 82 33 00).
   whatsappDisplay: "+961 76 743 111",
   whatsappHref: "https://wa.me/96176743111",
